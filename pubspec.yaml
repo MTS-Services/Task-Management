@@ -3,7 +3,10 @@ description: "A new Flutter project."
 
 publish_to: 'none'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de615cd (sing up)
 version: 1.0.0+1
 
 environment:
@@ -14,7 +17,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de615cd (sing up)
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
@@ -24,18 +30,28 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> de615cd (sing up)
 flutter:
 
 
   uses-material-design: true
 
+<<<<<<< HEAD
 
   assets:
     - assets/images/
 
+=======
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+  #   - images/a_dot_ham.jpeg
+>>>>>>> de615cd (sing up)
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
