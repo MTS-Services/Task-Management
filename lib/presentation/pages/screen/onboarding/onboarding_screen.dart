@@ -21,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Icons.accessible_forward_rounded,
               ),
               Text(
-                "hello bangladesh",
+                "hello bangladesh i am ",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: RColors.blueButtonColors,
