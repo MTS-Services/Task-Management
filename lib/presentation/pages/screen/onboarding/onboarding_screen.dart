@@ -21,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Icons.accessible_forward_rounded,
               ),
               Text(
-                "hello bangladesh i am shakib ",
+                "MakTech",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: RColors.blueButtonColors,
