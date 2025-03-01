@@ -17,15 +17,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.accessible_forward_rounded,),
-              Text("MakTech",style: TextStyle(fontWeight: FontWeight.bold,color: RColors.blueButtonColors,fontSize: 22),),
-              Text("MakTech",style: TextStyle(fontWeight: FontWeight.bold,color: RColors.blueButtonColors,fontSize: 22),),
+              Icon(
+                Icons.accessible_forward_rounded,
+              ),
+              Text(
+                "hello bangladesh",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: RColors.blueButtonColors,
+                    fontSize: 22),
+              ),
             ],
           )
         ],
       ),
-
-
     );
   }
 }
