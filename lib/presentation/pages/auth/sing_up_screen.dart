@@ -113,7 +113,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: RColors.blackButtonColor1,
-
                   ),
                   onPressed: () {},
                   child: Text("Already have an account? LOG IN "),

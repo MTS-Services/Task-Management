@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -23,14 +24,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Row(
                 children: [
                   Image.asset(
-                    "assets/logo/logo.png",
+                    AssetPath.logoPng,
                     height: 50,
                     width: 100,
                     fit: BoxFit.fitWidth,
                   )
                 ],
               ),
-              Image.asset("assets/images/task.png"),
+              Image.asset(
+                AssetPath.taskMangeImage,
+                height: 340,
+                width: double.infinity,
+                fit: BoxFit.fitHeight,
+              ),
               Column(
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
