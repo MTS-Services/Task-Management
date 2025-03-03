@@ -15,25 +15,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.accessible_forward_rounded,
-                    color: Colors.purple,
-                    size: 40,
-                  ),
-                  Text(
-                    "MakTech",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: RColors.blueButtonColors,
-                        fontSize: 25),
-                  ),
+                  Image.asset(
+                    "assets/logo/logo.png",
+                    height: 50,
+                    width: 100,
+                    fit: BoxFit.fitWidth,
+                  )
                 ],
               ),
               Image.asset("assets/images/task.png"),
@@ -51,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Text(
                     "This smart tool is designed to help you\nbetter mange your task",
                     style: TextStyle(
-                      letterSpacing: 1,
+                        letterSpacing: 1,
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey[400]),
@@ -66,7 +60,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
-                        border: Border.all(color: Colors.black12, width: 1.5,)),
+                        border: Border.all(
+                          color: Colors.black12,
+                          width: 1.5,
+                        )),
                     child: Center(
                       child: Text(
                         "LOGIN",
@@ -83,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: RColors.blueButtonColors,
+                        color: RColors.blackButtonColor2,
                         border: Border.all(color: Colors.grey, width: 0.5)),
                     child: Center(
                       child: Text(
