@@ -20,7 +20,7 @@ theme: ThemeData(
 ),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomeScreen(),
+      home: OnboardingScreen(),
     );
   }
 }
