@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
+
+
+import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
+import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 
 
 void main() {
@@ -12,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -29,6 +35,18 @@ class MyApp extends StatelessWidget {
         )
       ),
       home: SingUpScreen()
+
+theme: ThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.blue,
+    ),
+  )
+),
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      home: HomeScreen(),
+
     );
   }
 
