@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maktrack/domain/entities/color.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -23,15 +24,16 @@ class CustomAppBar extends StatelessWidget {
               Icon(Icons.arrow_back_ios, size: 15,),
               Text(
                 text,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: RColors.smallFontColor
+                ),
               ),
             ],
           ),
         ),
         Image.asset(
           images,
-          width: 80,
-
+          width: 70,
         )
       ],
     );

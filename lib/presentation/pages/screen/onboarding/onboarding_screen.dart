@@ -23,14 +23,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Row(
                 children: [
                   Image.asset(
-                    "assets/logo/logo.png",
+                    "",
                     height: 50,
                     width: 100,
                     fit: BoxFit.fitWidth,
                   )
                 ],
               ),
-              Image.asset("assets/images/task.png"),
+              Image.asset(""),
               Column(
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
