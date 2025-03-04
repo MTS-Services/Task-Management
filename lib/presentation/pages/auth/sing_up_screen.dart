@@ -110,19 +110,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 ),
               ),
               SizedBox(height: 15),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: RColors.blackButtonColor1,
-                    suffixIcon: _buildVisibleIconButton(),
-                    hintText: "Password",
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
+
                 CustomDropDownMenu(),
                 SizedBox(
                   height: 30,
