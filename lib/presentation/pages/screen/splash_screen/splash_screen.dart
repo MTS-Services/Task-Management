@@ -1,6 +1,3 @@
-
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -20,12 +17,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-
     super.initState();
     startTimer();
   }
 
-  void startTimer(){
+  void startTimer() {
     Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
@@ -33,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(

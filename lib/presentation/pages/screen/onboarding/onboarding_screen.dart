@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
+import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -24,26 +26,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20,top: 25),
+              padding: const EdgeInsets.only(left: 20, top: 25),
               child: Row(
                 children: [
                   Image.asset(
-
-                    
                     AssetPath.logoPng,
-
-                    
-                    "",
-
-                    
                     height: 50,
                     width: 100,
                     fit: BoxFit.fitWidth,
                   )
                 ],
               ),
-
-              
             ),
             Image.asset(
               AssetPath.taskMangeImage,
@@ -54,10 +47,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
               child: Column(
-
-              Image.asset(""),
-              Column(
-
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +54,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     "Smart Task\nManagement",
                     style: TextStyle(fontSize: 33, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 7,),
+                  SizedBox(
+                    height: 7,
+                  ),
                   Text(
                     "This smart tool is designed to help you\nbetter mange your task",
                     style: TextStyle(
@@ -82,7 +73,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: RColors.blackButtonColor1),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SingInScreen()));
+                      },
                       child: Text("LOGIN"),
                     ),
                   ),
@@ -92,7 +88,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: RColors.blueButtonColors,
                           foregroundColor: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SingUpScreen()));
+                      },
                       child: Text("SING UP"),
                     ),
                   ),
