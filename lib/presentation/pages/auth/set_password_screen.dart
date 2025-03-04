@@ -6,16 +6,16 @@ import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
 
-class SingInScreen extends StatefulWidget {
-  const SingInScreen({super.key});
+class SetPasswordScreen extends StatefulWidget {
+  const SetPasswordScreen({super.key});
 
   @override
-  State<SingInScreen> createState() => _SingInScreenState();
+  State<SetPasswordScreen> createState() => _SetPasswordScreenState();
 }
 
-class _SingInScreenState extends State<SingInScreen> {
-  final _emailTEController = TextEditingController();
-  final _passwordTEController = TextEditingController();
+class _SetPasswordScreenState extends State<SetPasswordScreen> {
+  final _newPasswordTEController = TextEditingController();
+  final _confirmPasswordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
@@ -44,22 +44,22 @@ class _SingInScreenState extends State<SingInScreen> {
                   height: 40,
                 ),
                 SingUpAndTitle(
-                  title: 'Welcome Back!',
-                  title2: 'Log in your account & Manage \nYour task',
+                  title: 'Set Password',
+                  title2: 'Inter Your new Password',
                 ),
                 SizedBox(height: 60),
                 TextFormField(
-                  controller: _emailTEController,
+                  controller: _newPasswordTEController,
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.mail_outline,size: 20,
                         color: RColors.smallFontColor,
                       ),
-                      hintText: "E-Mail"),
+                      hintText: "New Password"),
                 ),
                 SizedBox(height: 50),
                 TextFormField(
-                  controller: _passwordTEController,
+                  controller: _confirmPasswordTEController,
                   obscureText: isVisible,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
@@ -67,36 +67,16 @@ class _SingInScreenState extends State<SingInScreen> {
                       color: RColors.smallFontColor,
                     ),
                     suffixIcon: _buildVisibleIconButton(),
-                    hintText: "Password",
+                    hintText: "Confirm Password",
                   ),
                 ),
-                SizedBox(
-                  height: 40,
-                ),
-                SavePasswordForgetButton(isLoginPage: true,),
-                SizedBox(
-                  height: 30,
-                ),
-                SizedBox(height: 40),
+                SizedBox(height: 120),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text("SING IN"),
-                  ),
-                ),
-                SizedBox(height: 15),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: RColors.blueButtonColors,
-                    ),
-                    onPressed: () {},
-                    child: Text("Already have an account? LOG UP "),
+                    child: Text("Confirm"),
                   ),
                 ),
               ],
@@ -116,20 +96,20 @@ class _SingInScreenState extends State<SingInScreen> {
       },
       icon: isVisible
           ? Icon(
-              Icons.visibility_off,
-              color: RColors.smallFontColor,
-            )
+        Icons.visibility_off,
+        color: RColors.smallFontColor,
+      )
           : Icon(
-              Icons.visibility,
-              color: RColors.smallFontColor,
-            ),
+        Icons.visibility,
+        color: RColors.smallFontColor,
+      ),
     );
   }
   @override
   void dispose() {
     super.dispose();
-    _passwordTEController.dispose();
-    _emailTEController.dispose();
+    _confirmPasswordTEController.dispose();
+    _newPasswordTEController.dispose();
   }
 }
 
