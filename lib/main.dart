@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ))),
-        home: SplashScreen());
+        home: OnboardingScreen());
   }
 
   TextTheme _buildTextTheme() {
