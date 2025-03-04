@@ -5,6 +5,7 @@ import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 
 import '../../widgets/custom_app_bar.dart';
+import '../../widgets/save_password_forget_button.dart';
 import '../../widgets/sing_up_title.dart';
 
 class SingUpScreen extends StatefulWidget {
@@ -53,6 +54,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.person_outline_outlined,
+                        size: 20,
                         color: RColors.smallFontColor,
                       ),
                       hintText: "UserName"),
@@ -63,6 +65,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.mail_outline,
+                        size: 20,
                         color: RColors.smallFontColor,
                       ),
                       hintText: "E-Mail"),
@@ -74,6 +77,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock_outline_rounded,
+                      size: 20,
                       color: RColors.smallFontColor,
                     ),
 
@@ -114,15 +118,19 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     foregroundColor: RColors.blackButtonColor1,
                     suffixIcon: _buildVisibleIconButton(),
                     hintText: "Password",
-
-
                   ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
                 CustomDropDownMenu(),
-                SizedBox(height: 60),
+                SizedBox(
+                  height: 30,
+                ),
+                SavePasswordForgetButton(
+                  isLoginPage: false,
+                ),
+                SizedBox(height: 40),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -141,7 +149,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SingInScreen(),),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingInScreen(),
+                        ),
+                      );
                     },
                     child: Text("Already have an account? LOG IN "),
                   ),
@@ -171,5 +184,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
               color: RColors.smallFontColor,
             ),
     );
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _passwordTEController.dispose();
+    _emailTEController.dispose();
+    _userNameTEController.dispose();
   }
 }
