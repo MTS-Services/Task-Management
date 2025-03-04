@@ -76,8 +76,45 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       Icons.lock_outline_rounded,
                       color: RColors.smallFontColor,
                     ),
+
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      },
+                      icon: isVisible
+                          ? Icon(
+                              Icons.visibility_off,
+                              color: RColors.smallFontColor,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              color: RColors.smallFontColor,
+                            ),
+                    ),
+                    hintText: "password"),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("SING UP"),
+                ),
+              ),
+              SizedBox(height: 15),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: RColors.blackButtonColor1,
                     suffixIcon: _buildVisibleIconButton(),
                     hintText: "Password",
+
 
                   ),
                 ),

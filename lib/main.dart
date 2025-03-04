@@ -3,7 +3,6 @@ import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -13,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SingUpScreen(),
     );
+
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
@@ -43,20 +44,19 @@ class MyApp extends StatelessWidget {
 
   TextTheme _buildTextTheme() {
     return TextTheme(
-        bodyMedium: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-
-        ),
-        bodySmall: TextStyle(
-          fontSize: 16,
-
-        ),
-      );
+      bodyMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 16,
+      ),
+    );
   }
 
   InputDecorationTheme _buildInputDecorationTheme(BuildContext context) {
     return InputDecorationTheme(
+
        border: UnderlineInputBorder(
          borderSide: BorderSide(
            color: RColors.smallFontColor,
@@ -76,6 +76,6 @@ class MyApp extends StatelessWidget {
         color: RColors.smallFontColor,
       )
      );
+
   }
 }
-
