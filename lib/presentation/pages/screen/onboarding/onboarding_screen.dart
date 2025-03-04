@@ -28,13 +28,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Row(
                 children: [
                   Image.asset(
+
+                    
                     AssetPath.logoPng,
+
+                    
+                    "",
+
+                    
                     height: 50,
                     width: 100,
                     fit: BoxFit.fitWidth,
                   )
                 ],
               ),
+
+              
             ),
             Image.asset(
               AssetPath.taskMangeImage,
@@ -45,6 +54,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
               child: Column(
+
+              Image.asset(""),
+              Column(
+
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

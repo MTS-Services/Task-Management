@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({super.key});
+class SingInScreen extends StatefulWidget {
+  const SingInScreen({super.key});
 
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SingInScreen> createState() => _SingInScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
-  final _userNameTEController = TextEditingController();
+class _SingInScreenState extends State<SingInScreen> {
+
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -44,20 +43,11 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   height: 40,
                 ),
                 SingUpAndTitle(
-                  title: 'Sing Up',
+                  title: 'Welcome Back!',
                   title2: 'Log in your account & Manage \nYour task',
                 ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _userNameTEController,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.person_outline_outlined,
-                        color: RColors.smallFontColor,
-                      ),
-                      hintText: "UserName"),
-                ),
-                SizedBox(height: 15),
+
+                SizedBox(height: 60),
                 TextFormField(
                   controller: _emailTEController,
                   decoration: InputDecoration(
@@ -67,7 +57,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                       hintText: "E-Mail"),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 50),
                 TextFormField(
                   controller: _passwordTEController,
                   obscureText: isVisible,
@@ -76,52 +66,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       Icons.lock_outline_rounded,
                       color: RColors.smallFontColor,
                     ),
-
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isVisible = !isVisible;
-                        });
-                      },
-                      icon: isVisible
-                          ? Icon(
-                              Icons.visibility_off,
-                              color: RColors.smallFontColor,
-                            )
-                          : Icon(
-                              Icons.visibility,
-                              color: RColors.smallFontColor,
-                            ),
-                    ),
-                    hintText: "password"),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("SING UP"),
-                ),
-              ),
-              SizedBox(height: 15),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: RColors.blackButtonColor1,
                     suffixIcon: _buildVisibleIconButton(),
                     hintText: "Password",
-
 
                   ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                CustomDropDownMenu(),
+
                 SizedBox(height: 60),
                 SizedBox(
                   width: double.infinity,
@@ -140,9 +93,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       backgroundColor: Colors.white,
                       foregroundColor: RColors.blueButtonColors,
                     ),
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SingInScreen(),),);
-                    },
+                    onPressed: () {},
                     child: Text("Already have an account? LOG IN "),
                   ),
                 ),
@@ -163,13 +114,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
       },
       icon: isVisible
           ? Icon(
-              Icons.visibility_off,
-              color: RColors.smallFontColor,
-            )
+        Icons.visibility_off,
+        color: RColors.smallFontColor,
+      )
           : Icon(
-              Icons.visibility,
-              color: RColors.smallFontColor,
-            ),
+        Icons.visibility,
+        color: RColors.smallFontColor,
+      ),
     );
   }
 }
