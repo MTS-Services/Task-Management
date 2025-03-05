@@ -52,7 +52,8 @@ class _SingInScreenState extends State<SingInScreen> {
                   controller: _emailTEController,
                   decoration: InputDecoration(
                       prefixIcon: Icon(
-                        Icons.mail_outline,size: 20,
+                        Icons.mail_outline,
+                        size: 20,
                         color: RColors.smallFontColor,
                       ),
                       hintText: "E-Mail"),
@@ -63,7 +64,8 @@ class _SingInScreenState extends State<SingInScreen> {
                   obscureText: isVisible,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      Icons.lock_outline_rounded,size: 20,
+                      Icons.lock_outline_rounded,
+                      size: 20,
                       color: RColors.smallFontColor,
                     ),
                     suffixIcon: _buildVisibleIconButton(),
@@ -73,7 +75,9 @@ class _SingInScreenState extends State<SingInScreen> {
                 SizedBox(
                   height: 40,
                 ),
-                SavePasswordForgetButton(isLoginPage: true,),
+                SavePasswordForgetButton(
+                  isLoginPage: true,
+                ),
                 SizedBox(
                   height: 30,
                 ),
@@ -125,6 +129,7 @@ class _SingInScreenState extends State<SingInScreen> {
             ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -132,4 +137,3 @@ class _SingInScreenState extends State<SingInScreen> {
     _emailTEController.dispose();
   }
 }
-
