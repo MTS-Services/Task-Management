@@ -18,6 +18,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
+
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -31,8 +34,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 children: [
                   Image.asset(
                     AssetPath.logoPng,
-                    height: 50,
-                    width: 100,
+                    height: screenHeight * 0.05,
+                    width: screenWidth * 0.25,
                     fit: BoxFit.fitWidth,
                   )
                 ],
@@ -40,7 +43,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Image.asset(
               AssetPath.taskMangeImage,
-              height: 310,
+              height: screenHeight * 0.38,
               width: double.infinity,
               fit: BoxFit.fitHeight,
             ),
@@ -52,22 +55,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 children: [
                   Text(
                     "Smart Task\nManagement",
-                    style: TextStyle(fontSize: 33, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontWeight: FontWeight.bold, fontSize: 33),
                   ),
                   SizedBox(
-                    height: 7,
+                    height: 5,
                   ),
                   Text(
                     "This smart tool is designed to help you\nbetter mange your task",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey[400]),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: RColors.smallFontColor),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   SizedBox(
+                    height: screenHeight * 0.07,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -83,6 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   SizedBox(
+                    height: screenHeight * 0.07,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -94,7 +102,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             MaterialPageRoute(
                                 builder: (context) => SingUpScreen()));
                       },
-                      child: Text("SING UP"),
+                      child: Text(
+                        "SING UP",
+                      ),
                     ),
                   ),
                 ],
