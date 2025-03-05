@@ -47,7 +47,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   width: double.infinity,
                   fit: BoxFit.fitHeight,
                 ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -56,10 +55,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: [
                       Text(
                         "Smart Task\nManagement",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold, fontSize: 33),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 33),
                       ),
                       SizedBox(
                         height: 20,
@@ -114,7 +111,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
