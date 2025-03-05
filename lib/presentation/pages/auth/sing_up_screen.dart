@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
@@ -47,7 +48,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   height: 40,
                 ),
                 SingUpAndTitle(
-                  title: 'Sing Up',
+                  title: 'Sign Up',
                   title2: 'Log in your account & Manage \nYour task',
                 ),
                 SizedBox(height: 20),
@@ -104,13 +105,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
               SizedBox(
                 height: 30,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("SING UP"),
-                ),
-              ),
               SizedBox(height: 15),
 
                 CustomDropDownMenu(),
@@ -126,14 +120,14 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SingInScreen(),
+                      Get.offAll(() => SingInScreen(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(
+                          milliseconds: 750,
                         ),
                       );
                     },
-                    child: Text("SING UP"),
+                    child: Text("SIGN UP"),
                   ),
                 ),
                 SizedBox(height: 25),
@@ -146,10 +140,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SingInScreen(),
+                      Get.offAll(() => SingInScreen(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(
+                          milliseconds: 750,
                         ),
                       );
                     },

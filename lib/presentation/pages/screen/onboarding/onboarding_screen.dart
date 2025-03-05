@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
@@ -24,7 +25,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,6 +41,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 15,
+                ),
                 Image.asset(
                   AssetPath.taskMangeImage,
                   // height: screenHeight * 0.38,
@@ -47,7 +51,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   width: double.infinity,
                   fit: BoxFit.fitHeight,
                 ),
-
+                SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
@@ -55,24 +61,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Smart Task\nManagement",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold, fontSize: 33),
+                        "Smart Task Management",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 33),
                       ),
                       SizedBox(
                         height: 20,
                       ),
                       Text(
-                        "This smart tool is designed to help you\nbetter mange your task",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: RColors.smallFontColor),
+                        "This smart tool is designed to help you better mange your task",
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: RColors.smallFontColor,
+                            ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 60,
                       ),
                       SizedBox(
                         height: 60,
@@ -82,16 +85,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               backgroundColor: Colors.white,
                               foregroundColor: RColors.blackButtonColor1),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SingInScreen()));
+                            Get.offAll(
+                              () => SingInScreen(),
+                              transition: Transition.rightToLeft,
+                              duration: Duration(
+                                milliseconds:750,
+                              ),
+                            );
                           },
-                          child: Text("LOGIN"),
+                          child: Text("LOG IN"),
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 25,
                       ),
                       SizedBox(
                         height: 60,
@@ -101,20 +107,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               backgroundColor: RColors.blueButtonColors,
                               foregroundColor: Colors.white),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SingUpScreen()));
+                            Get.offAll(
+                                  () => SingUpScreen(),
+                              transition: Transition.rightToLeft,
+                              duration: Duration(
+                                milliseconds: 750,
+                              ),
+                            );
                           },
                           child: Text(
-                            "SING UP",
+                            "SIGN UP",
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-
               ],
             ),
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -86,8 +88,10 @@ class _SingInScreenState extends State<SingInScreen> {
                   width: double.infinity,
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text("SING IN"),
+                    onPressed: () {
+
+                    },
+                    child: Text("LOGIN"),
                   ),
                 ),
                 SizedBox(height: 25),
@@ -100,9 +104,14 @@ class _SingInScreenState extends State<SingInScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Get.offAll(() => SingUpScreen(),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(
+                          milliseconds: 750,
+                        ),
+                      );
                     },
-                    child: Text("Already have an account? LOG UP "),
+                    child: Text("Don't have an account? SIGN UP "),
                   ),
                 ),
               ],
