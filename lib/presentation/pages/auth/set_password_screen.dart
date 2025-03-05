@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
-
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
 
@@ -45,17 +43,19 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                 ),
                 SingUpAndTitle(
                   title: 'Set Password',
-                  title2: 'Inter Your new Password',
+                  title2: 'Choose a strong password for \nyour account.',
                 ),
                 SizedBox(height: 60),
                 TextFormField(
                   controller: _newPasswordTEController,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.mail_outline,size: 20,
-                        color: RColors.smallFontColor,
-                      ),
-                      hintText: "New Password"),
+                    prefixIcon: Icon(
+                      Icons.lock_outline_rounded,
+                      size: 20,
+                      color: RColors.smallFontColor,
+                    ),
+                    hintText: "New Password",
+                  ),
                 ),
                 SizedBox(height: 50),
                 TextFormField(
@@ -63,7 +63,8 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   obscureText: isVisible,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
-                      Icons.lock_outline_rounded,size: 20,
+                      Icons.lock_outline_rounded,
+                      size: 20,
                       color: RColors.smallFontColor,
                     ),
                     suffixIcon: _buildVisibleIconButton(),
@@ -75,7 +76,9 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   width: double.infinity,
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: Text("Confirm"),
                   ),
                 ),
@@ -96,15 +99,16 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       },
       icon: isVisible
           ? Icon(
-        Icons.visibility_off,
-        color: RColors.smallFontColor,
-      )
+              Icons.visibility_off,
+              color: RColors.smallFontColor,
+            )
           : Icon(
-        Icons.visibility,
-        color: RColors.smallFontColor,
-      ),
+              Icons.visibility,
+              color: RColors.smallFontColor,
+            ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -112,4 +116,3 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
     _newPasswordTEController.dispose();
   }
 }
-

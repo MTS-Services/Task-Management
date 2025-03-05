@@ -125,11 +125,18 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   width: double.infinity,
                   height: 60,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SingInScreen(),
+                        ),
+                      );
+                    },
                     child: Text("SING UP"),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 25),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
