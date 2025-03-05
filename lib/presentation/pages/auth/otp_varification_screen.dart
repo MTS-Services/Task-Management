@@ -41,7 +41,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),

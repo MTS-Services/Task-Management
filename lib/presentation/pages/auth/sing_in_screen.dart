@@ -38,8 +38,8 @@ class _SingInScreenState extends State<SingInScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
-                    Navigator.pop(context);
+                  onPressed: () {
+                    Get.back();
                   },
                 ),
                 SizedBox(
@@ -104,7 +104,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Get.offAll(() => SingUpScreen(),
+                      Get.to(() => SingUpScreen(),
                         transition: Transition.rightToLeft,
                         duration: Duration(
                           milliseconds: 750,

@@ -60,10 +60,19 @@ class MyApp extends StatelessWidget {
           color: RColors.smallFontColor,
         ),
       ),
+      errorBorder:  UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: RColors.errorColors,
+        ),
+      ),
       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
       hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
             color: RColors.smallFontColor,
           ),
+      errorStyle: TextStyle(
+        fontSize: 12,
+        color: RColors.errorColors
+      )
     );
   }
 }
