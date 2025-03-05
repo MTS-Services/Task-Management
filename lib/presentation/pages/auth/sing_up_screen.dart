@@ -39,7 +39,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {},
+                  onTep: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 SizedBox(
                   height: 40,
