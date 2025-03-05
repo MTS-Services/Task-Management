@@ -81,7 +81,7 @@ class _SingInScreenState extends State<SingInScreen> {
                 SizedBox(
                   height: 30,
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 70),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -90,7 +90,7 @@ class _SingInScreenState extends State<SingInScreen> {
                     child: Text("SING IN"),
                   ),
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 25),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -99,7 +99,9 @@ class _SingInScreenState extends State<SingInScreen> {
                       backgroundColor: Colors.white,
                       foregroundColor: RColors.blueButtonColors,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text("Already have an account? LOG UP "),
                   ),
                 ),
