@@ -39,7 +39,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {},
+                  onTep: () {
+                    Navigator.pop(context);
+                  },
                 ),
                 SizedBox(
                   height: 40,
@@ -80,13 +82,37 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       size: 20,
                       color: RColors.smallFontColor,
                     ),
-                    suffixIcon: _buildVisibleIconButton(),
-                    hintText: "Password",
-                  ),
+
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      },
+                      icon: isVisible
+                          ? Icon(
+                              Icons.visibility_off,
+                              color: RColors.smallFontColor,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                              color: RColors.smallFontColor,
+                            ),
+                    ),
+                    hintText: "password"),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("SING UP"),
                 ),
-                SizedBox(
-                  height: 30,
-                ),
+              ),
+              SizedBox(height: 15),
+
                 CustomDropDownMenu(),
                 SizedBox(
                   height: 30,

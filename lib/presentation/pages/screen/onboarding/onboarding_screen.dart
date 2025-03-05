@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
+import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -11,90 +15,108 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark));
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Image.asset(
-                    "",
-                    height: 50,
-                    width: 100,
-                    fit: BoxFit.fitWidth,
-                  )
-                ],
-              ),
-              Image.asset(""),
-              Column(
-                spacing: 10,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Smart Task\nManagement",
-                    style: TextStyle(
-                        fontSize: 33,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 3),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AssetPath.logoPng,
+                        height: 50,
+                        width: 100,
+                      )
+                    ],
                   ),
-                  Text(
-                    "This smart tool is designed to help you\nbetter mange your task",
-                    style: TextStyle(
-                        letterSpacing: 1,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey[400]),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.black12,
-                          width: 1.5,
-                        )),
-                    child: Center(
-                      child: Text(
-                        "LOGIN",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, letterSpacing: 2),
+                ),
+                Image.asset(
+                  AssetPath.taskMangeImage,
+                  // height: screenHeight * 0.38,
+                  height: 310,
+                  width: double.infinity,
+                  fit: BoxFit.fitHeight,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Smart Task\nManagement",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontWeight: FontWeight.bold, fontSize: 33),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: RColors.blackButtonColor2,
-                        border: Border.all(color: Colors.grey, width: 0.5)),
-                    child: Center(
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 2,
-                            color: Colors.white),
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
+                      Text(
+                        "This smart tool is designed to help you\nbetter mange your task",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(color: RColors.smallFontColor),
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: RColors.blackButtonColor1),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SingInScreen()));
+                          },
+                          child: Text("LOGIN"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: RColors.blueButtonColors,
+                              foregroundColor: Colors.white),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SingUpScreen()));
+                          },
+                          child: Text(
+                            "SING UP",
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              )
-            ],
+                ),
+
+              ],
+            ),
           ),
         ),
       ),
