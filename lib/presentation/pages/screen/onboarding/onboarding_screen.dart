@@ -85,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               backgroundColor: Colors.white,
                               foregroundColor: RColors.blackButtonColor1),
                           onPressed: () {
-                            Get.offAll(
+                            Get.to(
                               () => SingInScreen(),
                               transition: Transition.rightToLeft,
                               duration: Duration(
@@ -107,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               backgroundColor: RColors.blueButtonColors,
                               foregroundColor: Colors.white),
                           onPressed: () {
-                            Get.offAll(
+                            Get.to(
                                   () => SingUpScreen(),
                               transition: Transition.rightToLeft,
                               duration: Duration(

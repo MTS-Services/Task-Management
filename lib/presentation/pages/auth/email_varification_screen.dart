@@ -38,7 +38,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),

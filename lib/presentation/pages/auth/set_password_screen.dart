@@ -34,7 +34,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),

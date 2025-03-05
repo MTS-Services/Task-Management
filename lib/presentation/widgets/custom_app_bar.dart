@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+  CustomAppBar({
     super.key,
     required this.text,
     required this.images,
-    required this.onTep,
+    this.onPressed,
   });
 
   final String text;
   final String images;
-  final VoidCallback onTep;
+  void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: onTep,
+          onPressed: onPressed,
           icon: Row(
             children: [
               Icon(Icons.arrow_back_ios, size: 15,),
