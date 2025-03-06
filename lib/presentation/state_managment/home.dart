@@ -12,15 +12,18 @@ class CalendarController extends GetxController {
   void onDaySelected(DateTime day, DateTime focus) {
     selectedDay.value = day;
     focusedDay.value = focus;
+    formattedDate.value = DateFormat('dd MMMM yyyy').format(day);
+    update();
   }
 
   void onCancel() => showCalendar.value = false;
 
   void onConfirm() {
     if (selectedDay.value != null) {
-      formattedDate.value =
-          DateFormat('dd MMMM yyyy').format(selectedDay.value!);
+      formattedDate.value = DateFormat('dd MMMM yyyy').format(selectedDay.value!);
       showCalendar.value = false;
     }
   }
 }
+
+
