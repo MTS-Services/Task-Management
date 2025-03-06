@@ -164,24 +164,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 
-  Widget _buildVisibleIconButton() {
-    return IconButton(
-      onPressed: () {
-        setState(() {
-          isVisible = !isVisible;
-        });
-      },
-      icon: isVisible
-          ? Icon(
-              Icons.visibility_off,
-              color: RColors.smallFontColor,
-            )
-          : Icon(
-              Icons.visibility,
-              color: RColors.smallFontColor,
-            ),
-    );
-  }
   @override
   void dispose() {
     super.dispose();
