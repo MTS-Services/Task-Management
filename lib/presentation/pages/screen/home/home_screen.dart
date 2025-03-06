@@ -7,6 +7,8 @@ import 'widgets/calendar_pop_up.dart';
 class HomeScreen extends StatelessWidget {
   final CalendarController controller = Get.put(CalendarController());
 
+   HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

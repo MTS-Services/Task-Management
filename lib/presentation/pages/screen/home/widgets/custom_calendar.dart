@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -15,7 +16,9 @@ class CustomCalendarWidget extends StatelessWidget {
       lastDay: DateTime(2100),
       calendarFormat: CalendarFormat.month,
       selectedDayPredicate: (day) => isSameDay(controller.selectedDay.value, day),
-      onDaySelected: controller.onDaySelected,
+      onDaySelected: (selectedDay, focusedDay) {
+        controller.onDaySelected(selectedDay, focusedDay);
+      },
       calendarStyle: CalendarStyle(
         todayDecoration: BoxDecoration(
           color: Colors.amber,

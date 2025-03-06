@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
 
 import 'custom_calendar.dart';
@@ -28,28 +29,32 @@ class CalendarPopup extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          CustomCalendarWidget(controller: controller),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: controller.onCancel,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child:
-                    const Text("Cancel", style: TextStyle(color: Colors.white)),
-              ),
-              SizedBox(width: 20),
-              ElevatedButton(
-                onPressed: controller.onConfirm,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: const Text("OK", style: TextStyle(color: Colors.white)),
-              ),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GetBuilder<CalendarController>(
+              builder: (controller) => CustomCalendarWidget(controller: controller),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: controller.onCancel,
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.white)),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: controller.onConfirm,
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("OK", style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
