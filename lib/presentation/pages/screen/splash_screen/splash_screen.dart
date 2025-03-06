@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
-import 'package:maktrack/domain/entities/color.dart';
+
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
