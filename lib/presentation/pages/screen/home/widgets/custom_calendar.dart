@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -38,7 +37,7 @@ class CustomCalendarWidget extends StatelessWidget {
         rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
         titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         decoration: BoxDecoration(
-          color: Colors.deepPurple,
+          color: Colors.deepPurple[200],
           borderRadius: BorderRadius.circular(15),
         ),
       ),
