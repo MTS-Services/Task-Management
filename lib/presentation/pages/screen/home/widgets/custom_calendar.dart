@@ -31,7 +31,7 @@ class CustomCalendarWidget extends StatelessWidget {
         defaultDecoration: BoxDecoration(
           color: Colors.transparent,
         ),
-        weekendTextStyle: TextStyle(color: Colors.red),
+        weekendTextStyle: TextStyle(color: Color(0xffFE9F99)),
         outsideDaysVisible: false,
       ),
       headerStyle: HeaderStyle(
@@ -40,6 +40,9 @@ class CustomCalendarWidget extends StatelessWidget {
         leftChevronIcon: Icon(Icons.chevron_left, color: Colors.black),
         rightChevronIcon: Icon(Icons.chevron_right, color: Colors.black),
         titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+      ),
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekdayStyle: TextStyle(color: RColors.smallFontColor)
       ),
     );
   }

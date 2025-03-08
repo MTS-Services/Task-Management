@@ -49,7 +49,7 @@ class CalendarPopup extends StatelessWidget {
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: controller.onConfirm,
-                  style: ElevatedButton.styleFrom(backgroundColor: RColors.blackButtonColor1),
+                  style: ElevatedButton.styleFrom(backgroundColor: RColors.blueButtonColors),
                   child: const Text("OK", style: TextStyle(color: Colors.white)),
                 ),
               ],
