@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/email_varification_screen.dart';
 
@@ -23,11 +24,10 @@ class _SavePasswordForgetButtonState extends State<SavePasswordForgetButton> {
         TextButton(
           onPressed: () {
             if (widget.isLoginPage && !isPasswordSaved) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EmailVerificationScreen(),
-                ),
+              Get.to(
+                () => EmailVerificationScreen(),
+                transition: Transition.rightToLeft,
+                duration: Duration(milliseconds: 750),
               );
             }
           },
