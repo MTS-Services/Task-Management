@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -21,12 +21,15 @@ class CustomCalendarWidget extends StatelessWidget {
       },
       calendarStyle: CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: Colors.amber,
+          color: Colors.black54,
           shape: BoxShape.circle,
         ),
         selectedDecoration: BoxDecoration(
-          color: Colors.blue,
+          color:  RColors.blueButtonColors,
           shape: BoxShape.circle,
+        ),
+        defaultDecoration: BoxDecoration(
+          color: Colors.transparent,
         ),
         weekendTextStyle: TextStyle(color: Colors.red),
         outsideDaysVisible: false,
@@ -34,13 +37,9 @@ class CustomCalendarWidget extends StatelessWidget {
       headerStyle: HeaderStyle(
         titleCentered: true,
         formatButtonVisible: false,
-        leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
-        rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
-        titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-        decoration: BoxDecoration(
-          color: Colors.deepPurple,
-          borderRadius: BorderRadius.circular(15),
-        ),
+        leftChevronIcon: Icon(Icons.chevron_left, color: Colors.black),
+        rightChevronIcon: Icon(Icons.chevron_right, color: Colors.black),
+        titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

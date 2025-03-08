@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
 
 import 'custom_calendar.dart';
@@ -42,13 +43,13 @@ class CalendarPopup extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: controller.onCancel,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text("Cancel", style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.black)),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: controller.onConfirm,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  style: ElevatedButton.styleFrom(backgroundColor: RColors.blackButtonColor1),
                   child: const Text("OK", style: TextStyle(color: Colors.white)),
                 ),
               ],
