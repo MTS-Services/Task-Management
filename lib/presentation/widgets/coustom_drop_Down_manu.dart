@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:maktrack/presentation/widgets/custom_drop_down.dart';
 import 'package:maktrack/presentation/widgets/role_drop_down.dart';
@@ -14,7 +16,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   String? selectedRole;
 
   List<String> items = ['Flutter', 'MERN', 'Laravel', 'PHP'];
-  List<String> roleitems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
+  List<String> roleItems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
         ),
         SizedBox(height: 20),
         RoleDropdown(
-          items: roleitems,
+          items: roleItems,
           hint: "Role",
           selectedValue: selectedRole,
           onChanged: (value) {

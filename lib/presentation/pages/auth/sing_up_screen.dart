@@ -17,6 +17,14 @@ class SingUpScreen extends StatefulWidget {
 }
 
 class _SingUpScreenState extends State<SingUpScreen> {
+  @override
+  void initState() {
+    _userNameTEController.text ="areefin";
+    _emailTEController.text ="arifin50@gmail.com";
+    _passwordTEController.text ="Abc@123@";
+    super.initState();
+  }
+
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -40,58 +48,85 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
-                    Navigator.pop(context);
+                  onPressed: () {
+                    Get.back();
                   },
                 ),
                 SizedBox(
                   height: 40,
                 ),
                 SingUpAndTitle(
-                  title: 'Sign Up',
+                  title: 'Request',
                   title2: 'Log in your account & Manage \nYour task',
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _userNameTEController,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.person_outline_outlined,
-                        size: 20,
-                        color: RColors.smallFontColor,
-                      ),
-                      hintText: "UserName"),
+                    prefixIcon: Icon(
+                      Icons.person_outline_outlined,
+                      size: 20,
+                      color: RColors.smallFontColor,
+                    ),
+                    hintText: "UserName",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your username";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: _emailTEController,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.mail_outline,
-                        size: 20,
-                        color: RColors.smallFontColor,
-                      ),
-                      hintText: "E-Mail"),
+                    prefixIcon: Icon(
+                      Icons.mail_outline,
+                      size: 20,
+                      color: RColors.smallFontColor,
+                    ),
+                    hintText: "E-Mail",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your email";
+                    } else if (!GetUtils.isEmail(value)) {
+                      return "Invalid Email";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: _passwordTEController,
-                  obscureText: isVisible,
+                  obscureText: isVisible ,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock_outline_rounded,
                       size: 20,
                       color: RColors.smallFontColor,
                     ),
-
                     suffixIcon: _buildVisibleIconButton(),
-                    hintText: "password"),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(height: 15),
-
+                    hintText: "password",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your password";
+                    } else if (value.length < 8) {
+                      return "Password must be at least 8 characters long";
+                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      return "Password must contain at least one number";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                SizedBox(height: 15),
                 CustomDropDownMenu(),
                 SizedBox(
                   height: 30,
@@ -105,14 +140,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.offAll(() => SingInScreen(),
-                        transition: Transition.rightToLeft,
-                        duration: Duration(
-                          milliseconds: 750,
-                        ),
-                      );
+                      if (_globalKey.currentState!.validate()) {
+                        Get.to(
+                          () => SingInScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(milliseconds: 750),
+                        );
+                      }
                     },
-                    child: Text("SIGN UP"),
+                    child: Text("REQUEST ACCESS"),
                   ),
                 ),
                 SizedBox(height: 25),
@@ -125,7 +161,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Get.offAll(() => SingInScreen(),
+                      Get.to(
+                        () => SingInScreen(),
                         transition: Transition.rightToLeft,
                         duration: Duration(
                           milliseconds: 750,
@@ -161,6 +198,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
             ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();

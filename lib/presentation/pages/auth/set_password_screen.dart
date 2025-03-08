@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
 
@@ -12,6 +14,12 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
+  @override
+  void initState() {
+    _newPasswordTEController.text ="Abc@123@";
+    _confirmPasswordTEController.text ="Abc@123@";
+    super.initState();
+  }
   final _newPasswordTEController = TextEditingController();
   final _confirmPasswordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -34,7 +42,7 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                 CustomAppBar(
                   text: 'Back',
                   images: AssetPath.logoPng,
-                  onTep: () {
+                  onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
@@ -56,6 +64,19 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     ),
                     hintText: "New Password",
                   ),
+                  obscureText: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter a new password";
+                    } else if (value.length < 8) {
+                      return "Password must be at least 8 characters long";
+                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      return "Password must contain at least one number";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 50),
                 TextFormField(
@@ -70,6 +91,14 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     suffixIcon: _buildVisibleIconButton(),
                     hintText: "Confirm Password",
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please confirm your password";
+                    } else if (value != _newPasswordTEController.text) {
+                      return "Passwords do not match";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 120),
                 SizedBox(
@@ -77,7 +106,15 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-
+                      if(_globalKey.currentState!.validate()){
+                        Get.to(
+                              () => SingInScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(
+                            milliseconds: 750,
+                          ),
+                        );
+                      }
                     },
                     child: Text("Confirm"),
                   ),
