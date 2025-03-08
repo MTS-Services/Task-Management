@@ -17,6 +17,14 @@ class SingUpScreen extends StatefulWidget {
 }
 
 class _SingUpScreenState extends State<SingUpScreen> {
+  @override
+  void initState() {
+    _userNameTEController.text ="areefin";
+    _emailTEController.text ="arifin50@gmail.com";
+    _passwordTEController.text ="Abc@123@";
+    super.initState();
+  }
+
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -92,7 +100,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 SizedBox(height: 15),
                 TextFormField(
                   controller: _passwordTEController,
-                  obscureText: isVisible,
+                  obscureText: isVisible ,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock_outline_rounded,
@@ -105,10 +113,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter your password";
-                    } else if (value.length < 6) {
-                      return "Password must be at least 6 characters";
-                    } else if (!RegExp(r'^(a,A,@,)').hasMatch(value)) {
-                      return "Password must contain Uppercase, Lowercase & Number";
+                    } else if (value.length < 8) {
+                      return "Password must be at least 8 characters long";
+                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      return "Password must contain at least one number";
                     }
                     return null;
                   },
@@ -131,7 +141,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        Get.to(() => SingInScreen());
+                        Get.to(
+                          () => SingInScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(milliseconds: 750),
+                        );
+
                       }
                     },
                     child: Text("REQUEST ACCESS"),

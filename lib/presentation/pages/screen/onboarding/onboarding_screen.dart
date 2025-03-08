@@ -75,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                       ),
                       SizedBox(
-                        height: 60,
+                        height: 50,
                       ),
                       SizedBox(
                         height: 60,
