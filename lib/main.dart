@@ -4,7 +4,6 @@ import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/screen/bottomNavBar/bottom_nav_bar.dart';
 
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -39,6 +38,10 @@ class MyApp extends StatelessWidget {
 
   TextTheme _buildTextTheme() {
     return TextTheme(
+      bodyLarge: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.w700,
+      ),
       bodyMedium: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w600,

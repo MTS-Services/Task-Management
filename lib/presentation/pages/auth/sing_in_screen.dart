@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
+import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -119,6 +120,9 @@ class _SingInScreenState extends State<SingInScreen> {
                       if(_globalKey.currentState!.validate()){
 
                       }
+                      Get.to(
+                        () => DashBoard(),
+                      );
                     },
                     //-----New Button---------
                     child: Text("LOGIN"),
