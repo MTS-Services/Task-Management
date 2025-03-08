@@ -107,8 +107,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       return "Please enter your password";
                     } else if (value.length < 6) {
                       return "Password must be at least 6 characters";
-                    } else if (!RegExp(r'^(a,A,@,)')
-                        .hasMatch(value)) {
+                    } else if (!RegExp(r'^(a,A,@,)').hasMatch(value)) {
                       return "Password must contain Uppercase, Lowercase & Number";
                     }
                     return null;
@@ -132,7 +131,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        Get.to(()=>SingInScreen());
+                        Get.to(() => SingInScreen());
                       }
                     },
                     child: Text("REQUEST ACCESS"),

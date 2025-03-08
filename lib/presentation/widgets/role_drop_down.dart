@@ -53,9 +53,9 @@ class _RoleDropdownState extends State<RoleDropdown> {
                 Text(
                   widget.selectedValue ?? widget.hint,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: RColors.smallFontColor,
-                    fontSize: 12,
-                  ),
+                        color: RColors.smallFontColor,
+                        fontSize: 12,
+                      ),
                 ),
                 Icon(
                   isDropdownOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
@@ -104,12 +104,17 @@ class _RoleDropdownState extends State<RoleDropdown> {
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
                         children: [
-                          Icon(Icons.check_circle_outline, size: 16, color: RColors.smallFontColor),
+                          Icon(Icons.check_circle_outline,
+                              size: 16, color: RColors.smallFontColor),
                           SizedBox(width: 10),
-                          Text(widget.items[index],style:Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: RColors.smallFontColor,
-                            fontSize: 12,
-                          ),),
+                          Text(
+                            widget.items[index],
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: RColors.smallFontColor,
+                                      fontSize: 12,
+                                    ),
+                          ),
                         ],
                       ),
                     ),
