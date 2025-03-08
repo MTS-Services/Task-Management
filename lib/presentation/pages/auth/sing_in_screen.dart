@@ -16,6 +16,12 @@ class SingInScreen extends StatefulWidget {
 }
 
 class _SingInScreenState extends State<SingInScreen> {
+  @override
+  void initState() {
+    _emailTEController.text ="arifin50@gmail.com";
+    _passwordTEController.text ="Abc@123@";
+    super.initState();
+  }
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -58,7 +64,16 @@ class _SingInScreenState extends State<SingInScreen> {
                         size: 20,
                         color: RColors.smallFontColor,
                       ),
-                      hintText: "E-Mail"),
+                      hintText: "E-Mail",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your email";
+                    } else if (!GetUtils.isEmail(value)) {
+                      return "Invalid Email";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 50),
                 TextFormField(
@@ -73,6 +88,18 @@ class _SingInScreenState extends State<SingInScreen> {
                     suffixIcon: _buildVisibleIconButton(),
                     hintText: "Password",
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your password";
+                    } else if (value.length < 8) {
+                      return "Password must be at least 8 characters long";
+                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      return "Password must contain at least one number";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 40,
@@ -83,13 +110,15 @@ class _SingInScreenState extends State<SingInScreen> {
                 SizedBox(
                   height: 30,
                 ),
-                SizedBox(height: 70),
+                SizedBox(height: 60),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
+                      if(_globalKey.currentState!.validate()){
 
+                      }
                     },
                     child: Text("LOGIN"),
                   ),
