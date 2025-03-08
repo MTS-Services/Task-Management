@@ -13,7 +13,6 @@ class AssetPath {
   static const String basePathSplash = "assets/images";
   static const String basePathTitle = "$basePathSplash/titles.png";
   //vector image
-static const String basePathVector ="assets/images";
-static const String basePathGreenBeen ="$basePathVector/images.png";
-
+  static const String basePathVector = "assets/images";
+  static const String basePathGreenBeen = "$basePathVector/images.png";
 }
