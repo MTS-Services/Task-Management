@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 
@@ -18,16 +20,18 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   @override
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
   void initState() {
-    _userNameTEController.text ="areefin";
-    _emailTEController.text ="arifin50@gmail.com";
-    _passwordTEController.text ="Abc@123@";
+    _userNameTEController.text = "areefin";
+    _emailTEController.text = "arifin50@gmail. com";
+    _passwordTEController.text = "Abc@123@";
     super.initState();
   }
 
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
+
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
@@ -100,7 +104,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 SizedBox(height: 15),
                 TextFormField(
                   controller: _passwordTEController,
-                  obscureText: isVisible ,
+                  obscureText: isVisible,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock_outline_rounded,
@@ -141,11 +145,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        Get.to(
-                          () => SingInScreen(),
-                          transition: Transition.rightToLeft,
-                          duration: Duration(milliseconds: 750),
-                        );
+                        signUp();
                       }
                     },
                     child: Text("REQUEST ACCESS"),
@@ -206,4 +206,31 @@ class _SingUpScreenState extends State<SingUpScreen> {
     _emailTEController.dispose();
     _userNameTEController.dispose();
   }
+
+  void signUp() async {
+    String username = _userNameTEController.text;
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+
+    User? user = await _auth.singUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.lightGreenAccent,
+          content: Text("User is successfully created"),
+
+        ),
+      );
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text("User is successfully created"),
+
+        ),
+      );
+    }
+  }
 }
+
