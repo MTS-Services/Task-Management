@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/auth/otp_varification_screen.dart';
 
 
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
+import 'otp_verification_screen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
