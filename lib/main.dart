@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
 
+import 'presentation/pages/screen/splash_screen/splash_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 
