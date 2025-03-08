@@ -7,7 +7,7 @@ import 'widgets/calendar_pop_up.dart';
 class HomeScreen extends StatelessWidget {
   final CalendarController controller = Get.put(CalendarController());
 
-   HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,14 @@ class HomeScreen extends StatelessWidget {
                     Obx(() => Text(
                       controller.formattedDate.value,
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     )),
                     IconButton(
-                      icon: const Icon(Icons.calendar_today, color: Colors.black),
+                      icon:
+                      const Icon(Icons.calendar_today, color: Colors.black),
                       onPressed: controller.toggleCalendar,
                     ),
                   ],

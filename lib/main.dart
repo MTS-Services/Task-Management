@@ -5,6 +5,7 @@ import 'package:maktrack/presentation/pages/screen/bottomNavBar/bottom_nav_bar.d
 
 
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: BottomNavBarPage(),
+      home: Bottom(),
     );
   }
 
