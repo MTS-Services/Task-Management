@@ -21,12 +21,19 @@ class CustomAppBar extends StatelessWidget {
           onPressed: onPressed,
           icon: Row(
             children: [
-              Icon(Icons.arrow_back_ios, size: 15,),
+              Icon(
+                Icons.arrow_back_ios,
+                size: 15,
+              ),
               Text(
                 text,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: RColors.smallFontColor
+                    color: RColors.smallFontColor
                 ),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: RColors.smallFontColor),
               ),
             ],
           ),
@@ -39,3 +46,6 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+
+

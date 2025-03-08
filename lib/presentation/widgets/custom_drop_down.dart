@@ -7,7 +7,7 @@ class CustomDropdown extends StatefulWidget {
   final String? selectedValue;
   final Function(String?) onChanged;
 
-  CustomDropdown({
+  const CustomDropdown({super.key,
     required this.items,
     required this.hint,
     required this.selectedValue,
@@ -15,10 +15,10 @@ class CustomDropdown extends StatefulWidget {
   });
 
   @override
-  _CustomDropdownState createState() => _CustomDropdownState();
+  CustomDropdownState createState() => CustomDropdownState();
 }
 
-class _CustomDropdownState extends State<CustomDropdown> {
+class CustomDropdownState extends State<CustomDropdown> {
   bool isOpen = false;
 
   @override
@@ -53,9 +53,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
                   child: Text(
                     widget.selectedValue ?? widget.hint,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: RColors.smallFontColor,
-                      fontSize: 12,
-                    ),
+                          color: RColors.smallFontColor,
+                          fontSize: 12,
+                        ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -102,12 +102,20 @@ class _CustomDropdownState extends State<CustomDropdown> {
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
                         children: [
-                          Icon(Icons.check_circle_outline, size: 16, color: RColors.smallFontColor,),
-                          SizedBox(width: 10),
-                          Text(widget.items[index],style:Theme.of(context).textTheme.bodySmall!.copyWith(
+                          Icon(
+                            Icons.check_circle_outline,
+                            size: 16,
                             color: RColors.smallFontColor,
-                            fontSize: 12,
-                          ),),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            widget.items[index],
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: RColors.smallFontColor,
+                                      fontSize: 12,
+                                    ),
+                          ),
                         ],
                       ),
                     ),
