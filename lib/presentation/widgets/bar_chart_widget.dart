@@ -53,14 +53,9 @@ FlTitlesData _buildFlTitlesData(List<String> departmentNames) {
         showTitles: true,
         getTitlesWidget: (double value, TitleMeta meta) {
           if (value.toInt() < departmentNames.length) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10.0), // Add horizontal padding for spacing
-              child: Text(
-                departmentNames[value.toInt()],
-                style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
+            return Text(
+              departmentNames[value.toInt()],
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             );
           }
           return Container();
