@@ -120,7 +120,7 @@ class _SingInScreenState extends State<SingInScreen> {
 
                       }
                     },
-                    //-----button---------
+                    //-----New Button---------
                     child: Text("LOGIN"),
                   ),
                 ),
