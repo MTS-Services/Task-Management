@@ -146,6 +146,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                           transition: Transition.rightToLeft,
                           duration: Duration(milliseconds: 750),
                         );
+
                       }
                     },
                     child: Text("REQUEST ACCESS"),
