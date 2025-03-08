@@ -14,7 +14,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   String? selectedRole;
 
   List<String> items = ['Flutter', 'MERN', 'Laravel', 'PHP'];
-  List<String> Roleitems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
+  List<String> roleitems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
         ),
         SizedBox(height: 20),
         RoleDropdown(
-          items: Roleitems,
+          items: roleitems,
           hint: "Role",
           selectedValue: selectedRole,
           onChanged: (value) {

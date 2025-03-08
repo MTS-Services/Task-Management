@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
-import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/set_password_screen.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -101,6 +100,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     );
   }
 
+  @override
   void dispose() {
     _timer?.cancel();
     _otpTEController.dispose();

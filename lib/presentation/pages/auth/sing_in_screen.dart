@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
+import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -89,7 +90,9 @@ class _SingInScreenState extends State<SingInScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-
+                      Get.to(
+                        () => DashBoard(),
+                      );
                     },
                     child: Text("LOGIN"),
                   ),
@@ -104,7 +107,8 @@ class _SingInScreenState extends State<SingInScreen> {
                       foregroundColor: RColors.blueButtonColors,
                     ),
                     onPressed: () {
-                      Get.offAll(() => SingUpScreen(),
+                      Get.offAll(
+                        () => SingUpScreen(),
                         transition: Transition.rightToLeft,
                         duration: Duration(
                           milliseconds: 750,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/widgets/my_custom_button.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomeScreen extends StatefulWidget {

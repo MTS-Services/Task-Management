@@ -1,9 +1,8 @@
-import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/auth/otp_varification_screen.dart';
-import 'package:maktrack/presentation/pages/auth/set_password_screen.dart';
 
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
@@ -88,6 +87,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     );
   }
 
+  @override
   void dispose() {
 
     _emailTEController.dispose();
