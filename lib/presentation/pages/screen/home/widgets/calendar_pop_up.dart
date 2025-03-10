@@ -11,7 +11,6 @@ class CalendarPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Container(
       width: size.width,
       padding: EdgeInsets.all(10),

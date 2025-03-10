@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/firebase_options.dart';
 import 'package:maktrack/m-track.dart';
 
-import 'package:get/get.dart';
-import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/bottomNavBar/bottom_nav_bar.dart';
 
 
 Future<void> main() async {

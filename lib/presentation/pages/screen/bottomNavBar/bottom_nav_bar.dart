@@ -1,35 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
+import 'package:maktrack/presentation/state_managment/bottom_controller.dart';
 
-class Bottom extends StatefulWidget {
-  const Bottom({super.key});
+class Bottom extends StatelessWidget {
+  Bottom({super.key});
 
-  @override
-  _BottomState createState() => _BottomState();
-}
-
-class _BottomState extends State<Bottom> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    HomeScreen(),
-    const Center(child: Text("Files Page")),
-    const Center(child: Text("Send Page")),
-    const Center(child: Text("Profile Page")),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  final BottomController controller = Get.put(BottomController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: Obx(() => controller.pages[controller.selectedIndex.value]),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30.0),
@@ -46,28 +29,41 @@ class _BottomState extends State<Bottom> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () => _onItemTapped(0),
-                  child: Image.asset(AssetPath.basePathListImage),
+                  onTap: () => controller.changeIndex(0),
+                  child: Image.asset(
+                    AssetPath.basePathListImage,
+                    color:
+                        controller.selectedIndex.value == 0 ? Colors.red : null,
+                  ),
                 ),
                 GestureDetector(
-                  onTap: () => _onItemTapped(1),
-                  child: Image.asset(AssetPath.basePathDocFileImage),
+                  onTap: () => controller.changeIndex(1),
+                  child: Image.asset(
+                    AssetPath.basePathDocFileImage,
+                    color:
+                        controller.selectedIndex.value == 1 ? Colors.red : null,
+                  ),
                 ),
-                SizedBox(
-                  width: 48,
+                const SizedBox(width: 48),
+                GestureDetector(
+                  onTap: () => controller.changeIndex(2),
+                  child: Image.asset(
+                    AssetPath.basePathSendImage,
+                    color:
+                        controller.selectedIndex.value == 2 ? Colors.red : null,
+                  ),
                 ),
                 GestureDetector(
-                  onTap: () => _onItemTapped(2),
-                  child: Image.asset(AssetPath.basePathSendImage),
-                ),
-                GestureDetector(
-                  onTap: () => _onItemTapped(3),
-                  child: const CircleAvatar(
-                    radius: 20,
-                    child: Icon(
-                      Icons.man,
-                      color: RColors.blueButtonColors,
+                  onTap: () => controller.changeIndex(3),
+                  child: CircleAvatar(
+                    radius: 15,
+                    child: Image.asset(
+                      AssetPath.basePathAvatarImage,
                     ),
+
+                    // backgroundColor: controller.selectedIndex.value == 3
+                    //     ? RColors.blueButtonColors
+                    //     : null,
                   ),
                 ),
               ],

@@ -19,7 +19,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -89,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               () => SingInScreen(),
                               transition: Transition.rightToLeft,
                               duration: Duration(
-                                milliseconds:750,
+                                milliseconds: 750,
                               ),
                             );
                           },
@@ -108,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               foregroundColor: Colors.white),
                           onPressed: () {
                             Get.to(
-                                  () => SingUpScreen(),
+                              () => SingUpScreen(),
                               transition: Transition.rightToLeft,
                               duration: Duration(
                                 milliseconds: 750,
