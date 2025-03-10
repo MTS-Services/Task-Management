@@ -9,6 +9,9 @@ class RColors {
   static const Color blackButtonColor4 = Color(0xff173484); //1
   static const Color switchButtonColor= Color(0xff5CB338); //1
   static const Color errorColors= Color(0xffFE9F99); //1
+  static const Color snackBarColorR= Color(0xffFF6157); //1
+  static const Color snackBarColorS= Color(0xff61C877); //1
+
 
 }
 
