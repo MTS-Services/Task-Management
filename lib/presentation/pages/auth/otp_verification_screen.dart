@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/presentation/pages/auth/set_password_screen.dart';
+import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
+import 'package:maktrack/presentation/widgets/sing_up_title.dart';
 import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
 import 'package:maktrack/presentation/widgets/sing_up_title.dart';
 
@@ -16,6 +20,7 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+
   final _otpTEController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -57,11 +62,19 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 OtpTextField(
                   numberOfFields: 5,
                   showFieldAsBox: true,
-                  onCodeChanged: (String code){
-                  // code change korbo
-
+                  onCodeChanged: (String code) {
+                    if (code.length == 5) {
+                      if (!RegExp(r'^[0-9]{5}$').hasMatch(code)) {
+                        log("OTP must only contain numbers");
+                      } else {
+                        log("OTP is valid: $code");
+                      }
+                    } else {
+                      print("OTP must be 5 digits long");
+                    }
                   },
                 ),
+
                 const SizedBox(
                   height: 60,
                 ),
@@ -70,12 +83,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SetPasswordScreen(),
-                        ),
-                      );
+                      if(_globalKey.currentState!.validate()){
+                        Get.to(
+                              () => SetPasswordScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(milliseconds: 750),
+                        );
+                      }
                     },
                     child: const Text("SET Password"),
                   ),

@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
-
 import 'widgets/calendar_pop_up.dart';
 
 class HomeScreen extends StatelessWidget {
   final CalendarController controller = Get.put(CalendarController());
-
   HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
