@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669916132195",
+    "project_id": "m-track-a4a30",
+    "storage_bucket": "m-track-a4a30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669916132195:android:5dddb5883292fc4b0a9956",
+        "android_client_info": {
+          "package_name": "com.example.maktrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6J-ZDPu7VhBv1Q7Ee_L546A0kGCUV9Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 
@@ -17,9 +19,14 @@ class SingUpScreen extends StatefulWidget {
 }
 
 class _SingUpScreenState extends State<SingUpScreen> {
+  @override
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
+  final  _phoneNumber = TextEditingController();
   final _passwordTEController = TextEditingController();
+
+
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
@@ -89,6 +96,27 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     return null;
                   },
                 ),
+                SizedBox(height: 15,),
+                TextFormField(
+                  controller: _phoneNumber,
+                  keyboardType:TextInputType.phone,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.phone_outlined,
+                      size: 20,
+                      color: RColors.smallFontColor,
+                    ),
+                    hintText: "Phone Number",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your Phone Number";
+                    } else if (!GetUtils.isEmail(value)) {
+                      return "Invalid Phone Number";
+                    }
+                    return null;
+                  },
+                ),
                 SizedBox(height: 15),
                 TextFormField(
                   controller: _passwordTEController,
@@ -105,10 +133,12 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter your password";
-                    } else if (value.length < 6) {
-                      return "Password must be at least 6 characters";
-                    } else if (!RegExp(r'^(a,A,@,)').hasMatch(value)) {
-                      return "Password must contain Uppercase, Lowercase & Number";
+                    } else if (value.length < 8) {
+                      return "Password must be at least 8 characters long";
+                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      return "Password must contain at least one number";
                     }
                     return null;
                   },
@@ -131,7 +161,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        Get.to(() => SingInScreen());
+                        signUp();
                       }
                     },
                     child: Text("REQUEST ACCESS"),
@@ -191,5 +221,48 @@ class _SingUpScreenState extends State<SingUpScreen> {
     _passwordTEController.dispose();
     _emailTEController.dispose();
     _userNameTEController.dispose();
+  }
+
+  void signUp() async {
+    String username = _userNameTEController.text;
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+
+    User? user = await _auth.singUpWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: RColors.snackBarColorR,
+          content: Text(
+            "Access request submitted. Waiting for approval",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white, fontSize: 12),
+          ),
+        ),
+      );
+      Get.to(
+        () => SingInScreen(),
+        transition: Transition.rightToLeft,
+        duration: Duration(
+          milliseconds: 750,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor:RColors.snackBarColorR,
+          content: Text(
+            "Invalid information. Please check and try again",
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+          ),
+        ),
+      );
+    }
   }
 }
