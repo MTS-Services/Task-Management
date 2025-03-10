@@ -30,10 +30,6 @@ class CustomAppBar extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: RColors.smallFontColor
                 ),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: RColors.smallFontColor),
               ),
             ],
           ),
