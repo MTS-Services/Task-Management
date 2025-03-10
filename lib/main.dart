@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
-
 import 'presentation/pages/screen/splash_screen/splash_screen.dart';
 
 void main() {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 
@@ -55,29 +54,25 @@ class MyApp extends StatelessWidget {
 
   InputDecorationTheme _buildInputDecorationTheme(BuildContext context) {
     return InputDecorationTheme(
-      border: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: RColors.smallFontColor,
-        ),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: RColors.smallFontColor,
-        ),
-      ),
-      errorBorder:  UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: RColors.errorColors,
-        ),
-      ),
-      contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
-      hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
             color: RColors.smallFontColor,
           ),
-      errorStyle: TextStyle(
-        fontSize: 12,
-        color: RColors.errorColors
-      )
-    );
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: RColors.smallFontColor,
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: RColors.errorColors,
+          ),
+        ),
+        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
+        hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: RColors.smallFontColor,
+            ),
+        errorStyle: TextStyle(fontSize: 12, color: RColors.errorColors));
   }
 }

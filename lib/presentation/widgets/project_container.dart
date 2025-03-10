@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
 
 class ProjectContainer extends StatelessWidget {
   const ProjectContainer({
@@ -22,16 +24,21 @@ class ProjectContainer extends StatelessWidget {
     // Select the background image based on the provided index
     String selectedImage = backGroundImage[imageIndex];
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
-          image: AssetImage(selectedImage),
-          fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => ProjectDetails());
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: AssetImage(selectedImage),
+            fit: BoxFit.cover,
+          ),
         ),
+        child: child,
       ),
-      child: child,
     );
   }
 }
