@@ -12,7 +12,7 @@ class CustomCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TableCalendar(
       daysOfWeekHeight: 25,
-      rowHeight: 30,
+      rowHeight: 28,
       focusedDay: controller.focusedDay.value,
       firstDay: DateTime(2000),
       lastDay: DateTime(2100),
