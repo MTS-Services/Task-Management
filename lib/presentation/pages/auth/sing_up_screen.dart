@@ -21,16 +21,11 @@ class SingUpScreen extends StatefulWidget {
 class _SingUpScreenState extends State<SingUpScreen> {
   @override
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  void initState() {
-    _userNameTEController.text = "areefin";
-    _emailTEController.text = "arifin50@gmail. com";
-    _passwordTEController.text = "Abc@123@";
-    super.initState();
-  }
-
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
+  final  _phoneNumber = TextEditingController();
   final _passwordTEController = TextEditingController();
+
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
@@ -97,6 +92,27 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       return "Please enter your email";
                     } else if (!GetUtils.isEmail(value)) {
                       return "Invalid Email";
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15,),
+                TextFormField(
+                  controller: _phoneNumber,
+                  keyboardType:TextInputType.phone,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.phone_outlined,
+                      size: 20,
+                      color: RColors.smallFontColor,
+                    ),
+                    hintText: "Phone Number",
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your Phone Number";
+                    } else if (!GetUtils.isEmail(value)) {
+                      return "Invalid Phone Number";
                     }
                     return null;
                   },
@@ -217,20 +233,36 @@ class _SingUpScreenState extends State<SingUpScreen> {
     if (user != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Colors.lightGreenAccent,
-          content: Text("User is successfully created"),
-
+          backgroundColor: RColors.snackBarColorR,
+          content: Text(
+            "Access request submitted. Waiting for approval",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white, fontSize: 12),
+          ),
         ),
       );
-    }else{
+      Get.to(
+        () => SingInScreen(),
+        transition: Transition.rightToLeft,
+        duration: Duration(
+          milliseconds: 750,
+        ),
+      );
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: Colors.red,
-          content: Text("User is successfully created"),
-
+          backgroundColor:RColors.snackBarColorR,
+          content: Text(
+            "Invalid information. Please check and try again",
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+          ),
         ),
       );
     }
   }
 }
-

@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
@@ -18,15 +20,20 @@ class SingInScreen extends StatefulWidget {
 
 class _SingInScreenState extends State<SingInScreen> {
   @override
-  void initState() {
-    _emailTEController.text ="arifin50@gmail.com";
-    _passwordTEController.text ="Abc@123@";
-    super.initState();
-  }
+
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
+
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
+
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
+
+  // void initState() {
+  //   _emailTEController.text ="arifin50@gmail.com";
+  //   _passwordTEController.text ="Abc@123@";
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -118,13 +125,10 @@ class _SingInScreenState extends State<SingInScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if(_globalKey.currentState!.validate()){
-
+                        sigIn();
                       }
-                      Get.to(
-                        () => DashBoard(),
-                      );
+
                     },
-                    //-----New Button---------
                     child: Text("LOGIN"),
                   ),
                 ),
@@ -155,7 +159,7 @@ class _SingInScreenState extends State<SingInScreen> {
       ),
     );
   }
-//Button
+
   Widget _buildVisibleIconButton() {
     return IconButton(
       onPressed: () {
@@ -181,4 +185,47 @@ class _SingInScreenState extends State<SingInScreen> {
     _passwordTEController.dispose();
     _emailTEController.dispose();
   }
+  void sigIn() async {
+
+    String email = _emailTEController.text;
+    String password = _passwordTEController.text;
+
+    User? user = await _auth.singInWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: RColors.snackBarColorS,
+          content: Text(
+            "Login successful! Welcome to your dashboard.",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white, fontSize: 12),
+          ),
+        ),
+      );
+      Get.to(
+            () => DashBoard(),
+        transition: Transition.rightToLeft,
+        duration: Duration(
+          milliseconds: 750,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: RColors.snackBarColorR,
+          content: Text(
+            "Invalid email or password. Please try again",
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
 }

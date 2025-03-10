@@ -3,6 +3,7 @@ import 'dart:core';
 class AssetPath {
   static const String basePath = "assets/images";
   static const String logoPng = "$basePath/logo.png";
+  static const String totalPricePng = "$basePath/totalPrice.png";
 
   // onboarding image
   static const String basePathOnboarding = "assets/images";
