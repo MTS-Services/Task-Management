@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
-
 import 'widgets/calendar_pop_up.dart';
 
 class HomeScreen extends StatelessWidget {
