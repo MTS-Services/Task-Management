@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
