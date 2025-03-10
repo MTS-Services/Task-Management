@@ -38,7 +38,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(height: 40, width: double.infinity, color: Colors.red)
+                Container(height: 40, width: double.infinity, color: Colors.red),
+                Container(height: 40, width: double.infinity, color: Colors.red),
+                Container(height: 40, width: double.infinity, color: Colors.red),
               ],
             ),
             Obx(() => controller.showCalendar.value
