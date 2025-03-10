@@ -17,41 +17,10 @@ Future<void> main() async {
 
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          fontFamily: "PromoTest",
-          textTheme: _buildTextTheme(),
-          inputDecorationTheme: _buildInputDecorationTheme(context),
-          elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: Bottom(),
-    );
-  }
 
 
 
 
 
-  TextTheme _buildTextTheme() {
-    return TextTheme(
-      bodyLarge: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.w700,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 16,
-      ),
-    );
-  }
 
 
