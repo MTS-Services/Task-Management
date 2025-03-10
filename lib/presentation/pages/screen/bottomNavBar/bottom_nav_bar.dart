@@ -29,22 +29,19 @@ class Bottom extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-
                   onTap: () => controller.changeIndex(0),
                   child: Image.asset(
                     AssetPath.basePathListImage,
-                    color: controller.selectedIndex.value == 0
-                        ? RColors.blueButtonColors
-                        : null,
+                    color:
+                        controller.selectedIndex.value == 0 ? Colors.red : null,
                   ),
                 ),
                 GestureDetector(
                   onTap: () => controller.changeIndex(1),
                   child: Image.asset(
                     AssetPath.basePathDocFileImage,
-                    color: controller.selectedIndex.value == 1
-                        ? RColors.blueButtonColors
-                        : null,
+                    color:
+                        controller.selectedIndex.value == 1 ? Colors.red : null,
                   ),
                 ),
                 const SizedBox(width: 48),
@@ -52,23 +49,21 @@ class Bottom extends StatelessWidget {
                   onTap: () => controller.changeIndex(2),
                   child: Image.asset(
                     AssetPath.basePathSendImage,
-                    color: controller.selectedIndex.value == 2
-                        ? RColors.blueButtonColors
-                        : null,
+                    color:
+                        controller.selectedIndex.value == 2 ? Colors.red : null,
                   ),
                 ),
                 GestureDetector(
                   onTap: () => controller.changeIndex(3),
                   child: CircleAvatar(
-                    radius: 18,
+                    radius: 15,
+                    child: Image.asset(
+                      AssetPath.basePathAvatarImage,
+                    ),
 
                     // backgroundColor: controller.selectedIndex.value == 3
                     //     ? RColors.blueButtonColors
                     //     : null,
-                    child: Icon(
-                      Icons.man,
-                      color: RColors.blueButtonColors,
-                    ),
                   ),
                 ),
               ],
