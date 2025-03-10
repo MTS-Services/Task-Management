@@ -7,9 +7,7 @@ import 'widgets/calendar_pop_up.dart';
 
 class HomeScreen extends StatelessWidget {
   final CalendarController controller = Get.put(CalendarController());
-
   HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -41,7 +39,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(height: 40, width: double.infinity, color: Colors.red)
+                Container(height: 40, width: double.infinity, color: Colors.red),
+                Container(height: 40, width: double.infinity, color: Colors.red),
+                Container(height: 40, width: double.infinity, color: Colors.red),
               ],
             ),
             Obx(() => controller.showCalendar.value
