@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
 
-class BottomNavBarPage extends StatefulWidget {
-  const BottomNavBarPage({super.key});
+class Bottom extends StatefulWidget {
+  const Bottom({super.key});
 
   @override
-  State<BottomNavBarPage> createState() => _BottomNavBarPageState();
+  _BottomState createState() => _BottomState();
 }
 
-class _BottomNavBarPageState extends State<BottomNavBarPage> {
+class _BottomState extends State<Bottom> {
   int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    HomeScreen(),
+    const Center(child: Text("Files Page")),
+    const Center(child: Text("Send Page")),
+    const Center(child: Text("Profile Page")),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -19,34 +29,59 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Text(
-          'Selected Index: $_selectedIndex',
-          style: TextStyle(fontSize: 20),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0),
+        ),
+        child: BottomAppBar(
+          color: Colors.grey[100],
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => _onItemTapped(0),
+                  child: Image.asset(AssetPath.basePathListImage),
+                ),
+                GestureDetector(
+                  onTap: () => _onItemTapped(1),
+                  child: Image.asset(AssetPath.basePathDocFileImage),
+                ),
+                SizedBox(
+                  width: 48,
+                ),
+                GestureDetector(
+                  onTap: () => _onItemTapped(2),
+                  child: Image.asset(AssetPath.basePathSendImage),
+                ),
+                GestureDetector(
+                  onTap: () => _onItemTapped(3),
+                  child: const CircleAvatar(
+                    radius: 20,
+                    child: Icon(
+                      Icons.man,
+                      color: RColors.blueButtonColors,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
-      bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: BoxDecoration(
-          color: Colors.red, // Background color
-          borderRadius: BorderRadius.circular(20), // Optional rounded corners
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent, // Transparent background
-          elevation: 0, // Remove shadow
-          type: BottomNavigationBarType.fixed, // Fixes shifting issue
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.black54,
-          onTap: _onItemTapped,
-          currentIndex: _selectedIndex,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: RColors.blueButtonColors,
+        shape: const CircleBorder(),
+        child: Image.asset(AssetPath.basePathImage),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
