@@ -6,6 +6,9 @@ class HomeScreen extends StatefulWidget {
 
   const HomeScreen({super.key});
 
+
+  HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -46,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,6 +64,24 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+
+                Row(
+                  children: [
+                    Obx(() => Text(
+                      controller.formattedDate.value,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    )),
+                    IconButton(
+                      icon:
+                      const Icon(Icons.calendar_today, color: Colors.black),
+                      onPressed: controller.toggleCalendar,
+                    ),
+                  ],
+
                 Text(
                   _formattedDate,
                   style: const TextStyle(
@@ -72,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 IconButton(
                   icon: const Icon(Icons.calendar_today, color: Colors.black),
                   onPressed: _toggleCalendar,
+
                 ),
               ],
             ),

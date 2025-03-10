@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget {
         Image.asset(
           images,
           width: 70,
-        )
+        ),
       ],
     );
   }

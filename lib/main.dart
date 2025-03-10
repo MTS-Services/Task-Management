@@ -12,12 +12,17 @@ import 'package:maktrack/presentation/pages/screen/bottomNavBar/bottom_nav_bar.d
 
 
 
+void main() {
+  runApp(const MyApp());
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MTrac());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +38,7 @@ class MyApp extends StatelessWidget {
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: BottomNavBarPage(),
+      home: Bottom(),
     );
   }
 
