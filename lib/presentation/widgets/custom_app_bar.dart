@@ -27,19 +27,21 @@ class CustomAppBar extends StatelessWidget {
               ),
               Text(
                 text,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: RColors.smallFontColor),
-              ),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: RColors.smallFontColor
+                ),
+              )
             ],
           ),
         ),
         Image.asset(
           images,
           width: 70,
-        )
+        ),
       ],
     );
   }
 }
+
+
+
