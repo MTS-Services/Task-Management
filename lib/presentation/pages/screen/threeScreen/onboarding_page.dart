@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/state_managment/onboarding_controller.dart';
 import 'package:maktrack/presentation/widgets/my_custom_text.dart';

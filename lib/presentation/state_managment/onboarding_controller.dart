@@ -1,12 +1,10 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
-import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 
 class OnboardingController extends GetxController {
-  var isLoading = false.obs; // Observable variable
+  var isLoading = false.obs;
 
   void startLoading() {
     isLoading.value = true;
@@ -28,10 +26,7 @@ class OnboardingController extends GetxController {
     startLoading();
     await Future.delayed(Duration(seconds: 1));
     stopLoading();
-    Get.offAll(() => SingUpScreen(),
-        transition: Transition.zoom,
-        duration: Duration(milliseconds: 1000),
-        curve: Curves.easeIn);
+    Get.offAll(() => SingUpScreen(), curve: Curves.easeIn);
   }
 
   PageController pageController = PageController();
