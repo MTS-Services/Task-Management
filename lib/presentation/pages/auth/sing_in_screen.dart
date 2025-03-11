@@ -19,8 +19,6 @@ class SingInScreen extends StatefulWidget {
 }
 
 class _SingInScreenState extends State<SingInScreen> {
-  @override
-
   final FirebaseAuthServices _auth = FirebaseAuthServices();
 
   final _emailTEController = TextEditingController();
