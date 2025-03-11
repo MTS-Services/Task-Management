@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/home/home_screen.dart';
+import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
 
 class Bottom extends StatefulWidget {
   const Bottom({super.key});
@@ -14,7 +14,7 @@ class _BottomState extends State<Bottom> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
+    ProjectDetails(),
     const Center(child: Text("Files Page")),
     const Center(child: Text("Send Page")),
     const Center(child: Text("Profile Page")),

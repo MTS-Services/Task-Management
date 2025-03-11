@@ -29,7 +29,7 @@ class ProjectContainer extends StatelessWidget {
         Get.to(() => ProjectDetails());
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/state_managment/home.dart';
@@ -38,9 +37,10 @@ class CustomCalendarWidget extends StatelessWidget {
         ),
         weekendTextStyle: TextStyle(color: Color(0xffFE9F99), fontSize: 14),
         defaultTextStyle: TextStyle(fontSize: 14),
-        outsideTextStyle: TextStyle(fontSize: 14),
+        outsideTextStyle: TextStyle(fontSize: 14, color: Colors.grey[400]),
         todayTextStyle: TextStyle(fontSize: 14, color: Colors.white),
         selectedTextStyle: TextStyle(fontSize: 14, color: Colors.white),
+        outsideDaysVisible: true,
       ),
       headerStyle: HeaderStyle(
         titleCentered: true,

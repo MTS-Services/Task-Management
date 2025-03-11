@@ -114,16 +114,19 @@ class DashBoard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextWidget(
-                                  text: departmentName[index],
-                                  size: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: TextWidget(
+                                    text: departmentName[index],
+                                    size: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 const SizedBox(height: 15),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: departmentIcon[index].map((icon) {
                                     return Image.asset(
                                       icon,
