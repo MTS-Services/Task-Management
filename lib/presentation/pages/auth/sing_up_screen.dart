@@ -5,6 +5,7 @@ import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
+import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 
 import '../../widgets/custom_app_bar.dart';
@@ -22,172 +23,178 @@ class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
-  final  _phoneNumber = TextEditingController();
+  final _phoneNumber = TextEditingController();
   final _passwordTEController = TextEditingController();
-
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Form(
-            key: _globalKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                CustomAppBar(
-                  text: 'Back',
-                  images: AssetPath.logoPng,
-                  onPressed: () {
-                    Get.back();
-                  },
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                SingUpAndTitle(
-                  title: 'Request',
-                  title2: 'Log in your account & Manage \nYour task',
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _userNameTEController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.person_outline_outlined,
-                      size: 20,
-                      color: RColors.smallFontColor,
-                    ),
-                    hintText: "UserName",
+    return WillPopScope(
+      onWillPop: () {
+        return Future(() => false);
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Form(
+              key: _globalKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 10,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your username";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 15),
-                TextFormField(
-                  controller: _emailTEController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.mail_outline,
-                      size: 20,
-                      color: RColors.smallFontColor,
-                    ),
-                    hintText: "E-Mail",
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your email";
-                    } else if (!GetUtils.isEmail(value)) {
-                      return "Invalid Email";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 15,),
-                TextFormField(
-                  controller: _phoneNumber,
-                  keyboardType:TextInputType.phone,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.phone_outlined,
-                      size: 20,
-                      color: RColors.smallFontColor,
-                    ),
-                    hintText: "Phone Number",
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your Phone Number";
-                    } else if (!GetUtils.isEmail(value)) {
-                      return "Invalid Phone Number";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 15),
-                TextFormField(
-                  controller: _passwordTEController,
-                  obscureText: isVisible,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.lock_outline_rounded,
-                      size: 20,
-                      color: RColors.smallFontColor,
-                    ),
-                    suffixIcon: _buildVisibleIconButton(),
-                    hintText: "password",
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter your password";
-                    } else if (value.length < 8) {
-                      return "Password must be at least 8 characters long";
-                    } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
-                      return "Password must contain at least one uppercase letter";
-                    } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
-                      return "Password must contain at least one number";
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                SizedBox(height: 15),
-                CustomDropDownMenu(),
-                SizedBox(
-                  height: 30,
-                ),
-                SavePasswordForgetButton(
-                  isLoginPage: false,
-                ),
-                SizedBox(height: 40),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
+                  CustomAppBar(
+                    text: 'Back',
+                    images: AssetPath.logoPng,
                     onPressed: () {
-                      if (_globalKey.currentState!.validate()) {
-                        signUp();
+                      Get.offAll(() => OnboardingScreen());
+                    },
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  SingUpAndTitle(
+                    title: 'Request',
+                    title2: 'Log in your account & Manage \nYour task',
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: _userNameTEController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.person_outline_outlined,
+                        size: 20,
+                        color: RColors.smallFontColor,
+                      ),
+                      hintText: "UserName",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your username";
                       }
+                      return null;
                     },
-                    child: Text("REQUEST ACCESS"),
                   ),
-                ),
-                SizedBox(height: 25),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: RColors.blueButtonColors,
+                  SizedBox(height: 15),
+                  TextFormField(
+                    controller: _emailTEController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.mail_outline,
+                        size: 20,
+                        color: RColors.smallFontColor,
+                      ),
+                      hintText: "E-Mail",
                     ),
-                    onPressed: () {
-                      Get.to(
-                        () => SingInScreen(),
-                        transition: Transition.rightToLeft,
-                        duration: Duration(
-                          milliseconds: 750,
-                        ),
-                      );
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your email";
+                      } else if (!GetUtils.isEmail(value)) {
+                        return "Invalid Email";
+                      }
+                      return null;
                     },
-                    child: Text("Already have an account? LOG IN "),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _phoneNumber,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.phone_outlined,
+                        size: 20,
+                        color: RColors.smallFontColor,
+                      ),
+                      hintText: "Phone Number",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your Phone Number";
+                      } else if (!GetUtils.isEmail(value)) {
+                        return "Invalid Phone Number";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 15),
+                  TextFormField(
+                    controller: _passwordTEController,
+                    obscureText: isVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.lock_outline_rounded,
+                        size: 20,
+                        color: RColors.smallFontColor,
+                      ),
+                      suffixIcon: _buildVisibleIconButton(),
+                      hintText: "password",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter your password";
+                      } else if (value.length < 8) {
+                        return "Password must be at least 8 characters long";
+                      } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                        return "Password must contain at least one uppercase letter";
+                      } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                        return "Password must contain at least one number";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(height: 15),
+                  CustomDropDownMenu(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SavePasswordForgetButton(
+                    isLoginPage: false,
+                  ),
+                  SizedBox(height: 40),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_globalKey.currentState!.validate()) {
+                          signUp();
+                        }
+                      },
+                      child: Text("REQUEST ACCESS"),
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: RColors.blueButtonColors,
+                      ),
+                      onPressed: () {
+                        Get.to(
+                          () => SingInScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(
+                            milliseconds: 750,
+                          ),
+                        );
+                      },
+                      child: Text("Already have an account? LOG IN "),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -252,7 +259,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor:RColors.snackBarColorR,
+          backgroundColor: RColors.snackBarColorR,
           content: Text(
             "Invalid information. Please check and try again",
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
