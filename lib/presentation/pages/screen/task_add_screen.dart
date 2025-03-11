@@ -13,12 +13,13 @@ class TaskAddScreen extends StatefulWidget {
 class _TaskAddScreenState extends State<TaskAddScreen> {
   final List<Map<String, dynamic>> tasks = [
     {"title": "Task 1 ", "Total":"Total Project", "icon":AssetPath.totalPricePng},
-    {"title": "Task 2 ","Total":"In Progress"},
-    {"title": "Task 3 ","Total":"NRA"},
-    {"title": "Task 4","Total":"Complete"},
-    {"title": "Task 5","Total":"Cancel"},
-    {"title": "Task 6","Total":"Carry Forward"},
-    {"title": "Task 7 ","Total":"Total Target"},
+    {"title": "Task 2 ","Total":"In Progress", "icon":AssetPath.clockPng},
+    {"title": "Task 3 ","Total":"NRA","icon":AssetPath.nrmPng},
+    {"title": "Task 4","Total":"Complete", "icon":AssetPath.completePng},
+    {"title": "Task 5","Total":"Cancel","icon":AssetPath.canselPng},
+    {"title": "Task 6 ","Total":"Total Target","icon":AssetPath.targetPng},
+    {"title": "Task 7","Total":"Carry Forward","icon":AssetPath.carryPng},
+
   ].map((task) => {
     ...task,
     "amount": "",
@@ -71,10 +72,11 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      margin: const EdgeInsets.only(bottom: 12),
+                      margin: const EdgeInsets.only(bottom: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -95,7 +97,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                             ),
                             const SizedBox(height: 10),
                             TotalPriceWidget(
-                              icon: AssetPath.totalPricePng,
+                              icon: tasks[index]["icon"],
                               text:tasks[index]["Total"]??"Unknown",
                             ),
                             const SizedBox(height: 10),

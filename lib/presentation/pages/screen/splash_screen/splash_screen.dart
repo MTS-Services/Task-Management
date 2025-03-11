@@ -1,42 +1,21 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:maktrack/presentation/state_managment/splash_controller.dart';
 
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    Timer(Duration(seconds: 3), () {
-      Get.offAll(
-            () => OnboardingScreen(),
-        transition: Transition.rightToLeft,
-        duration: Duration(
-          milliseconds: 750,
-        ),
-      );
-    });
-  }
+  final SplashController controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.black54, statusBarBrightness: Brightness.dark));
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.black54,
+      statusBarBrightness: Brightness.dark,
+    ));
 
     return Scaffold(
       backgroundColor: Colors.black54,
