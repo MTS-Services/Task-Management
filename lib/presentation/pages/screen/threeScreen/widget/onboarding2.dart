@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maktrack/presentation/widgets/my_custom_text.dart';
 
 class Onboarding2 extends StatelessWidget {
   const Onboarding2({super.key});
@@ -7,46 +6,41 @@ class Onboarding2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(
+          height: 60,
+        ),
         Container(
             width: double.infinity,
             color: Colors.transparent,
-            // child: Image.asset(
-            //   "assets/images/onboarding/onboarding2.png",
-            //   fit: BoxFit.cover,
-            // )
-        ),
-        const SizedBox(height: 40),
+            child: Image.asset(
+              "assets/onboarding/At work-cuate (2).png",
+            )),
+        const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const CustomText(
-                tName: "Find a Working",
-                fSize: 26,
-                lSpacing: 2,
-                fWeight: FontWeight.w500,
+              Text(
+                "DISCOVERY",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 40),
               ),
-              CustomText(
-                tAlign: TextAlign.start,
-                tName: "Space",
-                fSize: 30,
-                lSpacing: 5,
-                fWeight: FontWeight.bold,
-              ),
-              const SizedBox(height: 30),
-              CustomText(
-                mLines: 3,
-                tName:
-                    "Find coworking space easily\nand quickly through this\napplication.",
-                color: Colors.grey,
-                lSpacing: 2,
+              Text(
+                textAlign: TextAlign.end,
+                "DISCOVER TASKS\n& TRACK PROGRESS",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: Colors.black54),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

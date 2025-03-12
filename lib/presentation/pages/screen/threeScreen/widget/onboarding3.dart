@@ -7,44 +7,38 @@ class Onboarding3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(
+          height: 60,
+        ),
         Container(
             width: double.infinity,
             color: Colors.transparent,
-            // child: Image.asset(
-            //   "assets/images/onboarding/onboarding3.png",
-            //   fit: BoxFit.cover,
-            // )
-
-        ),
-        const SizedBox(height: 40),
+            child: Image.asset(
+              "assets/onboarding/Team work-cuate.png",
+            )),
+        const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const CustomText(
-                tName: "Create An ",
-                fSize: 26,
-                lSpacing: 2,
-                fWeight: FontWeight.w500,
+              Text(
+                "GET STARTED",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 40),
               ),
-              CustomText(
-                tAlign: TextAlign.start,
-                tName: "Event",
-                fSize: 30,
-                lSpacing: 5,
-                fWeight: FontWeight.bold,
-              ),
-              const SizedBox(height: 30),
-              CustomText(
-                mLines: 3,
-                tName:
-                    "Create your event by\ndetermining the place\nthat has been provided.",
-                color: Colors.grey,
-                lSpacing: 2,
-              ),
+              Text(
+                  maxLines: 2,
+                  textAlign: TextAlign.end,
+                  "BEGIN YOUR\nJOURNEY TODAY",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      color: Colors.black54)),
             ],
           ),
         )
