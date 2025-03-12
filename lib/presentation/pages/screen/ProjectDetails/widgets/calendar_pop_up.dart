@@ -13,6 +13,7 @@ class CalendarPopup extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
+      // height: size.height * 0.45,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(

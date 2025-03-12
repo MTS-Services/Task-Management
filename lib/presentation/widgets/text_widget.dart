@@ -15,6 +15,7 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+      
       text,
       style: TextStyle(fontWeight: fontWeight, fontSize: size, color: color),
     );

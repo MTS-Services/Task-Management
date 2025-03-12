@@ -16,20 +16,25 @@ class MTrac extends StatelessWidget {
           fontFamily: "PromoTest",
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
-          elevatedButtonTheme: _buildElevatedButtonThemeData()),
+          elevatedButtonTheme: _buildElevatedButtonThemeData())
+
       home: ThreeScreenPage(),
+
     );
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
     return ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: RColors.blueButtonColors,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: RColors.blueButtonColors)),
-        ));
+      backgroundColor: RColors.blueButtonColors,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: BorderSide(
+          color: RColors.blueButtonColors,
+        ),
+      ),
+    ));
   }
 
   TextTheme _buildTextTheme() {
@@ -56,19 +61,15 @@ class MTrac extends StatelessWidget {
             color: RColors.smallFontColor,
           ),
         ),
-        errorBorder:  UnderlineInputBorder(
+        errorBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             color: RColors.errorColors,
           ),
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
         hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-          color: RColors.smallFontColor,
-        ),
-        errorStyle: TextStyle(
-            fontSize: 12,
-            color: RColors.errorColors
-        )
-    );
+              color: RColors.smallFontColor,
+            ),
+        errorStyle: TextStyle(fontSize: 12, color: RColors.errorColors));
   }
 }

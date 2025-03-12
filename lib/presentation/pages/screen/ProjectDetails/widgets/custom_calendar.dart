@@ -11,7 +11,7 @@ class CustomCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TableCalendar(
       daysOfWeekHeight: 25,
-      rowHeight: 30,
+      rowHeight: 35,
       focusedDay: controller.focusedDay.value,
       firstDay: DateTime(2000),
       lastDay: DateTime(2100),
@@ -37,9 +37,10 @@ class CustomCalendarWidget extends StatelessWidget {
         ),
         weekendTextStyle: TextStyle(color: Color(0xffFE9F99), fontSize: 14),
         defaultTextStyle: TextStyle(fontSize: 14),
-        outsideTextStyle: TextStyle(fontSize: 14),
+        outsideTextStyle: TextStyle(fontSize: 14, color: Colors.grey[400]),
         todayTextStyle: TextStyle(fontSize: 14, color: Colors.white),
         selectedTextStyle: TextStyle(fontSize: 14, color: Colors.white),
+        outsideDaysVisible: true,
       ),
       headerStyle: HeaderStyle(
         titleCentered: true,

@@ -7,6 +7,7 @@ class CalendarController extends GetxController {
 
   var focusedDay = DateTime.now().obs;
   var selectedDay = DateTime.now().obs;
+  var today = DateTime.now();
 
   var formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now()).obs;
 
@@ -17,6 +18,7 @@ class CalendarController extends GetxController {
   void onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     this.selectedDay.value = selectedDay;
     this.focusedDay.value = focusedDay;
-    formattedDate.value = DateFormat('yyyy-MM-dd').format(selectedDay); // Update formatted date
+    formattedDate.value = DateFormat('MMMM dd, yyyy')
+        .format(selectedDay); // Update formatted date
   }
 }
