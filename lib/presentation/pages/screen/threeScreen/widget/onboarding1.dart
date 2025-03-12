@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:maktrack/presentation/widgets/my_custom_text.dart';
 
@@ -9,44 +7,35 @@ class Onboarding1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(height: 60,),
         Container(
             width: double.infinity,
             color: Colors.transparent,
-            // child: Image.asset(
-            //   "assets/images/onboarding/onboarding1.png",
-            //   fit: BoxFit.cover,
-            // )
-
-        ),
-        const SizedBox(height: 40),
+            child: Image.asset(
+              "assets/onboarding/Digital nomad-pana.png",
+            )),
+        const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const CustomText(
-                tName: "Welcome to ",
-                fSize: 26,
-                lSpacing: 2,
-                fWeight: FontWeight.w500,
+              Text(
+                "EXPLORE",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 40),
               ),
-              CustomText(
-                tAlign: TextAlign.start,
-                tName: "Cowork",
-                fSize: 30,
-                lSpacing: 5,
-                fWeight: FontWeight.bold,
-              ),
-              const SizedBox(height: 30),
-              CustomText(
-                mLines: 3,
-                tName:
-                    "Work and organize events\nwith friends outside the\noffice to get rid of boredom.",
-                color: Colors.grey,
-                lSpacing: 2,
-              )
+              Text(
+                  textAlign: TextAlign.end,
+                  "EXPLORE NEW\nPROJECTS & POSSIBILITIES",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                      color: Colors.black54))
             ],
           ),
         )
