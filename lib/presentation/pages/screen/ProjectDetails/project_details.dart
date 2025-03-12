@@ -5,6 +5,7 @@ import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import '../../../state_managment/home.dart';
+
 class ProjectDetails extends StatelessWidget {
   const ProjectDetails({
     super.key,
@@ -42,7 +43,7 @@ class ProjectDetails extends StatelessWidget {
                       bottomRight: Radius.circular(40))),
               height: MediaQuery.sizeOf(context).height > 800
                   ? MediaQuery.sizeOf(context).height * 0.42
-                  : MediaQuery.sizeOf(context).height * 0.5,
+                  : MediaQuery.sizeOf(context).height * 0.48,
               child: Stack(
                 children: [
                   Column(
@@ -111,7 +112,11 @@ class ProjectDetails extends StatelessWidget {
                             return ProjectContainer(
                               imageIndex: index,
                               child: Padding(
-                                padding: const EdgeInsets.all(15.0),
+                                padding: const EdgeInsets.only(
+                                  right: 15,
+                                  left: 15,
+                                  bottom: 12,
+                                ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,13 +143,13 @@ class ProjectDetails extends StatelessWidget {
                                       children: [
                                         TextWidget(
                                           text: progressName[index],
-                                          size: 16,
+                                          size: 13,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
                                         ),
                                         TextWidget(
                                           text: '40',
-                                          size: 16,
+                                          size: 13,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
                                         ),
@@ -152,7 +157,7 @@ class ProjectDetails extends StatelessWidget {
                                     ),
                                     TextWidget(
                                       text: '15,000.00',
-                                      size: 15,
+                                      size: 13,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.white,
                                     ),

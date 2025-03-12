@@ -28,17 +28,17 @@ class _SingInScreenState extends State<SingInScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
-  // void initState() {
-  //   _emailTEController.text ="arifin50@gmail.com";
-  //   _passwordTEController.text ="Abc@123@";
-  //   super.initState();
-  // }
+  void initState() {
+    _emailTEController.text ="arifin50@gmail.com";
+    _passwordTEController.text ="Abc@123@";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
-        return  Future(() => false);
+      onWillPop: () {
+        return Future(() => false);
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -129,6 +129,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
+                          Get.to(DashBoard());
                         }
                       },
                       child: Text("LOGIN"),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/presentation/widgets/bar_chart_widget.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
+import 'package:maktrack/presentation/widgets/top_bar_widget.dart';
 import 'package:maktrack/presentation/widgets/total_container.dart';
 
 class DashBoard extends StatelessWidget {
@@ -98,20 +99,14 @@ class DashBoard extends StatelessWidget {
                           bottomRight: Radius.circular(40))),
                   height: MediaQuery.sizeOf(context).height > 800
                       ? MediaQuery.sizeOf(context).height * 0.42
-                      : MediaQuery.sizeOf(context).height * 0.5,
+                      : MediaQuery.sizeOf(context).height * 0.49,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            text: 'DashBoard',
-                            size: 26,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                          ),
-                          const Icon(
+                      TopBarWidget(
+                        text: 'Dashboard',
+                        optionalWidgets: [
+                          Icon(
                             Icons.notifications_none,
                             size: 30,
                           ),
@@ -143,27 +138,37 @@ class DashBoard extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextWidget(
-                                    text: departmentName[index],
-                                    size: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: TextWidget(
+                                      text: departmentName[index],
+                                      size: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   const SizedBox(height: 15),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: departmentIcon[index].map((icon) {
-                                      return Image.asset(
-                                        icon,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.04,
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.06,
-                                      );
-                                    }).toList(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: departmentIcon[index]
+                                          .map(
+                                            (icon) => Image.asset(
+                                              icon,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.04,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.06,
+                                            ),
+                                          )
+                                          .toList(),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -192,14 +197,14 @@ class DashBoard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TotalContainer(
-                        text: 'Total Project amount:',
+                        text: 'Total amount:',
                         projectNumber: '\$ 123',
                       ),
                     ),
                     Expanded(
                       child: TotalContainer(
-                        text: 'Total Task Activity:',
-                        projectNumber: '423 Task',
+                        text: 'Total Delivered:',
+                        projectNumber: '\$423',
                       ),
                     ),
                   ],
