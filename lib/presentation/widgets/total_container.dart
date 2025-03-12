@@ -9,8 +9,6 @@ class TotalContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Container(
       margin: EdgeInsets.all(10),
       alignment: Alignment.center,
@@ -32,13 +30,13 @@ class TotalContainer extends StatelessWidget {
         children: [
           TextWidget(
             text: text,
-            size: screenWidth * 0.03,
+            size: 15,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
           TextWidget(
             text: projectNumber,
-            size: screenWidth * 0.04,
+            size: 15,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           )
