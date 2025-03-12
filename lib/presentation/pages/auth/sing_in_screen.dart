@@ -37,8 +37,8 @@ class _SingInScreenState extends State<SingInScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
-        return  Future(() => false);
+      onWillPop: () {
+        return Future(() => false);
       },
       child: Scaffold(
         body: SingleChildScrollView(
@@ -129,7 +129,9 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
+
                           Get.offAll(DashBoard());
+
                         }
                       },
                       child: Text("LOGIN"),

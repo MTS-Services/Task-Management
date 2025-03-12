@@ -29,8 +29,8 @@ class ProjectContainer extends StatelessWidget {
         Get.to(() => ProjectDetails());
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
+        alignment: Alignment.center,
+        decoration: BoxDecoration( 
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
             image: AssetImage(selectedImage),
