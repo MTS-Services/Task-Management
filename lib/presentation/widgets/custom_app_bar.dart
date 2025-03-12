@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 
 class CustomAppBar extends StatelessWidget {
+
+ const CustomAppBar({
+
   const CustomAppBar({
+
     super.key,
     required this.text,
     required this.images,
     this.onPressed,
   });
-
   final String text;
   final String images;
+
+ final void Function()? onPressed;
+
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {

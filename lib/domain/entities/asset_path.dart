@@ -11,6 +11,7 @@ class AssetPath {
   static const String canselPng = "$basePath2/cansel.png";
   static const String targetPng = "$basePath2/terget.png";
   static const String carryPng = "$basePath2/carry.png";
+  static const String menuPng = "$basePath2/menus.png";
 
   // onboarding image
   static const String basePathOnboarding = "assets/images";
