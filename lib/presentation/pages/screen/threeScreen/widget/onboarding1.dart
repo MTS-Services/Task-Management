@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maktrack/presentation/widgets/my_custom_text.dart';
 
 class Onboarding1 extends StatelessWidget {
   const Onboarding1({super.key});
@@ -20,6 +19,7 @@ class Onboarding1 extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 15),
           child: Column(
+            spacing: 8,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(

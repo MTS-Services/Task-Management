@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
+import 'package:maktrack/presentation/pages/screen/scheduleScreen/schedule_screen.dart';
 
-import 'presentation/pages/screen/threeScreen/onboarding_page.dart';
+
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
   @override
@@ -16,9 +16,9 @@ class MTrac extends StatelessWidget {
           fontFamily: "PromoTest",
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
-          elevatedButtonTheme: _buildElevatedButtonThemeData())
+          elevatedButtonTheme: _buildElevatedButtonThemeData()),
 
-      home: ThreeScreenPage(),
+      home: ScheduleScreen(),
 
     );
   }

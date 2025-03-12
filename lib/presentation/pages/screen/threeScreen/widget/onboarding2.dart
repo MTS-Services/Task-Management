@@ -20,7 +20,8 @@ class Onboarding2 extends StatelessWidget {
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.only(left: 15),
-          child: Column(
+          child: Column(            spacing: 8,
+
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
