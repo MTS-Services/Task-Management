@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/bottomNavBar/bottom_nav_bar.dart';
 import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
 import 'package:maktrack/presentation/pages/screen/task_add_screen.dart';
 
+import 'presentation/pages/auth/email_varification_screen.dart';
+import 'presentation/pages/auth/otp_verification_screen.dart';
+import 'presentation/pages/auth/set_password_screen.dart';
 import 'presentation/pages/screen/threeScreen/onboarding_page.dart';
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -18,7 +22,7 @@ class MTrac extends StatelessWidget {
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: ThreeScreenPage(),
+      home: Bottom(),
     );
   }
 
