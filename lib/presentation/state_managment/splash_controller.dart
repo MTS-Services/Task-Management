@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
+
 class SplashController extends GetxController {
   var showLoading = false.obs;
 
@@ -16,7 +17,7 @@ class SplashController extends GetxController {
 
       Future.delayed(const Duration(seconds: 1), () {
         Get.offAll(
-              () => const OnboardingScreen(),
+          () => const ThreeScreenPage(),
           transition: Transition.rightToLeft,
           duration: const Duration(milliseconds: 750),
         );

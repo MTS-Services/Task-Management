@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maktrack/presentation/widgets/my_custom_text.dart';
 
-class Onboarding3 extends StatelessWidget {
-  const Onboarding3({super.key});
+class Onboarding2 extends StatelessWidget {
+  const Onboarding2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,32 +15,33 @@ class Onboarding3 extends StatelessWidget {
             width: double.infinity,
             color: Colors.transparent,
             child: Image.asset(
-              "assets/onboarding/Team work-cuate.png",
+              "assets/onboarding/At work-cuate (2).png",
             )),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.only(left: 15),
-          child: Column(
+          child: Column(            spacing: 8,
+
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "GET STARTED",
+                "DISCOVERY",
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 40),
               ),
               Text(
-                  maxLines: 2,
-                  textAlign: TextAlign.end,
-                  "BEGIN YOUR\nJOURNEY TODAY",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                      color: Colors.black54)),
+                textAlign: TextAlign.end,
+                "DISCOVER TASKS\n& TRACK PROGRESS",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: Colors.black54),
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

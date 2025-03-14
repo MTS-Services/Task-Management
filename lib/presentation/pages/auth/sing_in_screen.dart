@@ -129,9 +129,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-
-                          Get.offAll(DashBoard());
-
+                          Get.to(DashBoard());
                         }
                       },
                       child: Text("LOGIN"),
