@@ -7,10 +7,8 @@ class BottomController extends GetxController {
 
 
   final List<Widget> pages = [
-    // ScheduleScreen(),
     const Center(child: Text("Dashboard Page")),
     const Center(child: Text("Files Page")),
-    const Center(child: Text("Task Page")),
     const Center(child: Text("Send Page")),
     const Center(child: Text("Profile Page")),
   ];

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/screen/threeScreen/onboarding_page.dart';
+import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
 
 class SplashController extends GetxController {
   var showLoading = false.obs;

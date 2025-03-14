@@ -25,7 +25,7 @@ class Bottom extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
-                  spacing: 10,
+                  spacing: 20,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: List.generate(controller.navIcons.length, (index) {
                     return IconButton(
@@ -43,9 +43,7 @@ class Bottom extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              controller.changeIndex(2);
-            },
+            onPressed: () {},
             backgroundColor: RColors.blueButtonColors,
             shape: const CircleBorder(),
             child: Image.asset(AssetPath.basePathImage),

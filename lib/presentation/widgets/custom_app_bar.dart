@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
 
   final String text;
   final String images;
-  void Function()? onPressed;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(

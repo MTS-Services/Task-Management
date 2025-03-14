@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/task_add_screen.dart';
+import 'package:maktrack/presentation/pages/screen/schedule_add_task_screen/add_task_schedule_screen.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -14,6 +14,29 @@ class ScheduleScreen extends StatefulWidget {
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
   DateTime selectedDate = DateTime.now();
+
+  String getFormattedDate() {
+    DateTime today = DateTime.now();
+    DateTime tomorrow = today.add(Duration(days: 1));
+    DateTime yesterday = today.subtract(Duration(days: 1));
+
+    if (selectedDate.year == today.year &&
+        selectedDate.month == today.month &&
+        selectedDate.day == today.day) {
+      return "Today";
+    } else if (selectedDate.year == tomorrow.year &&
+        selectedDate.month == tomorrow.month &&
+        selectedDate.day == tomorrow.day) {
+      return "Tomorrow";
+    } else if (selectedDate.year == yesterday.year &&
+        selectedDate.month == yesterday.month &&
+        selectedDate.day == yesterday.day) {
+      return "Yesterday";
+    } else {
+      return DateFormat.EEEE().format(selectedDate);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,20 +45,19 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 20, bottom: 20),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30))),
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+              ),
               child: Column(
-                spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -43,36 +65,40 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              DateFormat.yMMMMd().format(DateTime.now()),
+                              DateFormat.yMMMMd().format(
+                                  selectedDate),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18,
-                                      color: Colors.black54),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                    color: Colors.black54,
+                                  ),
                             ),
                             Text(
-                              "Today",
+                              getFormattedDate(),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
-                                      color: Colors.black),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24,
+                                    color: Colors.black,
+                                  ),
                             ),
                           ],
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => TaskAddScreen());
+                            Get.to(() => AddTaskScheduleScreen());
                           },
                           child: Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: RColors.blueButtonColors,
-                                borderRadius: BorderRadius.circular(10)),
+                              color: RColors.blueButtonColors,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             child: Center(
                               child: Text(
                                 "+ Add Task",
@@ -80,38 +106,34 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.white),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   Container(
                     margin: EdgeInsets.only(left: 20),
                     child: DatePicker(
-                      DateTime.now(),
+                      DateTime.now().subtract(Duration(days: 2)),
                       height: 100,
                       width: 80,
-                      initialSelectedDate: DateTime.now(),
+                      initialSelectedDate: selectedDate,
                       selectionColor: RColors.blueButtonColors,
                       selectedTextColor: Colors.white,
                       onDateChange: (date) {
-                        selectedDate = date;
-                        // New date selected
-                        print(date);
+                        setState(() {
+                          selectedDate = date;
+                        });
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  )
                 ],
               ),
             ),
