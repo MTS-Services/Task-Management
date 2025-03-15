@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'presentation/pages/screen/schedule_screen/schedule_screen.dart';
-import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
-
+import 'package:maktrack/presentation/pages/screen/create_project_project.dart';
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -20,7 +18,7 @@ class MTrac extends StatelessWidget {
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
 
 
-      home: ViewTaskScreen(),
+      home: CreateNewProject(),
 
     );
   }
