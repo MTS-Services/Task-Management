@@ -42,6 +42,16 @@ class _ViewTaskScreenState extends State<ViewTaskScreen> {
                   ProjectTebCard(),
                 ],
               ),
+
+              SizedBox(height: 20),
+              ProjectTebCard(),
+            ],
+          ),
+        ),
+      ),
+    );
+
             )));
+
   }
 }
