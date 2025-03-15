@@ -70,7 +70,7 @@ class CustomDropdownState extends State<CustomDropdown> {
         ),
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
-          height: isOpen ? widget.items.length * 50.0 : 0,
+          height: isOpen ? widget.items.length * 40.0 : 0,
           child: Visibility(
             visible: isOpen,
             child: Container(
