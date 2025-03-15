@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maktrack/model/task.dart';
 import 'package:maktrack/presentation/state_managment/task_controller.dart';
-
 import '../../../../../domain/entities/color.dart';
 import 'color_container_custom.dart';
 
@@ -24,20 +23,21 @@ class _AddTaskTextFieldCustomWidgetState
   TextEditingController titleController = TextEditingController();
   TextEditingController noteController = TextEditingController();
 
-  addTask() {
-  taskController.addTask(
-      task:Task(
-        title: titleController.text,
-        note: noteController.text,
-        date: DateFormat.yMd().format(selectedDate),
-        startTime: startTime,
-        endTime: endTime,
-        reminder: selectedReminder,
-        repeat: selectedRepeat,
-        color: selectedColor,
-        isCompleted: 0,
-      )
-  );
+  addTask() async {
+    int value = await taskController.addTask(
+        task: Task(
+      title: titleController.text,
+      note: noteController.text,
+      date: DateFormat.yMd().format(selectedDate),
+      startTime: startTime,
+      endTime: endTime,
+      reminder: selectedReminder,
+      repeat: selectedRepeat,
+      color: selectedColor != null ? selectedColor!.value : 0xffFF6157,
+      isCompleted: 0,
+    ));
+
+    print("My value is $value");
   }
 
   validate() {

@@ -1,3 +1,4 @@
+import 'package:maktrack/model/task.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
@@ -18,16 +19,16 @@ class DBHelper {
           print("Creating a new one");
           return db.execute(
             "CREATE TABLE $_databaseName("
-            "id INTEGER PRIMARY KEY,"
-            " title TEXT,"
-            " note TEXT,"
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            " title STRING,"
+            " note STRING,"
             " isCompleted INTEGER,"
-            " date TEXT,"
-            " startTime TEXT,"
-            " endTime TEXT,"
-            " color TEXT,"
+            " date STRING,"
+            " startTime STRING,"
+            " endTime STRING,"
+            " color COLOR,"
             " reminder INTEGER,"
-            " repeat TEXT)",
+            " repeat STRING)",
           );
         },
       );
@@ -35,4 +36,21 @@ class DBHelper {
       print(e);
     }
   }
+
+  static Future<int> insert(Task? task) async {
+    print("insert function called");
+    return await _db?.insert(_databaseName, task!.toJson()) ?? 1;
+  }
+
+  static Future<List<Map<String, dynamic>>> query() async {
+    print("query function called");
+    return await _db!.query(_databaseName);
+  }
+
+  static Future<int> delete(int id) async {
+    print("delete function called");
+    return await _db!.delete(_databaseName, where: "id = ?", whereArgs: [id]);
+  }
+
+
 }
