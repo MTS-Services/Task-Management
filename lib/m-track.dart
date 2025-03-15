@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-
-
+import 'presentation/pages/screen/schedule_screen/schedule_screen.dart';
 import 'package:maktrack/presentation/pages/screen/threeScreen/onboarding_page.dart';
 import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
+
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -20,8 +20,8 @@ class MTrac extends StatelessWidget {
           inputDecorationTheme: _buildInputDecorationTheme(context),
           elevatedButtonTheme: _buildElevatedButtonThemeData()),
 
-      home: ViewTaskScreen(),
 
+      home: ViewTaskScreen(),
 
     );
   }
