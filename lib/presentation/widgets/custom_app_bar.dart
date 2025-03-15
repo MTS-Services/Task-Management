@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/color.dart';
 
 class CustomAppBar extends StatelessWidget {
+ const CustomAppBar(
 
- const CustomAppBar({
+  {
+
     super.key,
     required this.text,
     required this.images,
     this.onPressed,
   });
+
   final String text;
   final String images;
  final void Function()? onPressed;
@@ -42,6 +45,3 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
-
-
-
