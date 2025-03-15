@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
 import 'package:maktrack/presentation/widgets/total_price_widget.dart';
 
@@ -12,21 +14,26 @@ class TaskAddScreen extends StatefulWidget {
 
 class _TaskAddScreenState extends State<TaskAddScreen> {
   final List<Map<String, dynamic>> tasks = [
-    {"title": "Task 1 ", "Total":"Total Project", "icon":AssetPath.totalPricePng},
-    {"title": "Task 2 ","Total":"In Progress", "icon":AssetPath.clockPng},
-    {"title": "Task 3 ","Total":"NRA","icon":AssetPath.nrmPng},
-    {"title": "Task 4","Total":"Complete", "icon":AssetPath.completePng},
-    {"title": "Task 5","Total":"Cancel","icon":AssetPath.canselPng},
-    {"title": "Task 6 ","Total":"Total Target","icon":AssetPath.targetPng},
-    {"title": "Task 7","Total":"Carry Forward","icon":AssetPath.carryPng},
-
-  ].map((task) => {
-    ...task,
-    "amount": "",
-    "projects": "",
-    "amountController": TextEditingController(),
-    "projectsController": TextEditingController(),
-  }).toList();
+    {
+      "title": "Task 1 ",
+      "Total": "Total Project",
+      "icon": AssetPath.totalPricePng
+    },
+    {"title": "Task 2 ", "Total": "In Progress", "icon": AssetPath.clockPng},
+    {"title": "Task 3 ", "Total": "NRA", "icon": AssetPath.nrmPng},
+    {"title": "Task 4", "Total": "Complete", "icon": AssetPath.completePng},
+    {"title": "Task 5", "Total": "Cancel", "icon": AssetPath.canselPng},
+    {"title": "Task 6 ", "Total": "Total Target", "icon": AssetPath.targetPng},
+    {"title": "Task 7", "Total": "Carry Forward", "icon": AssetPath.carryPng},
+  ]
+      .map((task) => {
+            ...task,
+            "amount": "",
+            "projects": "",
+            "amountController": TextEditingController(),
+            "projectsController": TextEditingController(),
+          })
+      .toList();
 
   InputDecoration customInputDecoration(String hint) {
     return InputDecoration(
@@ -67,7 +74,9 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
               CustomAppBar(
                 text: "Back",
                 images: AssetPath.logoPng,
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
               ),
               const SizedBox(height: 20),
               Expanded(
@@ -80,7 +89,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: Color(0xffe8edf6),
+                      color: RColors.bgColorColorS,
                       elevation: 10,
                       shadowColor: Colors.grey.shade50,
                       child: Padding(
@@ -98,14 +107,15 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                             const SizedBox(height: 10),
                             TotalPriceWidget(
                               icon: tasks[index]["icon"],
-                              text:tasks[index]["Total"]??"Unknown",
+                              text: tasks[index]["Total"] ?? "Unknown",
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
                                 Expanded(
                                   child: TextFormField(
-                                    controller: tasks[index]['amountController'],
+                                    controller: tasks[index]
+                                        ['amountController'],
                                     keyboardType: TextInputType.number,
                                     decoration: customInputDecoration("Amount"),
                                     onChanged: (value) {
@@ -116,9 +126,11 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: TextFormField(
-                                    controller: tasks[index]['projectsController'],
+                                    controller: tasks[index]
+                                        ['projectsController'],
                                     keyboardType: TextInputType.number,
-                                    decoration: customInputDecoration("Projects"),
+                                    decoration:
+                                        customInputDecoration("Projects"),
                                     onChanged: (value) {
                                       tasks[index]['projects'] = value;
                                     },

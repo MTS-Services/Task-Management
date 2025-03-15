@@ -7,7 +7,6 @@ import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
-
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/save_password_forget_button.dart';
 import '../../widgets/sing_up_title.dart';
@@ -28,6 +27,15 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
+  void initState() {
+    _userNameTEController.text = "Arifin";
+    _phoneNumber.text = "01700000000";
+
+    _emailTEController.text = "arifin50@gmail.com";
+    _phoneNumber.text = "01700000000";
+    _passwordTEController.text = "Abc@123@";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +175,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           signUp();
+                          Get.to(() => SingInScreen());
                         }
                       },
                       child: Text("REQUEST ACCESS"),

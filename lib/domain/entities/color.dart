@@ -11,6 +11,7 @@ class RColors {
   static const Color errorColors= Color(0xffFE9F99); //1
   static const Color snackBarColorR= Color(0xffFF6157); //1
   static const Color snackBarColorS= Color(0xff61C877); //1
+  static const Color bgColorColorS= Color(0xffe8edf6); //1
 
 
 }
