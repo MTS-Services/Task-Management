@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TotalPriceWidget extends StatelessWidget {
-  const TotalPriceWidget({
+   TotalPriceWidget({
     super.key,
-    required this.icon,
+    this.icon,
     required this.text,
   });
 
-  final String icon;
+  final String? icon;
   final String text;
 
   @override
@@ -15,8 +15,9 @@ class TotalPriceWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        if(icon != null)
         Image.asset(
-          icon,
+          icon!,
           width: 20,
           height: 20,
           color: Colors.black54,
@@ -26,6 +27,7 @@ class TotalPriceWidget extends StatelessWidget {
           text,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w600,
+            fontSize: 17,
             color: Colors.black87,
           ),
         ),
