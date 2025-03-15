@@ -18,18 +18,14 @@ class _CreateNewProjectState extends State<CreateNewProject> {
       "title": "Create a new project",
       "Total": "Project Details",
     },
-  ]
-      .map((task) => {
+  ].map((task) => {
     ...task,
-    "Project Name": "",
-    "Project Type": "",
-    " Project Progress (%) ": "",
-    " Assign Date": "",
-    "Project Timeline": "",
-    "amountController": TextEditingController(),
-    "projectsController": TextEditingController(),
-  })
-      .toList();
+    "ProjectNameController": TextEditingController(),
+    "ProjectTypeController": TextEditingController(),
+    "ProjectProgressController": TextEditingController(),
+    "AssignDateController": TextEditingController(),
+    "ProjectTimelineController": TextEditingController(),
+  }).toList();
 
   InputDecoration customInputDecoration(String hint) {
     return InputDecoration(
@@ -52,8 +48,11 @@ class _CreateNewProjectState extends State<CreateNewProject> {
   @override
   void dispose() {
     for (var task in tasks) {
-      task['amountController'].dispose();
-      task['projectsController'].dispose();
+      task['ProjectNameController'].dispose();
+      task['ProjectTypeController'].dispose();
+      task['ProjectProgressController'].dispose();
+      task['AssignDateController'].dispose();
+      task['ProjectTimelineController'].dispose();
     }
     super.dispose();
   }
@@ -77,7 +76,7 @@ class _CreateNewProjectState extends State<CreateNewProject> {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     return Card(
@@ -106,44 +105,33 @@ class _CreateNewProjectState extends State<CreateNewProject> {
                             ),
                             const SizedBox(height: 10),
                             Column(
-                              spacing: 10,
                               children: [
                                 TextFormField(
-                                    controller: tasks[index]
-                                    ['amountController'],
-                                    keyboardType: TextInputType.number,
-                                    decoration: customInputDecoration("Project Name"),
-                                    onChanged: (value) {
-                                      tasks[index]['Project Name'] = value;
-                                    },
-                                  ),
-                                TextFormField(
-                                  controller: tasks[index]
-                                  ['amountController'],
-                                  keyboardType: TextInputType.number,
-                                  decoration: customInputDecoration( "Project Type"),
-                                  onChanged: (value) {
-                                    tasks[index][' "Project Type'] = value;
-                                  },
+                                  controller: tasks[index]['ProjectNameController'],
+                                  decoration: customInputDecoration("Project Name"),
                                 ),
+                                const SizedBox(height: 10),
                                 TextFormField(
-                                  controller: tasks[index]
-                                  ['amountController'],
-                                  keyboardType: TextInputType.number,
-                                  decoration: customInputDecoration( "Project Progress (%)"),
-                                  onChanged: (value) {
-                                    tasks[index]['Project Progress (%)'] = value;
-                                  },
+                                  controller: tasks[index]['ProjectTypeController'],
+                                  decoration: customInputDecoration("Project Type"),
                                 ),
+                                const SizedBox(height: 10),
                                 TextFormField(
-                                  controller: tasks[index]
-                                  ['amountController'],
+                                  controller: tasks[index]['ProjectProgressController'],
                                   keyboardType: TextInputType.number,
-                                  decoration: customInputDecoration(" Assign Date"),
-                                  onChanged: (value) {
-                                    tasks[index]['" Assign Date"'] = value;
-                                  },
+                                  decoration: customInputDecoration("Project Progress (%)"),
                                 ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: tasks[index]['AssignDateController'],
+                                  decoration: customInputDecoration("Assign Date"),
+                                ),
+                                const SizedBox(height: 10),
+                                TextFormField(
+                                  controller: tasks[index]['ProjectTimelineController'],
+                                  decoration: customInputDecoration("Project Timeline"),
+                                ),
+                                const SizedBox(height: 10),
                               ],
                             ),
                           ],
@@ -159,7 +147,7 @@ class _CreateNewProjectState extends State<CreateNewProject> {
                   onPressed: () {
                     // Navigate to the next screen where the dashboard is
                   },
-                  child: const Text("Proceed to Dashboard"),
+                  child: const Text("Save Project"),
                 ),
               ),
             ],
