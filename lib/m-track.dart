@@ -4,6 +4,7 @@ import 'package:maktrack/domain/entities/color.dart';
 
 
 import 'package:maktrack/presentation/pages/screen/threeScreen/onboarding_page.dart';
+import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -21,7 +22,6 @@ class MTrac extends StatelessWidget {
 
       home: ViewTaskScreen(),
 
-      home: ThreeScreenPage(),
 
     );
   }

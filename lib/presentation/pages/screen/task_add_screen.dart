@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
 import 'package:maktrack/presentation/widgets/total_price_widget.dart';
 
@@ -80,7 +81,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: Color(0xffe8edf6),
+                      color: RColors.bgColorColorS,
                       elevation: 10,
                       shadowColor: Colors.grey.shade50,
                       child: Padding(
