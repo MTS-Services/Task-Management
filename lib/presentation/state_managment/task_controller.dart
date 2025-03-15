@@ -11,21 +11,22 @@ class TaskController extends GetxController {
 
   var taskList = <Task>[].obs;
 
-
   Future<int> addTask({Task? task}) async {
-    return await DBHelper.insert(task);
+    int result = await DBHelper.insert(task!);
+    if (result > 0) {
+      taskList.insert(0, task);
+    }
+    return result;
   }
 
-
-  void getTaskList()async{
+  void getTaskList() async {
     List<Map<String, dynamic>> tasks = await DBHelper.query();
-    taskList.assignAll(tasks.map((data) => new Task.fromJson(data)).toList());
+    print("Fetched Tasks from DB: $tasks");
+    taskList.assignAll(tasks.map((e) => Task.fromJson(e)).toList());
   }
 
-
-  Future<int> deleteTask(int id) async {
-    return await DBHelper.delete(id);
+  void deleteTask(Task task) async {
+    await DBHelper.delete(task);
+    getTaskList();
   }
-
-
 }

@@ -5,7 +5,7 @@ import '../../../../../model/task.dart';
 
 class TaskTile extends StatelessWidget {
   final Task? task;
- const TaskTile({this.task});
+  const TaskTile({this.task});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class TaskTile extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                  ),
+                      ),
                 ),
                 SizedBox(
                   height: 12,
@@ -87,7 +87,7 @@ class TaskTile extends StatelessWidget {
     );
   }
 
-  _getBGClr(int no) {
+  Color _getBGClr(int no) {
     switch (no) {
       case 0:
         return RColors.snackBarColorR;
@@ -96,7 +96,7 @@ class TaskTile extends StatelessWidget {
       case 2:
         return RColors.blackButtonColor2;
       default:
-        return RColors.blueButtonColors;
+        return Colors.blue;
     }
   }
 }

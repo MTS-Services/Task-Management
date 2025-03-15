@@ -47,10 +47,9 @@ class DBHelper {
     return await _db!.query(_databaseName);
   }
 
-  static Future<int> delete(int id) async {
+  static delete(Task task) async {
     print("delete function called");
-    return await _db!.delete(_databaseName, where: "id = ?", whereArgs: [id]);
+    return await _db!
+        .delete(_databaseName, where: "id = ?", whereArgs: [task.id]);
   }
-
-
 }

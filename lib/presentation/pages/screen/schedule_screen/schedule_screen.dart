@@ -129,6 +129,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 itemBuilder: (context, index) {
                   print(
                       " _taskController.taskList.length: ${_taskController.taskList.length}");
+
                   return AnimationConfiguration.staggeredList(
                     position: index,
                     duration: const Duration(milliseconds: 375),
@@ -188,6 +189,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
+          Spacer(),
           task.isCompleted == 1
               ? Container()
               : _bottomSheetButton(
@@ -195,7 +197,37 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   onTap: () {
                     Get.back();
                   },
-                  color: RColors.blueButtonColors),
+                  color: RColors.blueButtonColors,
+                  context: context,
+                ),
+          SizedBox(
+            height: 20,
+          ),
+          _bottomSheetButton(
+            label: 'Deleted',
+            onTap: () {
+              _taskController.deleteTask(task);
+              _taskController.getTaskList();
+              Get.back();
+            },
+            color: RColors.snackBarColorR,
+            context: context,
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          _bottomSheetButton(
+            label: 'Close',
+            onTap: () {
+              Get.back();
+            },
+            color: Colors.white,
+            isClose: true,
+            context: context,
+          ),
+          SizedBox(
+            height: 15,
+          ),
         ],
       ),
     ));
@@ -203,10 +235,37 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   _bottomSheetButton({
     required String label,
-    required Function onTap,
+    Function()? onTap,
     required Color color,
     bool isClose = false,
-  }) {}
+    required BuildContext context,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 55,
+        width: MediaQuery.of(context).size.width * 0.9,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: isClose == true ? Colors.transparent : color,
+          border: Border.all(
+              width: 1,
+              color: isClose == true ? Colors.grey[600]! : Colors.grey[300]!),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: isClose == true ? Colors.black : Colors.white,
+                ),
+          ),
+        ),
+      ),
+    );
+  }
 
   String getFormattedDate() {
     DateTime today = DateTime.now();
