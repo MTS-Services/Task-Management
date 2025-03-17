@@ -85,11 +85,12 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     return Card(
+                      
                       margin: const EdgeInsets.only(bottom: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: RColors.bgColorColorS,
+                      color: Color(0xffe8f1f6),
                       elevation: 10,
                       shadowColor: Colors.grey.shade50,
                       child: Padding(

@@ -73,7 +73,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         ),
                         GestureDetector(
                           onTap: () async {
-                            await Get.to(() => AddTaskScheduleScreen());
+                            await Get.to(() => AddTaskScheduleScreen(
+                                selectedDate: selectedDate));
                             _taskController.getTaskList();
                           },
                           child: Container(
@@ -113,6 +114,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                       onDateChange: (date) {
                         setState(() {
                           selectedDate = date;
+                          _taskController.getTaskList();
                         });
                       },
                     ),
@@ -124,31 +126,29 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               height: 20,
             ),
             Expanded(child: Obx(() {
-              return ListView.builder(
-                itemCount: _taskController.taskList.length,
-                itemBuilder: (context, index) {
-                  print(
-                      " _taskController.taskList.length: ${_taskController.taskList.length}");
+              var filteredTasks = _taskController.taskList.where((task) {
+                DateTime taskDate = DateFormat.yMd().parse(task.date!);
+                return taskDate.year == selectedDate.year &&
+                    taskDate.month == selectedDate.month &&
+                    taskDate.day == selectedDate.day;
+              }).toList();
 
+              return ListView.builder(
+                itemCount: filteredTasks.length,
+                itemBuilder: (context, index) {
                   return AnimationConfiguration.staggeredList(
                     position: index,
                     duration: const Duration(milliseconds: 375),
                     child: SlideAnimation(
-                      // verticalOffset: 50.0,
                       child: FadeInAnimation(
                         child: Row(
                           children: [
                             GestureDetector(
                               onTap: () {
-                                print("tapped");
-                                // _taskController.deleteTask(
-                                //     _taskController.taskList[index].id!);
-                                // _taskController.getTaskList();
-                                showBottomSheet(
-                                    context, _taskController.taskList[index]);
+                                showBottomSheet(context, filteredTasks[index]);
                               },
                               child: TaskTile(
-                                task: _taskController.taskList[index],
+                                task: filteredTasks[index],
                               ),
                             ),
                           ],

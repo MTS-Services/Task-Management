@@ -7,6 +7,8 @@ import 'package:maktrack/presentation/widgets/text_widget.dart';
 import 'package:maktrack/presentation/widgets/top_bar_widget.dart';
 import 'package:maktrack/presentation/widgets/total_container.dart';
 
+import '../ProjectDetails/project_details.dart';
+
 class DashBoard extends StatelessWidget {
   const DashBoard({super.key});
 
@@ -87,6 +89,7 @@ class DashBoard extends StatelessWidget {
         return shouldPop; // Return true or false based on the user's choice
       },
       child: Scaffold(
+        backgroundColor: Color(0xfffafcfd),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Column(

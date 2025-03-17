@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 
+import '../pages/screen/ProjectDetails/project_details.dart';
+import '../pages/screen/view_task_screen.dart';
+
 class BottomController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
 
   final List<Widget> pages = [
-    const Center(child: Text("Dashboard Page")),
-    const Center(child: Text("Files Page")),
+    ProjectDetails(),
+    ViewTaskScreen(),
     const Center(child: Text("Send Page")),
     const Center(child: Text("Profile Page")),
   ];

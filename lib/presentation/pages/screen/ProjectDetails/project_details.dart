@@ -5,6 +5,7 @@ import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import '../../../state_managment/home.dart';
+import '../view_task_screen.dart';
 
 class ProjectDetails extends StatelessWidget {
   const ProjectDetails({
@@ -27,7 +28,7 @@ class ProjectDetails extends StatelessWidget {
       'assets/Icons/Complete.png',
     ];
     return Scaffold(
-        backgroundColor: Color(0xffe8edf6),
+      backgroundColor: Color(0xfffafcfd),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -194,11 +195,16 @@ class ProjectDetails extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
-                  TextWidget(
-                    text: 'All Tasks',
-                    size: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>ViewTaskScreen());
+                    },
+                    child: TextWidget(
+                      text: 'All Tasks',
+                      size: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
