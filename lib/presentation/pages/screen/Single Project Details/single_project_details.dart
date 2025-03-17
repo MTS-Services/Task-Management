@@ -13,7 +13,7 @@ class SingleProjectDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? progressPercentage;
+    String? progressPercentage ;
     String selectedUpdateOption = '';
     String selectedUpdateComment = '';
     return Scaffold(
@@ -109,8 +109,7 @@ class SingleProjectDetails extends StatelessWidget {
               SizedBox(height: 10),
               DateSelector(),
               SizedBox(height: 10),
-              ProjectUpdateBar(),
-            ],
+ProjectUpdateBar() ,           ],
           ),
         ),
       ),
