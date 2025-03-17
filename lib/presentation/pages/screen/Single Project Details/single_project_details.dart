@@ -8,14 +8,59 @@ import 'package:maktrack/presentation/widgets/text_widget.dart';
 import 'package:maktrack/presentation/widgets/update_icon.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class SingleProjectDetails extends StatelessWidget {
+class SingleProjectDetails extends StatefulWidget {
   const SingleProjectDetails({super.key});
 
   @override
+  State<SingleProjectDetails> createState() => _SingleProjectDetailsState();
+}
+
+class _SingleProjectDetailsState extends State<SingleProjectDetails> {
+  final TextEditingController progressPercentage =
+      TextEditingController(); // Make it a class variable
+  final TextEditingController commentController =
+      TextEditingController(); // Make it a class variable
+  String selectedUpdateOption = '';
+  List<Map<String, String>> projectUpdates = [];
+
+  @override
+  void initState() {
+    super.initState();
+    progressPercentage.addListener(() {
+      setState(() {});
+    });
+  }
+   @override
+  void dispose() {
+    progressPercentage.dispose();
+    commentController.dispose();  
+    super.dispose();
+  }
+
+  // Function to update the selected update name
+  void _addProjectUpdate(String updateName, String comment) {
+    setState(() {
+      // Retrieve the last known percentage if available
+      String lastPercentage = projectUpdates.isNotEmpty
+          ? projectUpdates.last['percentage'] ?? '0'
+          : '0';
+
+      // Use input value if provided, otherwise keep the last known percentage
+      String newPercentage = progressPercentage.text.isNotEmpty
+          ? progressPercentage.text
+          : lastPercentage;
+
+      // ✅ Store percentage in the list
+      projectUpdates.add({
+        'updateName': updateName,
+        'comment': comment,
+        'percentage': newPercentage, // ✅ Fix: Store percentage
+      });
+    });
+  }
+ 
+  @override
   Widget build(BuildContext context) {
-    String? progressPercentage ;
-    String selectedUpdateOption = '';
-    String selectedUpdateComment = '';
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -26,9 +71,7 @@ class SingleProjectDetails extends StatelessWidget {
                   spacing: 25,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SizedBox(height: 10),
                     TextWidget(
                       text: 'App Project',
                       size: 22,
@@ -41,13 +84,19 @@ class SingleProjectDetails extends StatelessWidget {
                         CircularPercentIndicator(
                           radius: 50.0,
                           lineWidth: 12.0,
-                          percent: 0.35,
+                          percent: (double.tryParse(projectUpdates.isNotEmpty
+                                      ? projectUpdates.last['percentage'] ?? '0'
+                                      : '0') ??
+                                  0.0) /
+                              100.0, // ✅ Use last known percentage
                           center: Text(
-                            '$progressPercentage %',
-                            style: TextStyle(
+                            projectUpdates.isNotEmpty
+                                ? '${projectUpdates.last['percentage']}%'
+                                : '0%',
+                            style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
-                          progressColor: Colors.green,
+                          progressColor: Color(0xff61C877),
                           backgroundColor: Colors.grey.shade200,
                           circularStrokeCap: CircularStrokeCap.round,
                         ),
@@ -78,8 +127,11 @@ class SingleProjectDetails extends StatelessWidget {
                             ),
                             UpdateIcon(
                               progressPercentage: progressPercentage,
-                              selectedUpdateOption: selectedUpdateOption,
-                              selectedUpdateComment: selectedUpdateComment,
+                              commentController: commentController,
+                              onConfirm: (updateName) {
+                                _addProjectUpdate(
+                                    updateName, commentController.text);
+                              }, // Fix here
                             ),
                           ],
                         ),
@@ -109,7 +161,18 @@ class SingleProjectDetails extends StatelessWidget {
               SizedBox(height: 10),
               DateSelector(),
               SizedBox(height: 10),
-ProjectUpdateBar() ,           ],
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: projectUpdates.length,
+                itemBuilder: (context, index) {
+                  return ProjectUpdateBar(
+                    updateName: projectUpdates[index]['updateName'] ?? '',
+                    updateComment: projectUpdates[index]['comment'] ?? '',
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),
