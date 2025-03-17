@@ -11,6 +11,7 @@ import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
+import '../screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({super.key});
@@ -29,8 +30,8 @@ class _SingInScreenState extends State<SingInScreen> {
   bool isVisible = false;
 
   void initState() {
-    _emailTEController.text ="arifin50@gmail.com";
-    _passwordTEController.text ="Abc@123@";
+    _emailTEController.text = "arifin50@gmail.com";
+    _passwordTEController.text = "Abc@123@";
     super.initState();
   }
 
@@ -129,7 +130,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-                          Get.to(DashBoard());
+                          Get.to(() => Bottom());
                         }
                       },
                       child: Text("LOGIN"),

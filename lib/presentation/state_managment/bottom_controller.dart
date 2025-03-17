@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
+import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 
 class BottomController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
 
   final List<Widget> pages = [
-    const Center(child: Text("Dashboard Page")),
+    DashBoard(),
     const Center(child: Text("Files Page")),
     const Center(child: Text("Send Page")),
     const Center(child: Text("Profile Page")),

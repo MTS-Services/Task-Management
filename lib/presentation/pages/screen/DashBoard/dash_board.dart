@@ -85,7 +85,7 @@ class DashBoard extends StatelessWidget {
         return shouldPop; // Return true or false based on the user's choice
       },
       child: Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Color(0xfffafcfd),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Column(

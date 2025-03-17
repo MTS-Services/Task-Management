@@ -117,14 +117,6 @@ class _AddTaskTextFieldCustomWidgetState
     });
   }
 
-  // Container for color selection
-  // Color? selectedColor;
-  // final List<Color> colors = [
-  //   Color(0xffFF6157),
-  //   Color(0xff2A4FA1),
-  //   Color(0xff61C877),
-  // ];
-
   // Selected Reminder
   int selectedReminder = 5;
   List<int> reminders = [5, 10, 15, 20, 25, 30];
@@ -145,7 +137,9 @@ class _AddTaskTextFieldCustomWidgetState
           TextField(
             controller: titleController,
             decoration: InputDecoration(
-                hintText: "Enter Title", border: OutlineInputBorder()),
+              hintText: "Enter Title",
+              border: OutlineInputBorder(),
+            ),
           ),
         ],
       ),

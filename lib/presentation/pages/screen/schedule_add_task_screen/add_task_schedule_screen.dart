@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'widgets/add_task_text_field_custom_widget.dart';
 
 class AddTaskScheduleScreen extends StatefulWidget {
-  const AddTaskScheduleScreen({super.key});
+  const AddTaskScheduleScreen({super.key, required DateTime selectedDate});
 
   @override
   State<AddTaskScheduleScreen> createState() => _AddTaskScheduleScreenState();
@@ -37,7 +37,6 @@ class _AddTaskScheduleScreenState extends State<AddTaskScheduleScreen> {
                     ),
               ),
               AddTaskTextFieldCustomWidget(),
-
             ],
           ),
         ),

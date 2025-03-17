@@ -27,7 +27,7 @@ class ProjectDetails extends StatelessWidget {
       'assets/Icons/Complete.png',
     ];
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Color(0xfffafcfd),
       body: SingleChildScrollView(
         child: Column(
           children: [
