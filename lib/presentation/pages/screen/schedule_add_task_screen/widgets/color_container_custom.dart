@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class ColorContainerCustom extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
-  final bool isSelected;
+ final Widget? child;
 
   ColorContainerCustom({
     required this.color,
     required this.onTap,
-    this.isSelected = false,
+     this.child,
   });
 
   @override
@@ -23,9 +23,7 @@ class ColorContainerCustom extends StatelessWidget {
           color: color,
           shape: BoxShape.circle,
         ),
-        child: isSelected
-            ? Icon(Icons.check, color: Colors.white, size: 17)
-            : null,
+        child: child,
       ),
     );
   }

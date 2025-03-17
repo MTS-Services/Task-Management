@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maktrack/model/task.dart';
 import 'package:maktrack/presentation/state_managment/task_controller.dart';
-
 import '../../../../../domain/entities/color.dart';
 import 'color_container_custom.dart';
 
@@ -20,24 +19,26 @@ class AddTaskTextFieldCustomWidget extends StatefulWidget {
 class _AddTaskTextFieldCustomWidgetState
     extends State<AddTaskTextFieldCustomWidget> {
   TaskController taskController = Get.put(TaskController());
-
   TextEditingController titleController = TextEditingController();
   TextEditingController noteController = TextEditingController();
 
-  addTask() {
-  taskController.addTask(
-      task:Task(
-        title: titleController.text,
-        note: noteController.text,
-        date: DateFormat.yMd().format(selectedDate),
-        startTime: startTime,
-        endTime: endTime,
-        reminder: selectedReminder,
-        repeat: selectedRepeat,
-        color: selectedColor,
-        isCompleted: 0,
-      )
-  );
+  int _isSelected = 0;
+
+  addTask() async {
+    int value = await taskController.addTask(
+        task: Task(
+      title: titleController.text,
+      note: noteController.text,
+      date: DateFormat.yMd().format(selectedDate),
+      startTime: startTime,
+      endTime: endTime,
+      reminder: selectedReminder,
+      repeat: selectedRepeat,
+      color: _isSelected,
+      isCompleted: 0,
+    ));
+
+    print("My value is $value");
   }
 
   validate() {
@@ -117,12 +118,12 @@ class _AddTaskTextFieldCustomWidgetState
   }
 
   // Container for color selection
-  Color? selectedColor;
-  final List<Color> colors = [
-    Color(0xffFF6157),
-    Color(0xff2A4FA1),
-    Color(0xff61C877),
-  ];
+  // Color? selectedColor;
+  // final List<Color> colors = [
+  //   Color(0xffFF6157),
+  //   Color(0xff2A4FA1),
+  //   Color(0xff61C877),
+  // ];
 
   // Selected Reminder
   int selectedReminder = 5;
@@ -339,15 +340,20 @@ class _AddTaskTextFieldCustomWidgetState
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(colors.length, (index) {
+                children: List.generate(3, (int index) {
                   return ColorContainerCustom(
-                    color: colors[index],
-                    isSelected: selectedColor == colors[index],
+                    color: index == 0
+                        ? RColors.snackBarColorR
+                        : index == 1
+                            ? RColors.snackBarColorS
+                            : RColors.blackButtonColor2,
                     onTap: () {
                       setState(() {
-                        selectedColor = colors[index];
+                        _isSelected = index;
+                        print("$index");
                       });
                     },
+                    child: _isSelected == index ? Icon(Icons.done) : null,
                   );
                 }),
               ),
