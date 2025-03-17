@@ -41,7 +41,7 @@ class _ViewTaskScreenState extends State<ViewTaskScreen> {
               ),
               SelectedTab(),
               const SizedBox(height: 20),
-              ProjectTebCard(),
+              ProjectTabCard(),
             ],
           ),
         ),

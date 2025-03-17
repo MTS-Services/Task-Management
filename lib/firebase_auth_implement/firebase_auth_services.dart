@@ -42,7 +42,6 @@ class FirebaseAuthServices {
     }
   }
 
-  /// Moved the function outside `signUpWithPhoneNumber`
   Future<User?> verifyOtpAndSignUp(String verificationId, String smsCode) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
