@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FirebaseAuthServices {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<User?> singUpWithEmailAndPassword(
-      String email, String password) async {
+  Future<User?> signUpWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -12,7 +11,7 @@ class FirebaseAuthServices {
       );
       return credential.user;
     } catch (e) {
-      print("Some error Occurred");
+      print("Some error occurred: $e");
     }
     return null;
   }
@@ -26,7 +25,6 @@ class FirebaseAuthServices {
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           await _auth.signInWithCredential(credential);
-
           print("User signed up successfully");
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -42,28 +40,27 @@ class FirebaseAuthServices {
     } catch (e) {
       print("Error during phone number verification: $e");
     }
-
-    Future<User?> verifyOtpAndSignUp(
-        String verificationId, String smsCode) async {
-      try {
-        PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationId,
-          smsCode: smsCode,
-        );
-
-        UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-
-        return userCredential.user;
-      } catch (e) {
-        print("Error verifying OTP: $e");
-      }
-      return null;
-    }
   }
 
-  Future<User?> singInWithEmailAndPassword(
-      String email, String password) async {
+  /// Moved the function outside `signUpWithPhoneNumber`
+  Future<User?> verifyOtpAndSignUp(String verificationId, String smsCode) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: smsCode,
+      );
+
+      UserCredential userCredential =
+      await _auth.signInWithCredential(credential);
+
+      return userCredential.user;
+    } catch (e) {
+      print("Error verifying OTP: $e");
+    }
+    return null;
+  }
+
+  Future<User?> signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential credential = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -71,7 +68,7 @@ class FirebaseAuthServices {
       );
       return credential.user;
     } catch (e) {
-      print("Some error Occurred");
+      print("Some error occurred: $e");
     }
     return null;
   }
@@ -80,7 +77,7 @@ class FirebaseAuthServices {
     try {
       await _auth.currentUser?.sendEmailVerification();
     } catch (e) {
-      print(e.toString());
+      print("Error sending email verification: $e");
     }
   }
 }

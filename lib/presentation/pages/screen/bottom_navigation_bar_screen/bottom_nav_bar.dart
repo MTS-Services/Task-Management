@@ -4,6 +4,8 @@ import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/screen/task_add_screen.dart';
 import 'package:maktrack/presentation/state_managment/bottom_controller.dart';
 
+import '../../leader_input_screen.dart';
+
 class Bottom extends StatelessWidget {
   Bottom({super.key});
 
@@ -50,7 +52,7 @@ class Bottom extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(() => TaskAddScreen);
+              Get.to(() => TaskAddScreen());
             },
             backgroundColor: RColors.blueButtonColors,
             shape: const CircleBorder(),

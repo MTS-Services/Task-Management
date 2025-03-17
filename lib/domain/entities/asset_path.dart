@@ -12,6 +12,9 @@ class AssetPath {
   static const String targetPng = "$basePath2/terget.png";
   static const String carryPng = "$basePath2/carry.png";
   static const String menuPng = "$basePath2/menus.png";
+  static const String zoomPng = "$basePath2/zoom-tool.png";
+  static const String wipPng = "$basePath2/wip.png";
+  static const String revisionPng = "$basePath2/Revision.png";
 
   // onboarding image
   static const String basePathOnboarding = "assets/images";
@@ -34,16 +37,16 @@ static const String basePathmImage ="assets/images";
 static const String basePathImage ="$basePathmImage/mLogo.png";
 
   static const String basePathList="assets/images";
-  static const String basePathListImage ="$basePathmImage/line-md_list-3.png";
+  static const String basePathListImage ="$basePathmImage/line-md_list-3 1.png";
 
   static const String basePathDocFile="assets/images";
-  static const String basePathDocFileImage ="$basePathmImage/akar-icons_file.png";
+  static const String basePathDocFileImage ="$basePathmImage/akar-icons_file 1.png";
 
   static const String basePathSend="assets/images";
-  static const String basePathSendImage ="$basePathmImage/arcticons_telegram.png";
+  static const String basePathSendImage ="$basePathmImage/arcticons_telegram 1.png";
 
   static const String basePathAvatar="assets/images";
-  static const String basePathAvatarImage ="$basePathmImage/radix-icons_avatar.png";
+  static const String basePathAvatarImage ="$basePathmImage/radix-icons_avatar 1.png";
 
 
 

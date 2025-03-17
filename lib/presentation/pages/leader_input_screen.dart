@@ -5,34 +5,32 @@ import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
 import 'package:maktrack/presentation/widgets/total_price_widget.dart';
 
-class TaskAddScreen extends StatefulWidget {
-  const TaskAddScreen({super.key});
+class LeaderInputScreen extends StatefulWidget {
+  const LeaderInputScreen({super.key});
 
   @override
-  State<TaskAddScreen> createState() => _TaskAddScreenState();
+  State<LeaderInputScreen> createState() => _LeaderInputScreenState();
 }
 
-class _TaskAddScreenState extends State<TaskAddScreen> {
+class _LeaderInputScreenState extends State<LeaderInputScreen> {
   final List<Map<String, dynamic>> tasks = [
     {
       "title": "Task 1 ",
       "Total": "Total Project",
       "icon": AssetPath.totalPricePng
     },
-    {"title": "Task 2 ", "Total": "In Progress", "icon": AssetPath.clockPng},
-    {"title": "Task 3 ", "Total": "NRA", "icon": AssetPath.nrmPng},
+    {"title": "Task 2 ", "Total": "WIP", "icon": AssetPath.wipPng},
+    {"title": "Task 3 ", "Total": "Revision", "icon": AssetPath.revisionPng},
     {"title": "Task 4", "Total": "Complete", "icon": AssetPath.completePng},
-    {"title": "Task 5", "Total": "Cancel", "icon": AssetPath.canselPng},
-    {"title": "Task 6 ", "Total": "Total Target", "icon": AssetPath.targetPng},
-    {"title": "Task 7", "Total": "Carry Forward", "icon": AssetPath.carryPng},
+
   ]
       .map((task) => {
-            ...task,
-            "amount": "",
-            "projects": "",
-            "amountController": TextEditingController(),
-            "projectsController": TextEditingController(),
-          })
+    ...task,
+    "amount": "",
+    "projects": "",
+    "amountController": TextEditingController(),
+    "projectsController": TextEditingController(),
+  })
       .toList();
 
   InputDecoration customInputDecoration(String hint) {
@@ -85,12 +83,11 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      
                       margin: const EdgeInsets.only(bottom: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: Color(0xffe8f1f6),
+                      color: RColors.bgColorColorS,
                       elevation: 10,
                       shadowColor: Colors.grey.shade50,
                       child: Padding(
@@ -116,7 +113,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                                 Expanded(
                                   child: TextFormField(
                                     controller: tasks[index]
-                                        ['amountController'],
+                                    ['amountController'],
                                     keyboardType: TextInputType.number,
                                     decoration: customInputDecoration("Amount"),
                                     onChanged: (value) {
@@ -128,10 +125,10 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                                 Expanded(
                                   child: TextFormField(
                                     controller: tasks[index]
-                                        ['projectsController'],
+                                    ['projectsController'],
                                     keyboardType: TextInputType.number,
                                     decoration:
-                                        customInputDecoration("Projects"),
+                                    customInputDecoration("Projects"),
                                     onChanged: (value) {
                                       tasks[index]['projects'] = value;
                                     },

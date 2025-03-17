@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:maktrack/presentation/pages/screen/Super%20Admin%20Project%20Details/super_admin_project_details.dart';
 import 'package:maktrack/presentation/widgets/bar_chart_widget.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import 'package:maktrack/presentation/widgets/top_bar_widget.dart';
 import 'package:maktrack/presentation/widgets/total_container.dart';
+
+import '../ProjectDetails/project_details.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({super.key});
@@ -59,7 +63,7 @@ class DashBoard extends StatelessWidget {
       onWillPop: () async {
         // Show confirmation dialog before popping the screen
         bool shouldPop = await showDialog(
-          barrierDismissible: false,
+          barrierDismissible: true,
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -132,45 +136,52 @@ class DashBoard extends StatelessWidget {
                             childAspectRatio: 1.7,
                           ),
                           itemBuilder: (context, index) {
-                            return ProjectContainer(
-                              imageIndex: index,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: TextWidget(
-                                      text: departmentName[index],
-                                      size: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => SuperAdminProjectDetails());
+                              },
+                              child: ProjectContainer(
+                                imageIndex: index,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: TextWidget(
+                                        text: departmentName[index],
+                                        size: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 15),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 15,
+                                    const SizedBox(height: 15),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 15,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: departmentIcon[index]
+                                            .map(
+                                              (icon) => Image.asset(
+                                                icon,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.04,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.06,
+                                              ),
+                                            )
+                                            .toList(),
+                                      ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: departmentIcon[index]
-                                          .map(
-                                            (icon) => Image.asset(
-                                              icon,
-                                              height: MediaQuery.sizeOf(context)
-                                                      .height *
-                                                  0.04,
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.06,
-                                            ),
-                                          )
-                                          .toList(),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },

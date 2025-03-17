@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
 import 'package:maktrack/presentation/pages/screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
@@ -16,7 +17,7 @@ class MTrac extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: Color(0xfffafcfd),
           fontFamily: "PromoTest",
           textTheme: _buildTextTheme(),
           inputDecorationTheme: _buildInputDecorationTheme(context),
@@ -53,25 +54,29 @@ class MTrac extends StatelessWidget {
 
   InputDecorationTheme _buildInputDecorationTheme(BuildContext context) {
     return InputDecorationTheme(
-        border: UnderlineInputBorder(
-          borderSide: BorderSide(
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: RColors.smallFontColor,
+        ),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: RColors.smallFontColor,
+        ),
+      ),
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: RColors.errorColors,
+        ),
+      ),
+      contentPadding: EdgeInsets.symmetric(vertical:15 , horizontal: 25),
+      hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
             color: RColors.smallFontColor,
           ),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: RColors.smallFontColor,
-          ),
-        ),
-        errorBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: RColors.errorColors,
-          ),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
-        hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: RColors.smallFontColor,
-            ),
-        errorStyle: TextStyle(fontSize: 12, color: RColors.errorColors));
+      errorStyle: TextStyle(
+        fontSize: 12,
+        color: RColors.errorColors,
+      ),
+    );
   }
 }
