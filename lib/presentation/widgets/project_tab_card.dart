@@ -26,7 +26,7 @@ class ProjectTebCard extends StatelessWidget {
               return StaggeredGridTile.fit(
                 crossAxisCellCount: 1,
                 child: Container(
-                  height: index % 2 == 0 ? 200 : 50,
+                  height: index % 2 == 0 ? 250 : 50,
                   decoration: BoxDecoration(
                     color: index % 2 == 0
                         ? Colors.white
@@ -53,7 +53,17 @@ class ProjectTebCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "17 Tarik",
+                          "mm/dd/yyyy",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                            fontSize: 12,
+                            color: RColors.smallFontColor,
+                          ),
+                        ),
+                        Text(
+                          "Timeline : 6days",
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!
