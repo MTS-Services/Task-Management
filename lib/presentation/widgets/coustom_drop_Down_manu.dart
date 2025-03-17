@@ -5,7 +5,7 @@ import 'package:maktrack/presentation/widgets/custom_drop_down.dart';
 import 'package:maktrack/presentation/widgets/role_drop_down.dart';
 
 class CustomDropDownMenu extends StatefulWidget {
-  const CustomDropDownMenu({super.key});
+  const CustomDropDownMenu({super.key, required Null Function(dynamic value) onChanged, required String selectedValue});
 
   @override
   State<CustomDropDownMenu> createState() => _CustomDropDownMenuState();

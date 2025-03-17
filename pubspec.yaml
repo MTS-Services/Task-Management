@@ -34,6 +34,9 @@ dependencies:
   intl: ^0.18.0
 
   sqflite: ^2.4.1
+
+  firebase_database: ^11.3.4
+
   flutter_staggered_animations: ^1.1.1
 
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
@@ -20,29 +21,19 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
-  final _phoneNumber = TextEditingController();
   final _passwordTEController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  bool isVisible = false;
-  void initState() {
-    _userNameTEController.text = "Arifin";
-    _phoneNumber.text = "01700000000";
+  bool isnotVisible = true;
 
-    _emailTEController.text = "arifin50@gmail.com";
-    _phoneNumber.text = "01700000000";
-    _passwordTEController.text = "Abc@123@";
-    super.initState();
-  }
+  String selectedRole = "Leader"; // Default role selection
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        return Future(() => false);
-      },
+    return PopScope(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -52,9 +43,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   CustomAppBar(
                     text: 'Back',
                     images: AssetPath.logoPng,
@@ -62,9 +51,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       Get.offAll(() => OnboardingScreen());
                     },
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
+                  SizedBox(height: 40),
                   SingUpAndTitle(
                     title: 'Request',
                     title2: 'Log in your account & Manage \nYour task',
@@ -107,33 +94,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    controller: _phoneNumber,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.phone_outlined,
-                        size: 20,
-                        color: RColors.smallFontColor,
-                      ),
-                      hintText: "Phone Number",
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Please enter your Phone Number";
-                      } else if (!GetUtils.isEmail(value)) {
-                        return "Invalid Phone Number";
-                      }
-                      return null;
-                    },
-                  ),
                   SizedBox(height: 15),
                   TextFormField(
                     controller: _passwordTEController,
-                    obscureText: isVisible,
+                    obscureText: isnotVisible,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.lock_outline_rounded,
@@ -156,17 +120,17 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(
-                    height: 30,
+                  SizedBox(height: 30),
+                  CustomDropDownMenu(
+                    onChanged: (value) {
+                      setState(() {
+                        selectedRole = value;
+                      });
+                    },
+                    selectedValue: selectedRole,
                   ),
-                  SizedBox(height: 15),
-                  CustomDropDownMenu(),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SavePasswordForgetButton(
-                    isLoginPage: false,
-                  ),
+                  SizedBox(height: 30),
+                  SavePasswordForgetButton(isLoginPage: false),
                   SizedBox(height: 40),
                   SizedBox(
                     width: double.infinity,
@@ -175,31 +139,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           signUp();
-                          Get.to(() => SingInScreen());
                         }
                       },
                       child: Text("REQUEST ACCESS"),
-                    ),
-                  ),
-                  SizedBox(height: 25),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: RColors.blueButtonColors,
-                      ),
-                      onPressed: () {
-                        Get.to(
-                          () => SingInScreen(),
-                          transition: Transition.rightToLeft,
-                          duration: Duration(
-                            milliseconds: 750,
-                          ),
-                        );
-                      },
-                      child: Text("Already have an account? LOG IN "),
                     ),
                   ),
                 ],
@@ -215,27 +157,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
     return IconButton(
       onPressed: () {
         setState(() {
-          isVisible = !isVisible;
+          isnotVisible = !isnotVisible;
         });
       },
-      icon: isVisible
-          ? Icon(
-              Icons.visibility_off,
-              color: RColors.smallFontColor,
-            )
-          : Icon(
-              Icons.visibility,
-              color: RColors.smallFontColor,
-            ),
+      icon: isnotVisible
+          ? Icon(Icons.visibility_off, color: RColors.smallFontColor)
+          : Icon(Icons.visibility, color: RColors.smallFontColor),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _passwordTEController.dispose();
-    _emailTEController.dispose();
-    _userNameTEController.dispose();
   }
 
   void signUp() async {
@@ -243,41 +171,27 @@ class _SingUpScreenState extends State<SingUpScreen> {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
 
-    User? user = await _auth.singUpWithEmailAndPassword(email, password);
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     if (user != null) {
+      String userId = user.uid;
+      await _dbRef.child("pending_users").child(userId).set({
+        "username": username,
+        "email": email,
+        "role": selectedRole,
+        "status": "pending"
+      });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: RColors.snackBarColorR,
           content: Text(
             "Access request submitted. Waiting for approval",
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(color: Colors.white, fontSize: 12),
-          ),
-        ),
-      );
-      Get.to(
-        () => SingInScreen(),
-        transition: Transition.rightToLeft,
-        duration: Duration(
-          milliseconds: 750,
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: RColors.snackBarColorR,
-          content: Text(
-            "Invalid information. Please check and try again",
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
+                color: Colors.white, fontSize: 12),
           ),
         ),
       );
+      Get.to(() => SingInScreen());
     }
   }
 }

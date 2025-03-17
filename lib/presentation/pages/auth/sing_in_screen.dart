@@ -8,7 +8,6 @@ import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
-
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
 
@@ -194,8 +193,7 @@ class _SingInScreenState extends State<SingInScreen> {
   void sigIn() async {
     String email = _emailTEController.text;
     String password = _passwordTEController.text;
-
-    User? user = await _auth.singInWithEmailAndPassword(email, password);
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
 
     if (user != null) {
       ScaffoldMessenger.of(context).showSnackBar(

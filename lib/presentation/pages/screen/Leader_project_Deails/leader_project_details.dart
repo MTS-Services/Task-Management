@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/presentation/widgets/Calendar%20Widgets/calendar_pop_up.dart';
 import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
@@ -23,8 +22,8 @@ class LeaderProjectDetails extends StatelessWidget {
     ];
     final List<String> progressIcon = [
       'assets/Icons/Progress.png',
-      'assets/Icons/Clock.png',
-      'assets/Icons/Time.png',
+      'assets/Icons/wip.png',
+      'assets/Icons/Revision.png',
       'assets/Icons/Complete.png',
     ];
     return Scaffold(

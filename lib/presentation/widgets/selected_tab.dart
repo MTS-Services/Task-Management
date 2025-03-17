@@ -22,7 +22,7 @@ class _SelectedTabState extends State<SelectedTab> {
   Widget build(BuildContext context) {
     final List<String> tabName = [
       'All',
-      'InPrograms ',
+      'Ongoing',
       'Completed',
     ];
     return Container(
@@ -44,7 +44,7 @@ class _SelectedTabState extends State<SelectedTab> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 1000),
                 curve: Curves.linearToEaseOut,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+                padding: EdgeInsets.symmetric(horizontal: 13, vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: selectedIndex == index

@@ -42,6 +42,7 @@ class _ProjectUpdateState extends State<ProjectUpdate> {
       'Modification Feed',
       'Delivery',
       'Project Type',
+      'Percentage Updated',
     ];
 
     return Scaffold(
@@ -93,7 +94,7 @@ class _ProjectUpdateState extends State<ProjectUpdate> {
                             text: 'Please select an update option!',
                             size: 16,
                             fontWeight: FontWeight.normal,
-                            color: Colors.black),
+                            color: Colors.white),
                       ),
                     );
                     return;
@@ -138,7 +139,7 @@ class _ProjectUpdateState extends State<ProjectUpdate> {
 
                   widget.selectedCommentController.text =
                       commentController.text;
-                   // Check if comment is empty
+                  // Check if comment is empty
                   if (widget.selectedCommentController.text.trim().isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

@@ -13,6 +13,8 @@ class AssetPath {
   static const String carryPng = "$basePath2/carry.png";
   static const String menuPng = "$basePath2/menus.png";
   static const String zoomPng = "$basePath2/zoom-tool.png";
+  static const String wipPng = "$basePath2/wip.png";
+  static const String revisionPng = "$basePath2/Revision.png";
 
   // onboarding image
   static const String basePathOnboarding = "assets/images";
