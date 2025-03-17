@@ -5,8 +5,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../domain/entities/color.dart';
 
-class ProjectTebCard extends StatelessWidget {
-  const ProjectTebCard({
+class ProjectTabCard extends StatelessWidget {
+  const ProjectTabCard({
     super.key,
   });
 

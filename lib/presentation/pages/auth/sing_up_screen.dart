@@ -21,7 +21,7 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref("https://m-track-a4a30-default-rtdb.asia-southeast1.firebasedatabase.app");
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -144,6 +144,27 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       child: Text("REQUEST ACCESS"),
                     ),
                   ),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: RColors.blueButtonColors,
+                      ),
+                      onPressed: () {
+                        Get.to(
+                              () => SingUpScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(
+                            milliseconds: 750,
+                          ),
+                        );
+                      },
+                      child: Text("Already have an account? LOG IN"),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -181,6 +202,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
         "role": selectedRole,
         "status": "pending"
       });
+
+
+      Get.to(() => SingInScreen());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: RColors.snackBarColorR,
@@ -191,7 +215,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
           ),
         ),
       );
-      Get.to(() => SingInScreen());
     }
   }
 }
