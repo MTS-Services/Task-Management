@@ -238,7 +238,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1+1"
-
   flutter_staggered_animations:
     dependency: "direct main"
     description:
@@ -247,7 +246,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -256,7 +254,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.0"
-
   flutter_test:
     dependency: "direct dev"
     description: flutter
