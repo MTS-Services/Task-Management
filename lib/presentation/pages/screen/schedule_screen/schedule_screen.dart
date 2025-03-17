@@ -1,9 +1,13 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/model/task.dart';
 import 'package:maktrack/presentation/pages/screen/schedule_add_task_screen/add_task_schedule_screen.dart';
+import '../../../state_managment/task_controller.dart';
+import 'widgets/task_tile.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -14,28 +18,7 @@ class ScheduleScreen extends StatefulWidget {
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
   DateTime selectedDate = DateTime.now();
-
-  String getFormattedDate() {
-    DateTime today = DateTime.now();
-    DateTime tomorrow = today.add(Duration(days: 1));
-    DateTime yesterday = today.subtract(Duration(days: 1));
-
-    if (selectedDate.year == today.year &&
-        selectedDate.month == today.month &&
-        selectedDate.day == today.day) {
-      return "Today";
-    } else if (selectedDate.year == tomorrow.year &&
-        selectedDate.month == tomorrow.month &&
-        selectedDate.day == tomorrow.day) {
-      return "Tomorrow";
-    } else if (selectedDate.year == yesterday.year &&
-        selectedDate.month == yesterday.month &&
-        selectedDate.day == yesterday.day) {
-      return "Yesterday";
-    } else {
-      return DateFormat.EEEE().format(selectedDate);
-    }
-  }
+  final _taskController = Get.put(TaskController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +48,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              DateFormat.yMMMMd().format(
-                                  selectedDate),
+                              DateFormat.yMMMMd().format(selectedDate),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -90,8 +72,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Get.to(() => AddTaskScheduleScreen());
+                          onTap: () async {
+                            await Get.to(() => AddTaskScheduleScreen());
+                            _taskController.getTaskList();
                           },
                           child: Container(
                             padding: EdgeInsets.all(10),
@@ -137,9 +120,172 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(child: Obx(() {
+              return ListView.builder(
+                itemCount: _taskController.taskList.length,
+                itemBuilder: (context, index) {
+                  print(
+                      " _taskController.taskList.length: ${_taskController.taskList.length}");
+
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                      // verticalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                print("tapped");
+                                // _taskController.deleteTask(
+                                //     _taskController.taskList[index].id!);
+                                // _taskController.getTaskList();
+                                showBottomSheet(
+                                    context, _taskController.taskList[index]);
+                              },
+                              child: TaskTile(
+                                task: _taskController.taskList[index],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            })),
           ],
         ),
       ),
     );
+  }
+
+  showBottomSheet(BuildContext context, Task task) {
+    Get.bottomSheet(Container(
+      width: double.infinity,
+      height: task.isCompleted == 1
+          ? MediaQuery.of(context).size.height * 0.24
+          : MediaQuery.of(context).size.height * 0.32,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            height: 6,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          Spacer(),
+          task.isCompleted == 1
+              ? Container()
+              : _bottomSheetButton(
+                  label: 'Task Completed',
+                  onTap: () {
+                    Get.back();
+                  },
+                  color: RColors.blueButtonColors,
+                  context: context,
+                ),
+          SizedBox(
+            height: 20,
+          ),
+          _bottomSheetButton(
+            label: 'Deleted',
+            onTap: () {
+              _taskController.deleteTask(task);
+              _taskController.getTaskList();
+              Get.back();
+            },
+            color: RColors.snackBarColorR,
+            context: context,
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          _bottomSheetButton(
+            label: 'Close',
+            onTap: () {
+              Get.back();
+            },
+            color: Colors.white,
+            isClose: true,
+            context: context,
+          ),
+          SizedBox(
+            height: 15,
+          ),
+        ],
+      ),
+    ));
+  }
+
+  _bottomSheetButton({
+    required String label,
+    Function()? onTap,
+    required Color color,
+    bool isClose = false,
+    required BuildContext context,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 55,
+        width: MediaQuery.of(context).size.width * 0.9,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: isClose == true ? Colors.transparent : color,
+          border: Border.all(
+              width: 1,
+              color: isClose == true ? Colors.grey[600]! : Colors.grey[300]!),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: isClose == true ? Colors.black : Colors.white,
+                ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  String getFormattedDate() {
+    DateTime today = DateTime.now();
+    DateTime tomorrow = today.add(Duration(days: 1));
+    DateTime yesterday = today.subtract(Duration(days: 1));
+
+    if (selectedDate.year == today.year &&
+        selectedDate.month == today.month &&
+        selectedDate.day == today.day) {
+      return "Today";
+    } else if (selectedDate.year == tomorrow.year &&
+        selectedDate.month == tomorrow.month &&
+        selectedDate.day == tomorrow.day) {
+      return "Tomorrow";
+    } else if (selectedDate.year == yesterday.year &&
+        selectedDate.month == yesterday.month &&
+        selectedDate.day == yesterday.day) {
+      return "Yesterday";
+    } else {
+      return DateFormat.EEEE().format(selectedDate);
+    }
   }
 }
