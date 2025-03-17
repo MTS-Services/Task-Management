@@ -145,7 +145,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-
+//Button
                   SizedBox(
                     width: double.infinity,
                     height: 60,
