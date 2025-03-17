@@ -27,34 +27,20 @@ class _CreateNewProjectState extends State<CreateNewProject> {
     "ProjectTimelineController": TextEditingController(),
   }).toList();
 
-  InputDecoration customInputDecoration(String hint) {
-    return InputDecoration(
-      hintText: hint,
-      hintStyle: TextStyle(color: Colors.grey.shade600),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey.shade300),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.blue),
-      ),
-      filled: true,
-      fillColor: Colors.grey.shade100,
+  /// **Date Picker Function**
+  Future<void> _selectDate(BuildContext context, TextEditingController controller) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
     );
-  }
 
-  @override
-  void dispose() {
-    for (var task in tasks) {
-      task['ProjectNameController'].dispose();
-      task['ProjectTypeController'].dispose();
-      task['ProjectProgressController'].dispose();
-      task['AssignDateController'].dispose();
-      task['ProjectTimelineController'].dispose();
+    if (pickedDate != null) {
+      setState(() {
+        controller.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+      });
     }
-    super.dispose();
   }
 
   @override
@@ -124,12 +110,28 @@ class _CreateNewProjectState extends State<CreateNewProject> {
                                 const SizedBox(height: 10),
                                 TextFormField(
                                   controller: tasks[index]['AssignDateController'],
-                                  decoration: customInputDecoration("Assign Date"),
+                                  readOnly: true,
+                                  decoration: customInputDecoration(
+                                    "Assign Date",
+                                    suffixIcon: IconButton(
+                                      icon: const Icon(Icons.calendar_today),
+                                      onPressed: () => _selectDate(
+                                          context, tasks[index]['AssignDateController']),
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
                                 TextFormField(
                                   controller: tasks[index]['ProjectTimelineController'],
-                                  decoration: customInputDecoration("Project Timeline"),
+                                  readOnly: true,
+                                  decoration: customInputDecoration(
+                                    "Project Timeline",
+                                    suffixIcon: IconButton(
+                                      icon: const Icon(Icons.calendar_today),
+                                      onPressed: () => _selectDate(
+                                          context, tasks[index]['ProjectTimelineController']),
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
                               ],
@@ -145,7 +147,7 @@ class _CreateNewProjectState extends State<CreateNewProject> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigate to the next screen where the dashboard is
+
                   },
                   child: const Text("Save Project"),
                 ),
@@ -155,5 +157,37 @@ class _CreateNewProjectState extends State<CreateNewProject> {
         ),
       ),
     );
+  }
+
+
+  InputDecoration customInputDecoration(String hint, {Widget? suffixIcon}) {
+    return InputDecoration(
+      hintText: hint,
+      hintStyle: TextStyle(color: Colors.grey.shade600),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.blue),
+      ),
+      filled: true,
+      fillColor: Colors.grey.shade100,
+      suffixIcon: suffixIcon,
+    );
+  }
+
+  @override
+  void dispose() {
+    for (var task in tasks) {
+      task['ProjectNameController'].dispose();
+      task['ProjectTypeController'].dispose();
+      task['ProjectProgressController'].dispose();
+      task['AssignDateController'].dispose();
+      task['ProjectTimelineController'].dispose();
+    }
+    super.dispose();
   }
 }
