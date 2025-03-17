@@ -6,8 +6,8 @@ import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import '../../../state_managment/home.dart';
 
-class ProjectDetails extends StatelessWidget {
-  const ProjectDetails({
+class LeaderProjectDetails extends StatelessWidget {
+  const LeaderProjectDetails({
     super.key,
   });
 
@@ -15,19 +15,19 @@ class ProjectDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final CalendarController controller = Get.put(CalendarController());
     final List<String> progressName = [
-      'Total Project',
-      'In Process',
-      'NRA',
+      'Total',
+      'WIP',
+      'Revision',
       'Complete',
     ];
     final List<String> progressIcon = [
       'assets/Icons/Progress.png',
-      'assets/Icons/Clock.png',
-      'assets/Icons/Time.png',
+      'assets/Icons/wip.png',
+      'assets/Icons/Revision.png',
       'assets/Icons/Complete.png',
     ];
     return Scaffold(
-        backgroundColor: Color(0xffe8edf6),
+      backgroundColor: Color(0xffe8edf6),
       body: SingleChildScrollView(
         child: Column(
           children: [

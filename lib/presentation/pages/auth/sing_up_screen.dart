@@ -21,13 +21,13 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref("https://m-track-a4a30-default-rtdb.asia-southeast1.firebasedatabase.app");
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  bool isVisible = false;
+  bool isnotVisible = true;
 
   String selectedRole = "Leader"; // Default role selection
 
@@ -97,7 +97,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   SizedBox(height: 15),
                   TextFormField(
                     controller: _passwordTEController,
-                    obscureText: isVisible,
+                    obscureText: isnotVisible,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.lock_outline_rounded,
@@ -144,6 +144,28 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       child: Text("REQUEST ACCESS"),
                     ),
                   ),
+                  SizedBox(height: 20),
+//Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: RColors.blueButtonColors,
+                      ),
+                      onPressed: () {
+                        Get.to(
+                              () => SingUpScreen(),
+                          transition: Transition.rightToLeft,
+                          duration: Duration(
+                            milliseconds: 750,
+                          ),
+                        );
+                      },
+                      child: Text("Already have an account? LOG IN"),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -157,10 +179,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
     return IconButton(
       onPressed: () {
         setState(() {
-          isVisible = !isVisible;
+          isnotVisible = !isnotVisible;
         });
       },
-      icon: isVisible
+      icon: isnotVisible
           ? Icon(Icons.visibility_off, color: RColors.smallFontColor)
           : Icon(Icons.visibility, color: RColors.smallFontColor),
     );
@@ -181,6 +203,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
         "role": selectedRole,
         "status": "pending"
       });
+
+
+      Get.to(() => SingInScreen());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: RColors.snackBarColorR,
@@ -191,7 +216,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
           ),
         ),
       );
-      Get.to(() => SingInScreen());
     }
   }
 }

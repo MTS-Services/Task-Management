@@ -37,7 +37,7 @@ class _ProjectUpdateTextFieldState extends State<ProjectUpdateTextField> {
           ),
         ],
       ),
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.hintText == 'Progress Percentage'
             ? const TextInputType.numberWithOptions(decimal: true)

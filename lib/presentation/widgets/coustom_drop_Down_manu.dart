@@ -1,11 +1,16 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:maktrack/presentation/widgets/custom_drop_down.dart';
 import 'package:maktrack/presentation/widgets/role_drop_down.dart';
 
 class CustomDropDownMenu extends StatefulWidget {
-  const CustomDropDownMenu({super.key, required Null Function(dynamic value) onChanged, required String selectedValue});
+  final Function(dynamic value) onChanged;  // Add this field
+  final String selectedValue;
+
+  const CustomDropDownMenu({
+    super.key,
+    required this.onChanged,
+    required this.selectedValue,
+  });
 
   @override
   State<CustomDropDownMenu> createState() => _CustomDropDownMenuState();
@@ -19,6 +24,12 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   List<String> roleItems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
 
   @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.selectedValue;  // Initialize the selected value
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -30,6 +41,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
             setState(() {
               selectedValue = value;
             });
+            widget.onChanged(value);
           },
         ),
         SizedBox(height: 20),
@@ -41,6 +53,7 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
             setState(() {
               selectedRole = value;
             });
+            widget.onChanged(value);
           },
         ),
       ],

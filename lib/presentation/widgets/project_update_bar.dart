@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 
 class ProjectUpdateBar extends StatelessWidget {
-  const ProjectUpdateBar({super.key});
+  const ProjectUpdateBar({super.key, required this.updateName, required this.updateComment});
+  final String updateName;
+  final String updateComment;
 
 
   @override
@@ -12,13 +14,13 @@ class ProjectUpdateBar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: ListTile(
         title: TextWidget(
-          text: '',
+          text: updateName,
           size: 16,
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
         subtitle: TextWidget(
-          text: '',
+          text: updateComment,
           size: 12,
           fontWeight: FontWeight.normal,
           color: Colors.grey,

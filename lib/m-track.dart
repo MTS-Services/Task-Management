@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/Leader_project_Deails/leader_project_details.dart';
+import 'package:maktrack/presentation/pages/screen/Single%20Project%20Details/single_project_details.dart';
 import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
-import 'package:maktrack/presentation/pages/screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
-import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
-
-
-
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xfffafcfd),
-          fontFamily: "PromoTest",
-          textTheme: _buildTextTheme(),
-          inputDecorationTheme: _buildInputDecorationTheme(context),
-          elevatedButtonTheme: _buildElevatedButtonThemeData()),
-      home: ThreeScreenPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            scaffoldBackgroundColor: Color(0xfffafcfd),
+            fontFamily: "PromoTest",
+            textTheme: _buildTextTheme(),
+            inputDecorationTheme: _buildInputDecorationTheme(context),
+            elevatedButtonTheme: _buildElevatedButtonThemeData()),
+        home: SingleProjectDetails());
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
@@ -69,7 +64,7 @@ class MTrac extends StatelessWidget {
           color: RColors.errorColors,
         ),
       ),
-      contentPadding: EdgeInsets.symmetric(vertical:15 , horizontal: 25),
+      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
             color: RColors.smallFontColor,
           ),
