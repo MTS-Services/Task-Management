@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/Leader_project_Deails/leader_project_details.dart';
-import 'package:maktrack/presentation/pages/screen/Single%20Project%20Details/single_project_details.dart';
-import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
+import 'presentation/pages/screen/schedule_screen/schedule_screen.dart';
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -18,7 +16,7 @@ class MTrac extends StatelessWidget {
             textTheme: _buildTextTheme(),
             inputDecorationTheme: _buildInputDecorationTheme(context),
             elevatedButtonTheme: _buildElevatedButtonThemeData()),
-        home: SingleProjectDetails());
+        home: ScheduleScreen());
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
