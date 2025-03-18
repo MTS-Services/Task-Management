@@ -53,10 +53,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18,
-                                    color: Colors.black54,
-                                  ),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                                color: Colors.black54,
+                              ),
                             ),
                             Text(
                               getFormattedDate(),
@@ -64,10 +64,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                    color: Colors.black,
-                                  ),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Colors.black,
+                              ),
                             ),
                           ],
                         ),
@@ -89,10 +89,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                    ),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -123,49 +123,65 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             SizedBox(
               height: 20,
             ),
-            Expanded(child: Obx(() {
-              return ListView.builder(
-                itemCount: _taskController.taskList.length,
-                itemBuilder: (context, index) {
-                  print(
-                      " _taskController.taskList.length: ${_taskController.taskList.length}");
+            Expanded(
+              child: Obx(() {
+                // Filter tasks based on the selected date
+                var filteredTasks = _taskController.taskList.where((task) {
+                  // Check if task.date is null or empty
+                  if (task.date == null || task.date!.isEmpty) {
+                    return false; // Skip task if date is null or empty
+                  }
+                  DateTime? taskDate;
+                  try {
+                    taskDate = DateFormat('M/d/yyyy').parse(task.date!);
+                  } catch (e) {
+                    print('Invalid date format: ${task.date}');
+                    return false;
+                  }
+                  return taskDate.year == selectedDate.year &&
+                      taskDate.month == selectedDate.month &&
+                      taskDate.day == selectedDate.day;
+                }).toList();
 
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    duration: const Duration(milliseconds: 375),
-                    child: SlideAnimation(
-                      // verticalOffset: 50.0,
-                      child: FadeInAnimation(
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                print("tapped");
-                                // _taskController.deleteTask(
-                                //     _taskController.taskList[index].id!);
-                                // _taskController.getTaskList();
-                                showBottomSheet(
-                                    context, _taskController.taskList[index]);
-                              },
-                              child: TaskTile(
-                                task: _taskController.taskList[index],
+                return ListView.builder(
+                  itemCount: filteredTasks.length,
+                  itemBuilder: (context, index) {
+                    return AnimationConfiguration.staggeredList(
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      child: SlideAnimation(
+                        child: FadeInAnimation(
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  showBottomSheet(context, filteredTasks[index]);
+                                },
+                                child: TaskTile(
+                                  task: filteredTasks[index],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
-            })),
+                    );
+                  },
+                );
+              }),
+            )
           ],
         ),
       ),
     );
   }
 
-  showBottomSheet(BuildContext context, Task task) {
+  void showBottomSheet(BuildContext context, Task task) {
+    if (task == null) {
+      print('Task is null');
+      return;  // Exit early if task is null
+    }
+
     Get.bottomSheet(Container(
       width: double.infinity,
       height: task.isCompleted == 1
@@ -193,13 +209,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           task.isCompleted == 1
               ? Container()
               : _bottomSheetButton(
-                  label: 'Task Completed',
-                  onTap: () {
-                    Get.back();
-                  },
-                  color: RColors.blueButtonColors,
-                  context: context,
-                ),
+            label: 'Task Completed',
+            onTap: () {
+              Get.back();
+            },
+            color: RColors.blueButtonColors,
+            context: context,
+          ),
           SizedBox(
             height: 20,
           ),
@@ -207,7 +223,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             label: 'Deleted',
             onTap: () {
               _taskController.deleteTask(task);
-              _taskController.getTaskList();
+              _taskController.getTaskList(); // Refresh the task list
               Get.back();
             },
             color: RColors.snackBarColorR,
@@ -257,10 +273,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           child: Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: isClose == true ? Colors.black : Colors.white,
-                ),
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: isClose == true ? Colors.black : Colors.white,
+            ),
           ),
         ),
       ),
