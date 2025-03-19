@@ -17,7 +17,7 @@ class RColors {
 
 
 
-  static const Color bgColorColorS= Color(0xffe8edf6); //1
+  static const Color bgColorColorS= Color(0xfffafcfd); //1
 
 
 

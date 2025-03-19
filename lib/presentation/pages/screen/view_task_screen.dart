@@ -18,31 +18,36 @@ class _ViewTaskScreenState extends State<ViewTaskScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: RColors.bgColorColorS,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-          child: Column(
-            children: [
-              TopBarWidget(
-                text: "Projects",
-                optionalWidgets: [
-                  Image.asset(
-                    AssetPath.zoomPng,
-                    height: 40,
-                    width: 40,
-                  ),
-                  const SizedBox(width: 20),
-                  Image.asset(
-                    AssetPath.menuPng,
-                    height: 40,
-                    width: 40,
-                  ),
-                ],
-              ),
-              SelectedTab(),
-              const SizedBox(height: 20),
-              ProjectTabCard(),
-            ],
+        backgroundColor: Color(0xfff5f4fa),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: Column(
+              children: [
+                TopBarWidget(
+                  text: "Projects",
+                  optionalWidgets: [
+                    Image.asset(
+                      AssetPath.zoomPng,
+                      height: 30,
+                      width: 30,
+                    ),
+                    const SizedBox(width: 20),
+                    Image.asset(
+                      AssetPath.menuPng,
+                      height: 30,
+                      width: 30,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SelectedTab(),
+                const SizedBox(height: 20),
+                ProjectTabCard(),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
 import 'package:maktrack/presentation/widgets/Calendar%20Widgets/calendar_pop_up.dart';
 import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
@@ -27,7 +28,6 @@ class ProjectDetails extends StatelessWidget {
       'assets/Icons/Complete.png',
     ];
     return Scaffold(
-        backgroundColor: Color(0xffe8edf6),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -194,11 +194,16 @@ class ProjectDetails extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
-                  TextWidget(
-                    text: 'All Tasks',
-                    size: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>  ViewTaskScreen(),);
+                    },
+                    child: TextWidget(
+                      text: 'All Tasks',
+                      size: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),

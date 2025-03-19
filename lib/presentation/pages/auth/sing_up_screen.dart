@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
@@ -33,6 +34,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: RColors.bgColorColorS,
+        statusBarIconBrightness: Brightness.dark));
     return PopScope(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -156,7 +160,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                       onPressed: () {
                         Get.to(
-                              () => SingUpScreen(),
+                              () => SingInScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(
                             milliseconds: 750,

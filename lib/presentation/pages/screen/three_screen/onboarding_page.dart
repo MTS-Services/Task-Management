@@ -14,7 +14,7 @@ class ThreeScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(OnboardingController());
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.grey[100],
+        statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
     return WillPopScope(
       onWillPop: () {
