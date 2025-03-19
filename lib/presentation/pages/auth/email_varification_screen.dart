@@ -1,6 +1,7 @@
 import 'dart:async' as async;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
@@ -33,6 +34,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: RColors.bgColorColorS,
+        statusBarIconBrightness: Brightness.dark));
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -53,7 +57,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 const SizedBox(height: 100),
                 SingUpAndTitle(
                   title: 'Email Verification ',
-                  title2: "Enter your email to receive an OTP and reset your password.",
+                  title2:
+                      "Enter your email to receive an OTP and reset your password.",
                 ),
                 const SizedBox(height: 100),
                 TextFormField(
@@ -75,10 +80,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 TextFormField(
                   controller: _emailTEController,
-                  keyboardType:TextInputType.phone,
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.phone_outlined,
@@ -103,7 +110,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       emailVerify();
-
                     },
                     child: const Text("Verify & Proceed"),
                   ),
@@ -127,19 +133,17 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       final email = _emailTEController.text.trim();
       if (GetUtils.isEmail(email)) {
         try {
-
           User? currentUser = _auth.currentUser;
 
           if (currentUser == null) {
-
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
                   "Please sign up first.",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    fontSize: 12,
-                    color: Colors.white,
-                  ),
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
                 ),
                 backgroundColor: Colors.red,
               ),
@@ -147,30 +151,26 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             return;
           }
 
-
           await currentUser.sendEmailVerification();
-
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 "Verification email sent. Please check your inbox.",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
               ),
               backgroundColor: Colors.green,
             ),
           );
 
-
           Get.to(
-                () => OtpVerificationScreen(),
+            () => OtpVerificationScreen(),
             transition: Transition.rightToLeft,
             duration: Duration(milliseconds: 750),
           );
-
         } catch (e) {
           // Handle errors, e.g. network or Firebase errors
           ScaffoldMessenger.of(context).showSnackBar(
@@ -178,9 +178,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               content: Text(
                 "Error sending verification email",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
               ),
               backgroundColor: Colors.red,
             ),
@@ -192,9 +192,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             content: Text(
               "Invalid email format.",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                fontSize: 12,
-                color: Colors.white,
-              ),
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
             ),
             backgroundColor: Colors.red,
           ),

@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
+import 'package:maktrack/presentation/pages/screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 import '../../widgets/custom_app_bar.dart';
@@ -20,7 +22,6 @@ class SingInScreen extends StatefulWidget {
 
 class _SingInScreenState extends State<SingInScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
 
@@ -35,6 +36,9 @@ class _SingInScreenState extends State<SingInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: RColors.bgColorColorS,
+        statusBarIconBrightness: Brightness.dark));
     return WillPopScope(
       onWillPop: () {
         return Future(() => false);
@@ -128,7 +132,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-                          Get.to(DashBoard());
+                          Get.to(()=> Bottom());
                         }
                       },
                       child: Text("LOGIN"),

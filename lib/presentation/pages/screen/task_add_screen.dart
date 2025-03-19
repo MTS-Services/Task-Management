@@ -65,6 +65,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -89,7 +90,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: RColors.bgColorColorS,
+                      color: Color(0xffe8edf6),
                       elevation: 10,
                       shadowColor: Colors.grey.shade50,
                       child: Padding(

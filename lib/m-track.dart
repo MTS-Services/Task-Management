@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'presentation/pages/screen/schedule_screen/schedule_screen.dart';
+import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -11,12 +11,12 @@ class MTrac extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-            scaffoldBackgroundColor: Color(0xfffafcfd),
+            scaffoldBackgroundColor: RColors.bgColorColorS,
             fontFamily: "PromoTest",
             textTheme: _buildTextTheme(),
             inputDecorationTheme: _buildInputDecorationTheme(context),
             elevatedButtonTheme: _buildElevatedButtonThemeData()),
-        home: ScheduleScreen());
+        home: ThreeScreenPage());
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {

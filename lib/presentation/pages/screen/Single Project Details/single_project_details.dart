@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/schedule_screen/schedule_screen.dart';
 import 'package:maktrack/presentation/widgets/date_selector.dart';
 import 'package:maktrack/presentation/widgets/background_container.dart';
 import 'package:maktrack/presentation/widgets/project_update_bar.dart';
@@ -30,10 +32,11 @@ class _SingleProjectDetailsState extends State<SingleProjectDetails> {
       setState(() {});
     });
   }
-   @override
+
+  @override
   void dispose() {
     progressPercentage.dispose();
-    commentController.dispose();  
+    commentController.dispose();
     super.dispose();
   }
 
@@ -50,15 +53,15 @@ class _SingleProjectDetailsState extends State<SingleProjectDetails> {
           ? progressPercentage.text
           : lastPercentage;
 
-      // ✅ Store percentage in the list
+      //  Store percentage in the list
       projectUpdates.add({
         'updateName': updateName,
         'comment': comment,
-        'percentage': newPercentage, // ✅ Fix: Store percentage
+        'percentage': newPercentage, //  Fix: Store percentage
       });
     });
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,11 +75,28 @@ class _SingleProjectDetailsState extends State<SingleProjectDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 10),
-                    TextWidget(
-                      text: 'App Project',
-                      size: 22,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
+                    Row(
+                      children: [
+                        TextWidget(
+                          text: 'App Project',
+                          size: 22,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              Get.to(() => ScheduleScreen());
+                            },
+                            child: Image.asset(
+                              'assets/Icons/calender 1.png',
+                              height: 25,
+                              width: 25,
+                              fit: BoxFit.fitHeight,
+                            )),
+                      ],
                     ),
                     Row(
                       spacing: 40,
@@ -88,7 +108,7 @@ class _SingleProjectDetailsState extends State<SingleProjectDetails> {
                                       ? projectUpdates.last['percentage'] ?? '0'
                                       : '0') ??
                                   0.0) /
-                              100.0, // ✅ Use last known percentage
+                              100.0, //  Use last known percentage
                           center: Text(
                             projectUpdates.isNotEmpty
                                 ? '${projectUpdates.last['percentage']}%'
