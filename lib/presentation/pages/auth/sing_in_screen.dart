@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
+import 'package:maktrack/presentation/pages/auth/super_admin_panel.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
@@ -26,12 +28,6 @@ class _SingInScreenState extends State<SingInScreen> {
 
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
-
-  void initState() {
-    _emailTEController.text ="arifin50@gmail.com";
-    _passwordTEController.text ="Abc@123@";
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +124,6 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-                          Get.to(DashBoard());
                         }
                       },
                       child: Text("LOGIN"),
@@ -191,16 +186,79 @@ class _SingInScreenState extends State<SingInScreen> {
   }
 
   void sigIn() async {
-    String email = _emailTEController.text;
-    String password = _passwordTEController.text;
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+  String email = _emailTEController.text;
+  String password = _passwordTEController.text;
+
+  try {
+    // Attempt to sign in with email and password
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    User? user = userCredential.user;
 
     if (user != null) {
+      String uid = user.uid;
+
+      // ✅ Check if user is in "users" section (Approved users)
+      DatabaseReference approvedUserRef =
+          FirebaseDatabase.instance.ref("users/$uid");
+      DataSnapshot approvedUserSnapshot = await approvedUserRef.get();
+
+      if (approvedUserSnapshot.exists &&
+          approvedUserSnapshot.child("status").value == "approved") {
+        print("User is approved. Logging in...");
+        Get.to(() => DashBoard(),
+            transition: Transition.rightToLeft,
+            duration: Duration(milliseconds: 750));
+        return;
+      }
+
+      // ❌ If not approved, check "pending_users"
+      DatabaseReference pendingUserRef =
+          FirebaseDatabase.instance.ref("pending_users/$uid");
+      DataSnapshot pendingUserSnapshot = await pendingUserRef.get();
+
+      if (pendingUserSnapshot.exists) {
+        print("User is still pending approval. Logging out.");
+        await FirebaseAuth.instance.signOut();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: RColors.snackBarColorR,
+            content: Text(
+              "Your account is not approved yet. Please wait for admin approval.",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: Colors.white, fontSize: 12),
+            ),
+          ),
+        );
+        return;
+      }
+
+      // ✅ Check if the user is a Super Admin
+      DatabaseReference superAdminRef =
+          FirebaseDatabase.instance.ref("super_admins/$uid");
+      DataSnapshot superAdminSnapshot = await superAdminRef.get();
+
+      if (superAdminSnapshot.exists) {
+        print("User is a Super Admin. Redirecting...");
+        Get.to(() => SuperAdminPanel(),
+            transition: Transition.rightToLeft,
+            duration: Duration(milliseconds: 750));
+        return;
+      }
+
+      // ❌ If user not found in any section, show error
+      print("User not found in approved users, pending_users, or super_admins.");
+      await FirebaseAuth.instance.signOut();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          backgroundColor: RColors.snackBarColorS,
+          backgroundColor: RColors.snackBarColorR,
           content: Text(
-            "Login successful! Welcome to your dashboard.",
+            "Invalid email or password. Please try again.",
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!
@@ -208,26 +266,22 @@ class _SingInScreenState extends State<SingInScreen> {
           ),
         ),
       );
-      Get.to(
-        () => DashBoard(),
-        transition: Transition.rightToLeft,
-        duration: Duration(
-          milliseconds: 750,
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: RColors.snackBarColorR,
-          content: Text(
-            "Invalid email or password. Please try again",
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-          ),
-        ),
-      );
     }
+  } catch (e) {
+    print("Error: $e"); // Log the error to the console
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: RColors.snackBarColorR,
+        content: Text(
+          "An error occurred: $e",
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall!
+              .copyWith(color: Colors.white, fontSize: 12),
+        ),
+      ),
+    );
   }
+}
+
 }

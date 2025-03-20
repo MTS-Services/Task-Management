@@ -21,7 +21,9 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref("https://m-track-a4a30-default-rtdb.asia-southeast1.firebasedatabase.app");
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
+
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -156,7 +158,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                       onPressed: () {
                         Get.to(
-                              () => SingUpScreen(),
+                          () => SingUpScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(
                             milliseconds: 750,
@@ -197,13 +199,18 @@ class _SingUpScreenState extends State<SingUpScreen> {
 
     if (user != null) {
       String userId = user.uid;
-      await _dbRef.child("pending_users").child(userId).set({
-        "username": username,
-        "email": email,
-        "role": selectedRole,
-        "status": "pending"
-      });
-
+      try {
+        await _dbRef.child("pending_users").child(userId).set({
+          "username": username,
+          "email": email,
+          "role": selectedRole,
+          "status": "pending"
+        });
+        print("Data written successfully");
+      } catch (e) {
+        print("Error writing data: $e");
+      }
+      ;
 
       Get.to(() => SingInScreen());
       ScaffoldMessenger.of(context).showSnackBar(
@@ -211,8 +218,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
           backgroundColor: RColors.snackBarColorR,
           content: Text(
             "Access request submitted. Waiting for approval",
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: Colors.white, fontSize: 12),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white, fontSize: 12),
           ),
         ),
       );

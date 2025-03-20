@@ -1,82 +1,62 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class FirebaseAuthServices {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
 
+  // 🔹 SIGN UP (Email & Password) and Store in Realtime Database
   Future<User?> signUpWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential credential = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return credential.user;
-    } catch (e) {
-      print("Some error occurred: $e");
+  try {
+    UserCredential credential = await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    User? user = credential.user;
+    if (user != null) {
+      // Store in "pending_users" first
+      DatabaseReference ref = _database.ref("pending_users/${user.uid}");
+      await ref.set({
+        "email": email,
+        "approved": false, // Default: Not approved until admin approves
+      });
+
+      print("User registered successfully. Waiting for admin approval.");
     }
-    return null;
+    return user;
+  } catch (e) {
+    print("Some error occurred: $e");
   }
+  return null;
+}
 
-  Future<void> signUpWithPhoneNumber(
-      String phoneNumber,
-      Function(String) onCodeSent,
-      Function(String) onVerificationFailed) async {
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await _auth.signInWithCredential(credential);
-          print("User signed up successfully");
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          onVerificationFailed(e.message ?? "Unknown error");
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          onCodeSent(verificationId);
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          print("OTP code auto retrieval timed out");
-        },
-      );
-    } catch (e) {
-      print("Error during phone number verification: $e");
-    }
-  }
 
-  Future<User?> verifyOtpAndSignUp(String verificationId, String smsCode) async {
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId,
-        smsCode: smsCode,
-      );
-
-      UserCredential userCredential =
-      await _auth.signInWithCredential(credential);
-
-      return userCredential.user;
-    } catch (e) {
-      print("Error verifying OTP: $e");
-    }
-    return null;
-  }
-
+  // 🔹 SIGN IN (Email & Password) - Check if the User is Approved
   Future<User?> signInWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return credential.user;
-    } catch (e) {
-      print("Some error occurred: $e");
-    }
-    return null;
-  }
+  try {
+    UserCredential credential = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
 
-  Future<void> setEmailVerificationLink() async {
-    try {
-      await _auth.currentUser?.sendEmailVerification();
-    } catch (e) {
-      print("Error sending email verification: $e");
+    String uid = credential.user!.uid;
+
+    // ✅ Check if the user is approved in the "users" section
+    DatabaseReference ref = _database.ref("users/$uid");
+    DataSnapshot snapshot = await ref.get();
+
+    if (snapshot.exists && snapshot.child("status").value == "approved") {
+      print("User login successful.");
+      return credential.user;
+    } else {
+      print("User is not approved yet. Contact admin.");
+      await _auth.signOut(); // ❌ Sign out unapproved users
     }
+  } catch (e) {
+    print("Some error occurred: $e");
   }
+  return null;
+}
+
 }

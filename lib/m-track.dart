@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/presentation/pages/screen/Leader_project_Deails/leader_project_details.dart';
 import 'package:maktrack/presentation/pages/screen/Single%20Project%20Details/single_project_details.dart';
+import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/pages/screen/splash_screen/splash_screen.dart';
 
 class MTrac extends StatelessWidget {
@@ -18,7 +19,7 @@ class MTrac extends StatelessWidget {
             textTheme: _buildTextTheme(),
             inputDecorationTheme: _buildInputDecorationTheme(context),
             elevatedButtonTheme: _buildElevatedButtonThemeData()),
-        home: SingleProjectDetails());
+        home: OnboardingScreen());
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
