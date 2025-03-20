@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -31,49 +30,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCniAFfr2NSjS1FwT02vTRkoalZSvqQLQg',
-    appId: '1:669916132195:web:14742c0fca28b5c20a9956',
-    messagingSenderId: '669916132195',
-    projectId: 'm-track-a4a30',
-    authDomain: 'm-track-a4a30.firebaseapp.com',
-    storageBucket: 'm-track-a4a30.firebasestorage.app',
-    measurementId: 'G-WWM64TH5QF',
+    apiKey: 'AIzaSyCOUPHdu8r8cWIDvGw6HY4TPfEHe2McTzQ',
+    appId: '1:616802356174:web:742dde0000b2b16a12f99f',
+    messagingSenderId: '616802356174',
+    projectId: 'mtrack-d2555',
+    authDomain: 'mtrack-d2555.firebaseapp.com',
+    storageBucket: 'mtrack-d2555.firebasestorage.app',
+    measurementId: 'G-T8J61PHGZV',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC6J-ZDPu7VhBv1Q7Ee_L546A0kGCUV9Gk',
-    appId: '1:669916132195:android:5dddb5883292fc4b0a9956',
-    messagingSenderId: '669916132195',
-    projectId: 'm-track-a4a30',
-    storageBucket: 'm-track-a4a30.firebasestorage.app',
+    apiKey: 'AIzaSyBzzqBUM3ViHgrziuMEihH4uBo54TXqRTw',
+    appId: '1:616802356174:android:817ba01398c134c212f99f',
+    messagingSenderId: '616802356174',
+    projectId: 'mtrack-d2555',
+    storageBucket: 'mtrack-d2555.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBqfgePWS-W7yExMsnSVa-Mp00i63XXJkc',
-    appId: '1:669916132195:ios:6757425851d11c690a9956',
-    messagingSenderId: '669916132195',
-    projectId: 'm-track-a4a30',
-    storageBucket: 'm-track-a4a30.firebasestorage.app',
+    apiKey: 'AIzaSyCDBMFwfID3Y-Cvu8jto3tA0_PTYXkbHAs',
+    appId: '1:616802356174:ios:4e998dfff2c40f7112f99f',
+    messagingSenderId: '616802356174',
+    projectId: 'mtrack-d2555',
+    storageBucket: 'mtrack-d2555.firebasestorage.app',
     iosBundleId: 'com.example.maktrack',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBqfgePWS-W7yExMsnSVa-Mp00i63XXJkc',
-    appId: '1:669916132195:ios:6757425851d11c690a9956',
-    messagingSenderId: '669916132195',
-    projectId: 'm-track-a4a30',
-    storageBucket: 'm-track-a4a30.firebasestorage.app',
+    apiKey: 'AIzaSyCDBMFwfID3Y-Cvu8jto3tA0_PTYXkbHAs',
+    appId: '1:616802356174:ios:4e998dfff2c40f7112f99f',
+    messagingSenderId: '616802356174',
+    projectId: 'mtrack-d2555',
+    storageBucket: 'mtrack-d2555.firebasestorage.app',
     iosBundleId: 'com.example.maktrack',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCniAFfr2NSjS1FwT02vTRkoalZSvqQLQg',
-    appId: '1:669916132195:web:aa8a8644a38cb5070a9956',
-    messagingSenderId: '669916132195',
-    projectId: 'm-track-a4a30',
-    authDomain: 'm-track-a4a30.firebaseapp.com',
-    storageBucket: 'm-track-a4a30.firebasestorage.app',
-    measurementId: 'G-1B3RWXL3S3',
+    apiKey: 'AIzaSyCOUPHdu8r8cWIDvGw6HY4TPfEHe2McTzQ',
+    appId: '1:616802356174:web:670c7b960250f51212f99f',
+    messagingSenderId: '616802356174',
+    projectId: 'mtrack-d2555',
+    authDomain: 'mtrack-d2555.firebaseapp.com',
+    storageBucket: 'mtrack-d2555.firebasestorage.app',
+    measurementId: 'G-HRQ6Z0CZSQ',
   );
 
 }
