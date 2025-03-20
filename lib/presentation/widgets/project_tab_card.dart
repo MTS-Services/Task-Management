@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/screen/Project_Update/project_update.dart';
-import 'package:maktrack/presentation/pages/screen/Single%20Project%20Details/single_project_details.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../domain/entities/color.dart';
+import '../pages/screen/Single Project Details/single_project_details.dart';
 
 class ProjectTabCard extends StatelessWidget {
   const ProjectTabCard({
@@ -23,7 +22,7 @@ class ProjectTabCard extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 20,
           children: List.generate(
-            500,
+            20,
             (index) {
               return StaggeredGridTile.fit(
                 crossAxisCellCount: 1,
@@ -32,20 +31,11 @@ class ProjectTabCard extends StatelessWidget {
                     Get.to(() => SingleProjectDetails());
                   },
                   child: Container(
-                    height: index % 2 == 0 ? 250 : 50,
+                    height: index % 2 == 0 ? 260 : 50,
                     decoration: BoxDecoration(
                       color: index % 2 == 0 ? Colors.white : Colors.transparent,
                       borderRadius:
                           index % 2 == 0 ? BorderRadius.circular(30) : null,
-                      // boxShadow: index % 2 == 0
-                      //     ? [
-                      //         BoxShadow(
-                      //             color: Colors.grey,
-                      //             offset: Offset(2, 1),
-                      //             spreadRadius:1,
-                      //             blurRadius: 8)
-                      //       ]
-                      //     : null,
                     ),
                     child: index % 2 == 0
                         ? Padding(

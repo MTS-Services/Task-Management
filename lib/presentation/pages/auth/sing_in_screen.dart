@@ -29,8 +29,8 @@ class _SingInScreenState extends State<SingInScreen> {
   bool isVisible = false;
 
   void initState() {
-    _emailTEController.text ="arifin50@gmail.com";
-    _passwordTEController.text ="Abc@123@";
+    _emailTEController.text = "arifin50@gmail.com";
+    _passwordTEController.text = "Abc@123@";
     super.initState();
   }
 
@@ -132,7 +132,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-                          Get.to(()=> Bottom());
+                          Get.to(() => Bottom());
                         }
                       },
                       child: Text("LOGIN"),
@@ -200,39 +200,39 @@ class _SingInScreenState extends State<SingInScreen> {
     User? user = await _auth.signInWithEmailAndPassword(email, password);
 
     if (user != null) {
-      Get.snackbar("Login successful!", "Welcome to your dashboard.",
-          messageText: Text(
-            "Welcome to your dashboard.",
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-          ),
-          titleText: Text(
-            "Login successful!",
-            style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-          ),
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: RColors.blueButtonColors,
-          icon: Icon(
-            Icons.done_outline_outlined,
-            color: Colors.red,
-          ));
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     backgroundColor: RColors.snackBarColorS,
-      //     content: Text(
-      //       "Login successful! Welcome to your dashboard.",
-      //       style: Theme.of(context)
-      //           .textTheme
-      //           .bodySmall!
-      //           .copyWith(color: Colors.white, fontSize: 12),
+      // Get.snackbar("Login successful!", "Welcome to your dashboard.",
+      //     messageText: Text(
+      //       "Welcome to your dashboard.",
+      //       style: Theme.of(context).textTheme.bodySmall!.copyWith(
+      //             color: Colors.white,
+      //             fontSize: 12,
+      //           ),
       //     ),
-      //   ),
-      // );
+      //     titleText: Text(
+      //       "Login successful!",
+      //       style: Theme.of(context).textTheme.bodySmall!.copyWith(
+      //             color: Colors.white,
+      //             fontSize: 12,
+      //           ),
+      //     ),
+      //     snackPosition: SnackPosition.TOP,
+      //     backgroundColor: RColors.blueButtonColors,
+      //     icon: Icon(
+      //       Icons.done_outline_outlined,
+      //       color: Colors.red,
+      //     ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: RColors.snackBarColorS,
+          content: Text(
+            "Login successful! Welcome to your dashboard.",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.white, fontSize: 12),
+          ),
+        ),
+      );
       Get.to(
         () => DashBoard(),
         transition: Transition.rightToLeft,
