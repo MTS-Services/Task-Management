@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class ColorContainerCustom extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
- final Widget? child;
+  final Widget? child;
 
   ColorContainerCustom({
     required this.color,
     required this.onTap,
-     this.child,
+    this.child,
   });
 
   @override

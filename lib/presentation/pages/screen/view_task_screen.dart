@@ -6,7 +6,8 @@ import 'package:maktrack/presentation/widgets/top_bar_widget.dart';
 import '../../widgets/project_tab_card.dart';
 
 class ViewTaskScreen extends StatefulWidget {
-  const ViewTaskScreen({super.key});
+
+  const ViewTaskScreen({super.key,});
 
   @override
   State<ViewTaskScreen> createState() => _ViewTaskScreenState();

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
-
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:maktrack/presentation/state_managment/onboarding_controller.dart';
 
@@ -16,7 +15,6 @@ class OnboardingScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
-
     return WillPopScope(
       onWillPop: () async {
         // Show confirmation dialog before popping the screen
