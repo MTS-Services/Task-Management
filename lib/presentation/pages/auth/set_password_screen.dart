@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
@@ -16,10 +17,11 @@ class SetPasswordScreen extends StatefulWidget {
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
   @override
   void initState() {
-    _newPasswordTEController.text ="Abc@123@";
-    _confirmPasswordTEController.text ="Abc@123@";
+    _newPasswordTEController.text = "Abc@123@";
+    _confirmPasswordTEController.text = "Abc@123@";
     super.initState();
   }
+
   final _newPasswordTEController = TextEditingController();
   final _confirmPasswordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
@@ -27,6 +29,9 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: RColors.bgColorColorS,
+        statusBarIconBrightness: Brightness.dark));
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -106,9 +111,9 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_globalKey.currentState!.validate()){
+                      if (_globalKey.currentState!.validate()) {
                         Get.to(
-                              () => SingInScreen(),
+                          () => SingInScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(
                             milliseconds: 750,

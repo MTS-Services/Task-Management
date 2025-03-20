@@ -3,30 +3,37 @@ import 'package:maktrack/database/database_helper.dart';
 import 'package:maktrack/model/task.dart';
 
 class TaskController extends GetxController {
-  @override
-  void onReady() {
-    getTaskList();
-    super.onReady();
-  }
-
   var taskList = <Task>[].obs;
 
-  Future<int> addTask({Task? task}) async {
-    int result = await DBHelper.insert(task!);
-    if (result > 0) {
+  @override
+  void onReady() {
+    super.onReady();
+    getTaskList();
+  }
+
+  Future<int> addTask({required Task task}) async {
+    await DBHelper.initDatabase();
+    int taskId = await DBHelper.insert(task);
+    if (taskId > 0) {
+      task.id = taskId;
       taskList.insert(0, task);
     }
-    return result;
+
+    return taskId;
   }
 
   void getTaskList() async {
+    await DBHelper.initDatabase();
     List<Map<String, dynamic>> tasks = await DBHelper.query();
-    print("Fetched Tasks from DB: $tasks");
     taskList.assignAll(tasks.map((e) => Task.fromJson(e)).toList());
   }
 
   void deleteTask(Task task) async {
-    await DBHelper.delete(task);
-    getTaskList();
+    await DBHelper.initDatabase();
+
+    int result = await DBHelper.delete(task);
+    if (result > 0) {
+      taskList.removeWhere((t) => t.id == task.id);
+    }
   }
 }

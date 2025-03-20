@@ -117,13 +117,6 @@ class _AddTaskTextFieldCustomWidgetState
     });
   }
 
-  // Container for color selection
-  // Color? selectedColor;
-  // final List<Color> colors = [
-  //   Color(0xffFF6157),
-  //   Color(0xff2A4FA1),
-  //   Color(0xff61C877),
-  // ];
 
   // Selected Reminder
   int selectedReminder = 5;
@@ -353,7 +346,12 @@ class _AddTaskTextFieldCustomWidgetState
                         print("$index");
                       });
                     },
-                    child: _isSelected == index ? Icon(Icons.done) : null,
+                    child: _isSelected == index
+                        ? Icon(
+                            Icons.done,
+                            color: Colors.white,
+                          )
+                        : null,
                   );
                 }),
               ),
