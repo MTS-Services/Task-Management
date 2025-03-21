@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
+import 'package:maktrack/presentation/pages/auth/super_admin_panel.dart';
 import 'package:maktrack/presentation/widgets/Calendar%20Widgets/calendar_pop_up.dart';
 import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
@@ -195,8 +196,10 @@ class ProjectDetails extends StatelessWidget {
                     color: Colors.black,
                   ),
                   GestureDetector(
-                    onTap: (){
-                      Get.to(()=>  ViewTaskScreen(),);
+                    onTap: () {
+                      Get.to(
+                        () => ViewTaskScreen(),
+                      );
                     },
                     child: TextWidget(
                       text: 'All Tasks',
@@ -215,6 +218,16 @@ class ProjectDetails extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => SuperAdminPanel());
+        },
+        child: Icon(
+          Icons.admin_panel_settings,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.blue,
       ),
     );
   }

@@ -7,9 +7,9 @@ import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
-import 'package:maktrack/presentation/pages/auth/super_admin_panel.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
-import 'package:maktrack/presentation/pages/screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
+import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
+import 'package:maktrack/presentation/pages/screen/Super%20Admin%20Project%20Details/super_admin_project_details.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 import '../../widgets/custom_app_bar.dart';
@@ -26,25 +26,17 @@ class _SingInScreenState extends State<SingInScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
-
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
-
-  void initState() {
-    _emailTEController.text = "arifin50@gmail.com";
-    _passwordTEController.text = "Abc@123@";
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: RColors.bgColorColorS,
         statusBarIconBrightness: Brightness.dark));
+
     return WillPopScope(
-      onWillPop: () {
-        return Future(() => false);
-      },
+      onWillPop: () async => false,
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -54,9 +46,7 @@ class _SingInScreenState extends State<SingInScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   CustomAppBar(
                     text: 'Back',
                     images: AssetPath.logoPng,
@@ -64,9 +54,7 @@ class _SingInScreenState extends State<SingInScreen> {
                       Get.to(OnboardingScreen());
                     },
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
+                  SizedBox(height: 40),
                   SingUpAndTitle(
                     title: 'Welcome Back!',
                     title2: 'Log in your account & Manage \nYour task',
@@ -117,15 +105,9 @@ class _SingInScreenState extends State<SingInScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  SavePasswordForgetButton(
-                    isLoginPage: true,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  SizedBox(height: 40),
+                  SavePasswordForgetButton(isLoginPage: true),
+                  SizedBox(height: 30),
                   SizedBox(height: 60),
                   SizedBox(
                     width: double.infinity,
@@ -134,8 +116,6 @@ class _SingInScreenState extends State<SingInScreen> {
                       onPressed: () {
                         if (_globalKey.currentState!.validate()) {
                           sigIn();
-
-                          Get.to(() => Bottom());
                         }
                       },
                       child: Text("LOGIN"),
@@ -154,9 +134,7 @@ class _SingInScreenState extends State<SingInScreen> {
                         Get.to(
                           () => SingUpScreen(),
                           transition: Transition.rightToLeft,
-                          duration: Duration(
-                            milliseconds: 750,
-                          ),
+                          duration: Duration(milliseconds: 750),
                         );
                       },
                       child: Text("Don't have an account? SIGN UP "),
@@ -179,22 +157,16 @@ class _SingInScreenState extends State<SingInScreen> {
         });
       },
       icon: isVisible
-          ? Icon(
-              Icons.visibility_off,
-              color: RColors.smallFontColor,
-            )
-          : Icon(
-              Icons.visibility,
-              color: RColors.smallFontColor,
-            ),
+          ? Icon(Icons.visibility_off, color: RColors.smallFontColor)
+          : Icon(Icons.visibility, color: RColors.smallFontColor),
     );
   }
 
   @override
   void dispose() {
-    super.dispose();
     _passwordTEController.dispose();
     _emailTEController.dispose();
+    super.dispose();
   }
 
   void sigIn() async {
@@ -202,7 +174,6 @@ class _SingInScreenState extends State<SingInScreen> {
     String password = _passwordTEController.text;
 
     try {
-      // Attempt to sign in with email and password
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -212,12 +183,15 @@ class _SingInScreenState extends State<SingInScreen> {
 
       if (user != null) {
         String uid = user.uid;
+
+        // Check if user is in "users" (Approved users)
         DatabaseReference approvedUserRef =
             FirebaseDatabase.instance.ref("users/$uid");
         DataSnapshot approvedUserSnapshot = await approvedUserRef.get();
 
         if (approvedUserSnapshot.exists &&
-            approvedUserSnapshot.child("status").value == "approved") {
+            approvedUserSnapshot.child("status").value.toString() ==
+                "approved") {
           print("User is approved. Logging in...");
           Get.to(() => DashBoard(),
               transition: Transition.rightToLeft,
@@ -225,7 +199,7 @@ class _SingInScreenState extends State<SingInScreen> {
           return;
         }
 
-        // ❌ If not approved, check "pending_users"
+        // Check if user is in "pending_users"
         DatabaseReference pendingUserRef =
             FirebaseDatabase.instance.ref("pending_users/$uid");
         DataSnapshot pendingUserSnapshot = await pendingUserRef.get();
@@ -233,70 +207,48 @@ class _SingInScreenState extends State<SingInScreen> {
         if (pendingUserSnapshot.exists) {
           print("User is still pending approval. Logging out.");
           await FirebaseAuth.instance.signOut();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: RColors.snackBarColorR,
-              content: Text(
-                "Your account is not approved yet. Please wait for admin approval.",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(color: Colors.white, fontSize: 12),
-              ),
-            ),
-          );
+          _showSnackbar(
+              "Your account is not approved yet. Please wait for admin approval.");
           return;
         }
-        // ✅ Check if the user is a Super Admin
+
+        // Check if user is a Super Admin
         DatabaseReference superAdminRef =
             FirebaseDatabase.instance.ref("super_admins/$uid");
         DataSnapshot superAdminSnapshot = await superAdminRef.get();
 
         if (superAdminSnapshot.exists) {
           print("User is a Super Admin. Redirecting...");
-          Get.to(() => SuperAdminPanel(),
+          Get.to(() => ProjectDetails(),
               transition: Transition.rightToLeft,
               duration: Duration(milliseconds: 750));
           return;
         }
-        // ❌ If user not found in any section, show error
+
+        // If user not found, show error
         print(
             "User not found in approved users, pending_users, or super_admins.");
         await FirebaseAuth.instance.signOut();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: RColors.snackBarColorR,
-            content: Text(
-              "Invalid email or password. Please try again.",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .copyWith(color: Colors.white, fontSize: 12),
-            ),
-          ),
-        );
-        Get.to(
-          () => DashBoard(),
-          transition: Transition.rightToLeft,
-          duration: Duration(
-            milliseconds: 750,
-          ),
-        );
+        _showSnackbar("Invalid email or password. Please try again.");
       }
     } catch (e) {
-      print("Error: $e"); // Log the error to the console
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: RColors.snackBarColorR,
-          content: Text(
-            "An error occurred: $e",
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(color: Colors.white, fontSize: 12),
-          ),
-        ),
-      );
+      print("Error: $e");
+      _showSnackbar("An error occurred: $e");
     }
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: RColors.snackBarColorR,
+        content: Text(
+          message,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                color: Colors.white,
+                fontSize: 12,
+              ),
+        ),
+      ),
+    );
   }
 }

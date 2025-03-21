@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:maktrack/domain/entities/color.dart';
 
 class SuperAdminPanel extends StatefulWidget {
   const SuperAdminPanel({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
     // Real-time listener for pending users
     _pendingUsersRef.onValue.listen((event) {
       if (event.snapshot.exists) {
-        Map<dynamic, dynamic> usersMap = event.snapshot.value as Map<dynamic, dynamic>;
+        Map<dynamic, dynamic> usersMap =
+            event.snapshot.value as Map<dynamic, dynamic>;
         setState(() {
           _pendingUsers = usersMap.entries.map((entry) {
             return {
@@ -62,67 +64,146 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
 
   // Approve a user by moving them from "pending_users" to "users"
   void _approveUser(String uid, String email, String role) async {
-  DatabaseReference pendingUserRef = _pendingUsersRef.child(uid);
-  DatabaseReference userRef = _usersRef.child(uid);
+    DatabaseReference pendingUserRef = _pendingUsersRef.child(uid);
+    DatabaseReference userRef = _usersRef.child(uid);
 
-  try {
-    // ✅ Move user from "pending_users" to "users"
-    await userRef.set({
-      'email': email,
-      'role': role,
-      'status': 'approved',
-    });
+    try {
+      // ✅ Move user from "pending_users" to "users"
+      await userRef.set({
+        'email': email,
+        'role': role,
+        'status': 'approved',
+      });
 
-    // ❌ Remove from pending_users
-    await pendingUserRef.remove();
+      // ❌ Remove from pending_users
+      await pendingUserRef.remove();
 
-    setState(() {
-      _pendingUsers.removeWhere((user) => user['uid'] == uid);
-    });
+      setState(() {
+        _pendingUsers.removeWhere((user) => user['uid'] == uid);
+      });
 
-    // ✅ Show success message
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('User has been approved successfully!'),
-        backgroundColor: Colors.green,
-      ),
-    );
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Error approving user: $e'),
-        backgroundColor: Colors.red,
-      ),
-    );
+      // ✅ Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'User has been approved successfully!',
+            style: TextStyle(color: RColors.bgColorColorS),
+          ),
+          backgroundColor: RColors.blackButtonColor2,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error approving user: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
-}
 
+  // Reject a user (remove from pending_users)
+  void _rejectUser(String uid) async {
+    DatabaseReference pendingUserRef = _pendingUsersRef.child(uid);
+
+    try {
+      // ❌ Remove user from pending_users
+      await pendingUserRef.remove();
+
+      setState(() {
+        _pendingUsers.removeWhere((user) => user['uid'] == uid);
+      });
+
+      // ✅ Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('User has been rejected and removed.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error rejecting user: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Super Admin Panel'),
-      ),
-      body: _pendingUsers.isEmpty
-          ? Center(child: Text('No users to approve.'))
-          : ListView.builder(
-              itemCount: _pendingUsers.length,
-              itemBuilder: (context, index) {
-                final user = _pendingUsers[index];
-                return Card(
-                  margin: EdgeInsets.all(8),
-                  child: ListTile(
-                    title: Text(user['email']),
-                    subtitle: Text("Role: ${user['role']}"),
-                    trailing: ElevatedButton(
-                      onPressed: () => _approveUser(user['uid'], user['email'], user['role']),
-                      child: Text('Approve'),
-                    ),
-                  ),
-                );
-              },
+      body: Column(
+        children: [
+          // Custom Title with Refresh Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Super Admin Panel",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.refresh, color: Colors.blue),
+                  onPressed: _fetchPendingUsers,
+                ),
+              ],
             ),
+          ),
+
+          // Pending Users List
+          Expanded(
+            child: _pendingUsers.isEmpty
+                ? Center(child: Text('No users to approve.'))
+                : ListView.builder(
+                    itemCount: _pendingUsers.length,
+                    itemBuilder: (context, index) {
+                      final user = _pendingUsers[index];
+                      return Card(
+                        color: RColors.blackButtonColor2,
+                        margin: EdgeInsets.all(8),
+                        child: ListTile(
+                          title: Text(
+                            user['email'],
+                            style: TextStyle(
+                              color: RColors.bgColorColorS,
+                              fontSize: 18,
+                            ),
+                          ),
+                          subtitle: Text(
+                            "Role: ${user['role']}",
+                            style: TextStyle(
+                              color: RColors.bgColorColorS,
+                              fontSize: 15,
+                            ),
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // Approve Button ✅
+                              IconButton(
+                                icon: Icon(Icons.check_circle,
+                                    color: Colors.green),
+                                onPressed: () => _approveUser(
+                                    user['uid'], user['email'], user['role']),
+                              ),
+                              // Reject Button ❌
+                              IconButton(
+                                icon: Icon(Icons.cancel, color: Colors.red),
+                                onPressed: () => _rejectUser(user['uid']),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
