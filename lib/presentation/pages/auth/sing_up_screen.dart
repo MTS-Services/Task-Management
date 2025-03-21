@@ -7,7 +7,7 @@ import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+import 'package:maktrack/presentation/pages/screen/login&signup_button_screen/smart_task_management.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/save_password_forget_button.dart';
@@ -24,7 +24,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
 
-
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -40,6 +39,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
         statusBarColor: RColors.bgColorColorS,
         statusBarIconBrightness: Brightness.dark));
     return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+      },
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -54,7 +57,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     text: 'Back',
                     images: AssetPath.logoPng,
                     onPressed: () {
-                      Get.offAll(() => OnboardingScreen());
+                      Get.offAll(() => SmartTaskManagement());
                     },
                   ),
                   SizedBox(height: 40),
@@ -151,7 +154,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-//Button
+                  //Button
                   SizedBox(
                     width: double.infinity,
                     height: 60,
@@ -162,7 +165,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                       onPressed: () {
                         Get.to(
-                          () => SingUpScreen(),
+                          () => SingInScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(
                             milliseconds: 750,

@@ -9,8 +9,7 @@ import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
 import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
-import 'package:maktrack/presentation/pages/screen/Super%20Admin%20Project%20Details/super_admin_project_details.dart';
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+import 'package:maktrack/presentation/pages/screen/login&signup_button_screen/smart_task_management.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
@@ -29,14 +28,24 @@ class _SingInScreenState extends State<SingInScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isVisible = false;
 
+  // @override
+  // void initState() {
+  //   _emailTEController.text = "shakib@gamil.com";
+  //   _passwordTEController.text = "Shakib123";
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: RColors.bgColorColorS,
         statusBarIconBrightness: Brightness.dark));
 
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+      },
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -51,7 +60,7 @@ class _SingInScreenState extends State<SingInScreen> {
                     text: 'Back',
                     images: AssetPath.logoPng,
                     onPressed: () {
-                      Get.to(OnboardingScreen());
+                      Get.to(SmartTaskManagement());
                     },
                   ),
                   SizedBox(height: 40),
