@@ -105,7 +105,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     margin: EdgeInsets.only(left: 20),
                     child: DatePicker(
                       DateTime.now().subtract(Duration(days: 2)),
-                      height: 100,
+                      height: 110,
                       width: 80,
                       initialSelectedDate: selectedDate,
                       selectionColor: RColors.blueButtonColors,

@@ -106,8 +106,8 @@ class ThreeScreenPage extends StatelessWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 13,
                                     color: Colors.white),
                           )),
                         ),
