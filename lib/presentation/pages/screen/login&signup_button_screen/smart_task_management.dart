@@ -15,6 +15,7 @@ class SmartTaskManagement extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         // Show confirmation dialog before popping the screen

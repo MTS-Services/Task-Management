@@ -3,16 +3,19 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
-import 'package:maktrack/presentation/pages/screen/DashBoard/dash_board.dart';
 import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
 import 'package:maktrack/presentation/pages/screen/login&signup_button_screen/smart_task_management.dart';
+import 'package:maktrack/presentation/state_managment/onboarding_controller.dart';
+import 'package:maktrack/presentation/state_managment/splash_controller.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
 import '../../widgets/custom_app_bar.dart';
 import '../../widgets/sing_up_title.dart';
+import '../screen/Leader_project_Deails/leader_project_details.dart';
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({super.key});
@@ -22,6 +25,8 @@ class SingInScreen extends StatefulWidget {
 }
 
 class _SingInScreenState extends State<SingInScreen> {
+  final OnboardingController controller = Get.put(OnboardingController());
+  // ignore: unused_field
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -127,7 +132,10 @@ class _SingInScreenState extends State<SingInScreen> {
                           sigIn();
                         }
                       },
-                      child: Text("LOGIN"),
+                      child: controller.isLoading.value
+                          ? LoadingAnimationWidget.threeRotatingDots(
+                              color: RColors.blueButtonColors, size: 50)
+                          : Text("LOGIN"),
                     ),
                   ),
                   SizedBox(height: 25),
@@ -202,7 +210,7 @@ class _SingInScreenState extends State<SingInScreen> {
             approvedUserSnapshot.child("status").value.toString() ==
                 "approved") {
           print("User is approved. Logging in...");
-          Get.to(() => DashBoard(),
+          Get.to(() => LeaderProjectDetails(),
               transition: Transition.rightToLeft,
               duration: Duration(milliseconds: 750));
           return;

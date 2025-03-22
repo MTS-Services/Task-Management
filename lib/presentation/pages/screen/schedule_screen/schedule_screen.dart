@@ -178,6 +178,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   void showBottomSheet(BuildContext context, Task task) {
+    // ignore: unnecessary_null_comparison
     if (task == null) {
       print('Task is null');
       return; // Exit early if task is null
