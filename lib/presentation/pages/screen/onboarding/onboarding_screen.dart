@@ -19,6 +19,7 @@ class OnboardingPage extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark));
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () {
         return Future(() => true);
