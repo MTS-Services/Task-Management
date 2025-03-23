@@ -11,8 +11,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          leading: Icon(Icons.arrow_upward),
+          title: Text(
+            "Profile",
+          ),
+          centerTitle: true,
+        ),
         body: Center(
-      child: Text("User Profile Screen"),
-    ));
+          child: Text("User Profile Screen"),
+        ));
   }
 }
