@@ -15,6 +15,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           leading: Icon(Icons.arrow_upward),
           title: Text(
             "Profile",
+            style: TextStyle(
+              letterSpacing: 3,
+              fontSize: 18,
+              color: Colors.deepPurpleAccent,
+            ),
           ),
           centerTitle: true,
         ),
