@@ -23,8 +23,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
           centerTitle: true,
         ),
-        body: Center(
-          child: Text("User Profile Screen"),
+        body: Column(
+          children: [
+            Text("data"),
+            Center(
+              child: Text("User Profile Screen"),
+            ),
+          ],
         ));
   }
 }
