@@ -23,6 +23,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
           centerTitle: true,
           actions: [
+            Icon(Icons.arrow_back),
             Icon(Icons.settings),
           ],
         ),
