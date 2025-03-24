@@ -29,6 +29,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         ),
         body: Column(
           children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: "User Name",
+              ),
+            ),
             Text("data"),
             Center(
               child: Text("User Profile Screen"),
