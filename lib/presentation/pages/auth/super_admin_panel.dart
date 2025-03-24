@@ -68,21 +68,21 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
     DatabaseReference userRef = _usersRef.child(uid);
 
     try {
-      // ✅ Move user from "pending_users" to "users"
+      //  Move user from "pending_users" to "users"
       await userRef.set({
         'email': email,
         'role': role,
         'status': 'approved',
       });
 
-      // ❌ Remove from pending_users
+      //  Remove from pending_users
       await pendingUserRef.remove();
 
       setState(() {
         _pendingUsers.removeWhere((user) => user['uid'] == uid);
       });
 
-      // ✅ Show success message
+      //  Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -107,14 +107,14 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
     DatabaseReference pendingUserRef = _pendingUsersRef.child(uid);
 
     try {
-      // ❌ Remove user from pending_users
+      //  Remove user from pending_users
       await pendingUserRef.remove();
 
       setState(() {
         _pendingUsers.removeWhere((user) => user['uid'] == uid);
       });
 
-      // ✅ Show success message
+      //  Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('User has been rejected and removed.'),
@@ -183,7 +183,7 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // Approve Button ✅
+                              // Approve Button
                               IconButton(
                                 icon: Icon(Icons.check_circle,
                                     color: Colors.green),

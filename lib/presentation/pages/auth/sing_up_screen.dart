@@ -9,9 +9,10 @@ import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/pages/screen/login&signup_button_screen/smart_task_management.dart';
 import 'package:maktrack/presentation/widgets/coustom_drop_Down_manu.dart';
-import '../../widgets/custom_app_bar.dart';
-import '../../widgets/save_password_forget_button.dart';
-import '../../widgets/sing_up_title.dart';
+import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
+import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
+import 'package:maktrack/presentation/widgets/sing_up_title.dart';
+
 
 class SingUpScreen extends StatefulWidget {
   const SingUpScreen({super.key});

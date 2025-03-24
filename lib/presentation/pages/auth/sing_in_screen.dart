@@ -8,14 +8,14 @@ import 'package:maktrack/domain/entities/asset_path.dart';
 import 'package:maktrack/domain/entities/color.dart';
 import 'package:maktrack/firebase_auth_implement/firebase_auth_services.dart';
 import 'package:maktrack/presentation/pages/auth/sing_up_screen.dart';
+import 'package:maktrack/presentation/pages/screen/Leader_project_Deails/leader_project_details.dart';
 import 'package:maktrack/presentation/pages/screen/ProjectDetails/project_details.dart';
 import 'package:maktrack/presentation/pages/screen/login&signup_button_screen/smart_task_management.dart';
 import 'package:maktrack/presentation/state_managment/onboarding_controller.dart';
-import 'package:maktrack/presentation/state_managment/splash_controller.dart';
+import 'package:maktrack/presentation/widgets/custom_app_bar.dart';
 import 'package:maktrack/presentation/widgets/save_password_forget_button.dart';
-import '../../widgets/custom_app_bar.dart';
-import '../../widgets/sing_up_title.dart';
-import '../screen/Leader_project_Deails/leader_project_details.dart';
+import 'package:maktrack/presentation/widgets/sing_up_title.dart';
+
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({super.key});
