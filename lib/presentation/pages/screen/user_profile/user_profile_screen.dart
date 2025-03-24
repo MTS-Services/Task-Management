@@ -22,9 +22,17 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
           centerTitle: true,
+          actions: [
+            Icon(Icons.settings),
+          ],
         ),
-        body: Center(
-          child: Text("User Profile Screen"),
+        body: Column(
+          children: [
+            Text("data"),
+            Center(
+              child: Text("User Profile Screen"),
+            ),
+          ],
         ));
   }
 }
