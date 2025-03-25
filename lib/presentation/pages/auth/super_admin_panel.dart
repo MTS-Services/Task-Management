@@ -134,75 +134,86 @@ class _SuperAdminPanelState extends State<SuperAdminPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // Custom Title with Refresh Button
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Super Admin Panel",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  icon: Icon(Icons.refresh, color: Colors.blue),
-                  onPressed: _fetchPendingUsers,
-                ),
-              ],
+      body: SafeArea(
+        child: Column(
+          spacing: 20,
+          children: [
+            // Custom Title with Refresh Button
+            SizedBox(
+              height: 10,
             ),
-          ),
-
-          // Pending Users List
-          Expanded(
-            child: _pendingUsers.isEmpty
-                ? Center(child: Text('No users to approve.'))
-                : ListView.builder(
-                    itemCount: _pendingUsers.length,
-                    itemBuilder: (context, index) {
-                      final user = _pendingUsers[index];
-                      return Card(
-                        color: RColors.blackButtonColor2,
-                        margin: EdgeInsets.all(8),
-                        child: ListTile(
-                          title: Text(
-                            user['email'],
-                            style: TextStyle(
-                              color: RColors.bgColorColorS,
-                              fontSize: 18,
-                            ),
-                          ),
-                          subtitle: Text(
-                            "Role: ${user['role']}",
-                            style: TextStyle(
-                              color: RColors.bgColorColorS,
-                              fontSize: 15,
-                            ),
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              // Approve Button ✅
-                              IconButton(
-                                icon: Icon(Icons.check_circle,
-                                    color: Colors.green),
-                                onPressed: () => _approveUser(
-                                    user['uid'], user['email'], user['role']),
-                              ),
-                              // Reject Button ❌
-                              IconButton(
-                                icon: Icon(Icons.cancel, color: Colors.red),
-                                onPressed: () => _rejectUser(user['uid']),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Super Admin Panel",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-          ),
-        ],
+                  GestureDetector(
+                      onTap: _fetchPendingUsers,
+                      child: Icon(
+                        Icons.refresh,
+                        color: Colors.black,
+                      ))
+                ],
+              ),
+            ),
+
+            // Pending Users List
+            Expanded(
+              child: _pendingUsers.isEmpty
+                  ? Center(child: Text('No users to approve.'))
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: ListView.builder(
+                        itemCount: _pendingUsers.length,
+                        itemBuilder: (context, index) {
+                          final user = _pendingUsers[index];
+                          return Card(
+                            color: RColors.blackButtonColor2,
+                            margin: EdgeInsets.all(8),
+                            child: ListTile(
+                              title: Text(
+                                user['email'],
+                                style: TextStyle(
+                                  color: RColors.bgColorColorS,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              subtitle: Text(
+                                "Role: ${user['role']}",
+                                style: TextStyle(
+                                  color: RColors.bgColorColorS,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // Approve Button ✅
+                                  IconButton(
+                                    icon: Icon(Icons.check_circle,
+                                        color: Colors.green),
+                                    onPressed: () => _approveUser(user['uid'],
+                                        user['email'], user['role']),
+                                  ),
+                                  // Reject Button ❌
+                                  IconButton(
+                                    icon: Icon(Icons.cancel, color: Colors.red),
+                                    onPressed: () => _rejectUser(user['uid']),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

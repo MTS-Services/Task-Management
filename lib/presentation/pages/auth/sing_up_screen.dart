@@ -24,7 +24,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
   final FirebaseAuthServices _auth = FirebaseAuthServices();
   final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
 
-
   final _userNameTEController = TextEditingController();
   final _emailTEController = TextEditingController();
   final _passwordTEController = TextEditingController();
@@ -32,7 +31,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool isnotVisible = true;
 
-  String selectedRole = "Leader"; // Default role selection
+  String selectedRole = 'Department Name'; // Default role selection
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,8 @@ class _SingUpScreenState extends State<SingUpScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Form(
               key: _globalKey,
               child: Column(
@@ -118,9 +118,11 @@ class _SingUpScreenState extends State<SingUpScreen> {
                         return "Please enter your password";
                       } else if (value.length < 8) {
                         return "Password must be at least 8 characters long";
-                      } else if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+                      } else if (!RegExp(r'(?=.*[A-Z])')
+                          .hasMatch(value)) {
                         return "Password must contain at least one uppercase letter";
-                      } else if (!RegExp(r'(?=.*[0-9])').hasMatch(value)) {
+                      } else if (!RegExp(r'(?=.*[0-9])')
+                          .hasMatch(value)) {
                         return "Password must contain at least one number";
                       }
                       return null;
@@ -151,7 +153,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-//Button
                   SizedBox(
                     width: double.infinity,
                     height: 60,
@@ -162,7 +163,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                       ),
                       onPressed: () {
                         Get.to(
-                          () => SingUpScreen(),
+                          () => SingInScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(
                             milliseconds: 750,
@@ -194,27 +195,25 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 
+  // Updated signUp method with error handling
   void signUp() async {
-    String username = _userNameTEController.text;
-    String email = _emailTEController.text;
-    String password = _passwordTEController.text;
+  String username = _userNameTEController.text;
+  String email = _emailTEController.text;
+  String password = _passwordTEController.text;
 
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+  // Pass the username, email, and password to signUpWithEmailAndPassword
+  User? user = await _auth.signUpWithEmailAndPassword(email, password, username);
 
-    if (user != null) {
-      String userId = user.uid;
-      try {
-        await _dbRef.child("pending_users").child(userId).set({
-          "username": username,
-          "email": email,
-          "role": selectedRole,
-          "status": "pending"
-        });
-        print("Data written successfully");
-      } catch (e) {
-        print("Error writing data: $e");
-      }
-      ;
+  if (user != null) {
+    String userId = user.uid;
+    try {
+      await _dbRef.child("pending_users").child(userId).set({
+        "username": username,
+        "email": email,
+        "role": selectedRole,
+        "status": "pending"
+      });
+      print("Data written successfully");
 
       Get.to(() => SingInScreen());
       ScaffoldMessenger.of(context).showSnackBar(
@@ -229,6 +228,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
           ),
         ),
       );
+    } catch (e) {
+      print("Error writing data: $e");
     }
   }
+}
+
 }

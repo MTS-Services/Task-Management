@@ -3,7 +3,7 @@ import 'package:maktrack/presentation/widgets/custom_drop_down.dart';
 import 'package:maktrack/presentation/widgets/role_drop_down.dart';
 
 class CustomDropDownMenu extends StatefulWidget {
-  final Function(dynamic value) onChanged;  // Add this field
+  final Function(dynamic value) onChanged; // Add this field
   final String selectedValue;
 
   const CustomDropDownMenu({
@@ -21,12 +21,17 @@ class _CustomDropDownMenuState extends State<CustomDropDownMenu> {
   String? selectedRole;
 
   List<String> items = ['Flutter', 'MERN', 'Laravel', 'PHP'];
-  List<String> roleItems = ['Head of department', 'Leader', 'Co-leader', 'Elder'];
+  List<String> roleItems = [
+    'Boss',
+    'Head of Department',
+    'Leader',
+    'Co-leader',
+  ];
 
   @override
   void initState() {
     super.initState();
-    selectedValue = widget.selectedValue;  // Initialize the selected value
+    selectedValue = widget.selectedValue; // Initialize the selected value
   }
 
   @override

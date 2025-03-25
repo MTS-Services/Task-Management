@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/screen/Super%20Admin%20Project%20Details/super_admin_project_details.dart';
+import 'package:maktrack/presentation/pages/screen/Boss%20Project%20Details/boss_project_details.dart';
 import 'package:maktrack/presentation/widgets/bar_chart_widget.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
 import 'package:maktrack/presentation/widgets/top_bar_widget.dart';
 import 'package:maktrack/presentation/widgets/total_container.dart';
 
-class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+class BossDashBoard extends StatelessWidget {
+  const BossDashBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,7 @@ class DashBoard extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                Get.to(() => SuperAdminProjectDetails());
+                                Get.to(() => BossProjectDetails());
                               },
                               child: ProjectContainer(
                                 imageIndex: index,

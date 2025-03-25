@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktrack/presentation/pages/screen/view_task_screen.dart';
-import 'package:maktrack/presentation/pages/auth/super_admin_panel.dart';
 import 'package:maktrack/presentation/widgets/Calendar%20Widgets/calendar_pop_up.dart';
-import 'package:maktrack/presentation/widgets/new_project_bar.dart';
 import 'package:maktrack/presentation/widgets/project_container.dart';
 import 'package:maktrack/presentation/widgets/text_widget.dart';
+import 'package:maktrack/presentation/widgets/total_project_info_bar.dart';
 import '../../../state_managment/home.dart';
 
-class ProjectDetails extends StatelessWidget {
-  const ProjectDetails({
+class BossProjectDetails extends StatelessWidget {
+  const BossProjectDetails({
     super.key,
   });
 
@@ -157,7 +155,7 @@ class ProjectDetails extends StatelessWidget {
                                       ],
                                     ),
                                     TextWidget(
-                                      text: '15,000.00',
+                                      text: '\$15,000.00',
                                       size: 13,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.white,
@@ -179,55 +177,18 @@ class ProjectDetails extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 25,
-                right: 25,
-                top: 10,
-                bottom: 10,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextWidget(
-                    text: 'Recent Projects',
-                    size: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(
-                        () => ViewTaskScreen(),
-                      );
-                    },
-                    child: TextWidget(
-                      text: 'All Tasks',
-                      size: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 10,
             ),
             Column(
-              children: List.generate(4, (index) {
-                return NewProjectCard();
+              children: List.generate(3, (index) {
+                return TotalProjectInfoBar(
+                  index: index,
+                );
               }),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(() => SuperAdminPanel());
-        },
-        child: Icon(
-          Icons.admin_panel_settings,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.blue,
       ),
     );
   }

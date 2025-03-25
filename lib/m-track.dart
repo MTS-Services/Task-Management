@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
+import 'package:maktrack/presentation/pages/screen/Leader_project_Deails/leader_project_details.dart';
 import 'package:maktrack/presentation/pages/screen/bottom_navigation_bar_screen/bottom_nav_bar.dart';
 import 'package:maktrack/presentation/pages/screen/schedule_screen/schedule_screen.dart';
 import 'package:maktrack/presentation/pages/screen/three_screen/onboarding_page.dart';
