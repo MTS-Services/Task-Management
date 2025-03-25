@@ -28,7 +28,7 @@ class PlashScreen extends StatelessWidget {
           child: Center(
             child: Image.asset(
               AssetPath.logoPng,
-              height: 60,
+              height: 65,
               fit: BoxFit.fitHeight,
             ),
           ),
