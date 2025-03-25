@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/create_project_project.dart';
+import 'package:maktrack/presentation/pages/leader_input_screen.dart';
 import 'package:maktrack/presentation/state_managment/bottom_controller.dart';
 
 class Bottom extends StatelessWidget {
@@ -23,7 +23,7 @@ class Bottom extends StatelessWidget {
                 topRight: Radius.circular(30.0),
               ),
               child: BottomAppBar(
-                color: Colors.white,
+                color: Colors.white54,
                 shape: const CircularNotchedRectangle(),
                 notchMargin: 10,
                 child: Padding(
@@ -50,7 +50,7 @@ class Bottom extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Get.to(() => CreateNewProject());
+              Get.to(() => LeaderInputScreen());
             },
             backgroundColor: RColors.blueButtonColors,
             shape: const CircleBorder(),

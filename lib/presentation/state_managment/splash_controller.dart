@@ -30,6 +30,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maktrack/presentation/pages/auth/sing_in_screen.dart';
 import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+import 'package:maktrack/presentation/pages/screen/splash_screen/plash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/screen/DashBoard/dash_board.dart';
 

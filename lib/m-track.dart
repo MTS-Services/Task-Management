@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktrack/domain/entities/color.dart';
-import 'package:maktrack/presentation/pages/screen/onboarding/onboarding_screen.dart';
+import 'package:maktrack/presentation/pages/screen/splash_screen/plash_screen.dart';
 
 class MTrac extends StatelessWidget {
   const MTrac({super.key});
@@ -16,7 +16,7 @@ class MTrac extends StatelessWidget {
             textTheme: _buildTextTheme(),
             inputDecorationTheme: _buildInputDecorationTheme(context),
             elevatedButtonTheme: _buildElevatedButtonThemeData()),
-        home: OnboardingPage());
+        home: PlashScreen());
   }
 
   ElevatedButtonThemeData _buildElevatedButtonThemeData() {
