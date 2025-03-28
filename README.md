@@ -33,6 +33,13 @@ Product Details
 ![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(4).png)|
 
 
+## Screenshots (Light mode)
+
+Leader Dashboard     
+
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(5).png)|
+
+
 ## 🚀 Features :
 ```
 • Bottom navigation animation when switch from one screen to another
