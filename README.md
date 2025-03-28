@@ -16,7 +16,7 @@ Onboarding
 
 SognIn SingnUp     
 
-![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(1).png)|
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(1).png)
 
 
 ## Screenshots (Light mode)
