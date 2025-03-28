@@ -10,7 +10,7 @@
 
 Onboarding     
 
-![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png?raw=true)|
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png?raw=true)
 
 ## Screenshots (Light mode)
 
@@ -23,21 +23,21 @@ SognIn SingnUp
 
 Dashboard     
 
-![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(3).png)|
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(3).png)
 
 
 ## Screenshots (Light mode)
 
 Product Details     
 
-![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(4).png)|
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(4).png)
 
 
 ## Screenshots (Light mode)
 
 Leader Dashboard     
 
-![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(5).png)|
+![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(5).png)
 
 
 ## 🚀 Features :
