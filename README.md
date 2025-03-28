@@ -8,9 +8,9 @@
 
 ## Screenshots (Light mode)
 
-Onboding                    |   SignUp Screen          |  Country Screen |  LogIn screen 
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/ImportedPhoto_1742982799699.jpg?raw=true)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_8950749659373738947.jpg?raw=true)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_6041161094151534765.jpg)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_303141188652231579.jpg?raw=true)
+Onboding                    | 
+
+![]([https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/ImportedPhoto_1742982799699.jpg](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png)?raw=true))
 
 
 ## Screenshots (Light mode)
