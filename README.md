@@ -8,10 +8,7 @@
 
 ## Screenshots (Light mode)
 
-## Screenshots (Light mode)
-
-Onboarding         |  
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+Onboarding     
 ![](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png?raw=true)|
 
 ## Screenshots (Light mode)
