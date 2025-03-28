@@ -10,7 +10,7 @@
 
 Onboding                    | 
 
-![]([https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/ImportedPhoto_1742982799699.jpg](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png)?raw=true))
+![]([https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/ImportedPhoto_1742982799699.jpg](https://github.com/MTS-Services/Task-Management/blob/main/screenshot/Fall%20Abstract%20Video%20Mobile%20Mockup%20Linkedin%20Post%20%20(2).png)?raw=true)
 
 
 ## Screenshots (Light mode)
