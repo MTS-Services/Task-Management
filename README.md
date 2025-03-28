@@ -12,7 +12,7 @@
 
 Home Screen         |   All Product View Screen           |  Order Card Screen       |  confirm order screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_6119407009071195624.jpg?raw=true)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_8400753724536336574.jpg?raw=true)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_5058362537592697515.jpg?raw=true)|![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160303_2181217312802007082.jpg?raw=true
+![](https://github.com/MTS-Services/Food_Delivery/blob/main/screenshots/media_20250326_160253_6119407009071195624.jpg?raw=true)|
 
 ## Screenshots (Light mode)
 
